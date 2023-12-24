@@ -30,4 +30,3 @@ coverage
 *.tsbuildinfo
 *.zip
 .vscode
-/public/*.zip
