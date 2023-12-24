@@ -1,7 +1,7 @@
 <template>
     <div class="col-xl-3 col-lg-4 col-md-6 col-12">
         <div class="card border position-relative">
-            <RouterLink to="/product-detials">
+            <RouterLink :to="`/product-detials/`">
                 <img src="https://relaxtheback.com/cdn/shop/products/Cozzia_QiPro_FacingForward-Display_WEB_clip-j_456x456.jpg?v=1663823010" alt="" class="card-img-top" />
             </RouterLink>
             <div class="card-body">
@@ -19,10 +19,13 @@
     </div>
 </template>
 
-<script>
-export default {
-
-}
+<script setup>
+    const {info} = defineProps({
+        info:{
+            type:Object,
+            required:true,
+        }
+    })
 </script>
 
 <style scoped>
