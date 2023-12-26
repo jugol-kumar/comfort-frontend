@@ -4,7 +4,6 @@ import "./assets/libs/simplebar/dist/simplebar.min.css"
 import "./assets/css/theme.min.css"
 import './assets/css/main.css'
 
-
 import "./assets/js/vendors/darkMode.js"
 import "./assets/libs/@popperjs/core/dist/umd/popper.min.js"
 import "./assets/libs/bootstrap/dist/js/bootstrap.min.js"
