@@ -1,7 +1,3 @@
-import "./assets/fonts/feather/feather.css"
-import "./assets/css/bootstrap-icon/bootstrap-icons.min.css"
-import "./assets/css/simplebar.min.css"
-import "./assets/css/theme.min.css"
 import './assets/css/main.css'
 
 
