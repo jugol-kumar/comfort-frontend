@@ -13,37 +13,14 @@ const data = ref(null);
 
 
 const selectVarient = ref([]);
+const getThambImage = ref(null)
 
-
-
-const getVariantPrice = () => {
-    if ($('#option-choice-form input[name=quantity]').val() > 0 && checkAddToCartValidity()) {
-        $.ajax({
-            type: "POST",
-            data: $('#option-choice-form').serializeArray(),
-            success: function (data) {
-                $('.product-gallery-thumb .carousel-box').each(function (i) {
-                    if ($(this).data('variation') && data.variation == $(this).data('variation')) {
-                        $('.product-gallery-thumb').slick('slickGoTo', i);
-                    }
-                })
-                $('#option-choice-form #chosen_price_div').removeClass('d-none');
-                $('#option-choice-form #chosen_price_div #chosen_price').html(data.price);
-                $('#available-quantity').html(data.quantity);
-                $('.input-number').prop('max', data.quantity);
-                if (parseInt(data.quantity) < 1 && data.digital === 0) {
-                    $('.buy-now').hide();
-                    $('.add-to-cart').hide();
-                }
-                else {
-                    $('.buy-now').show();
-                    $('.add-to-cart').show();
-                }
-            }
-        });
+const setThambImage = (image) =>{
+    getThambImage.value = {
+        id:image.id,
+        img:image.image
     }
 }
-
 
 const buyQty = ref(1)
 const varientPrice = ref(0)
@@ -81,8 +58,11 @@ onMounted(async () => {
     });
 
     selectVarient.value = res.data.attributes
-    
     data.value = res.data
+    getThambImage.value = {
+        id:res.data?.images[0]?.id,
+        img:res.data?.images[0]?.image
+    }
 
     document.title = "The title property sets or returns the title of the document."
 });
@@ -104,10 +84,23 @@ onMounted(async () => {
                 </ol>
             </nav>
             <div class="row">
-                <div class="col-md-6 col-12">
+                <div class="col-md-1 image-slider-scroll">
+                    <templatel v-for="(img, i) in data?.images" :key="`image-${i}`">
+                        <img :src="`${$API_URL}/storage/uploads/${img.image}`"
+                        alt="" class="w-100" 
+                        @click="setThambImage(img)"
+                        :class="getThambImage.id === img.id ? 'selected-image' : ''">
+                    </templatel>
+                </div>
+
+                <div class="col-md-5 col-12">
                     <div>
-                        <img src="https://relaxtheback.com/cdn/shop/products/Cozzia_QiPro_FacingForward-Display_WEB_clip-j_456x456.jpg?v=1663823010"
-                            alt="" class="w-100 h-auto" />
+                        
+                        <img :src="`${$API_URL}/storage/uploads/${getThambImage?.img}`"
+                        alt="" 
+                        class="w-100 h-auto">
+
+                            
                     </div>
                 </div>
                 <div class="col-md-6 col-12">
@@ -179,7 +172,10 @@ onMounted(async () => {
                         </div>
                         <div class="product-form-action mt-4">
                             <div class="quantity-selector">
-                                <label for="quantity-selector-input" class="fs-3 text-dark fw-semibold">Quantity</label>
+                                <label for="quantity-selector-input" class="fs-3 text-dark fw-semibold">
+                                    Quantity
+                                </label>
+                                <small>(Available: {{ selectVarientProduct.stock }})</small>
                                 <div class="d-flex align-items-center">
                                     <div class="d-flex align-items-center">
                                         <button class="btn btn-info" @click="qtyDown">-</button>
@@ -223,25 +219,8 @@ onMounted(async () => {
                                     </a>
                                 </li>
                             </ul>
-                            <p class="fs-4 text-dark fw-normal">Inside the Qi XE Pro Massage Chair, every experience is
-                                personal. An onboard assistant tracks usage patterns and preferences, integrating seamlessly
-                                with your digital life. Everything is tuned to your liking, from cueing up your favorite
-                                music to creating your own customized massage.
-                                <br><br>
-                                Equipped with Dual Lumbar Massage, Tri-Zone Heat Therapy, and 4D Vario Motion Intelligent
-                                Rollers, experience a life-changing massage all in the comfort of your home or office. The
-                                smart massage rollers built into this recliner chair track the natural shape of your spine
-                                and allow for full-body tension relief. The Chair Doctor program built into this AI massage
-                                chair allows each massage session to be customized to your current tension and stress.
-                                Experience immediate chiropractic pain relief through any of the 24 detailed massage
-                                programs.
-                                <br><br>
-                                Use the smart quick action controls to conveniently enter a relax and stretch program,
-                                adjust the heat, or regulate your chair's reclining adjustments. The smart dial allows you
-                                to easily turn the chair on/off and alter the strength of the back massage on the go by
-                                simply rotating the dial for greater depth or for a milder massage. Similarly, use the
-                                convenient Alexa voice control through the multiple-language tablet to command your
-                                recliner.
+                            <p class="fs-4 text-dark fw-normal pre-wrap">
+                                {{data?.description}}
                             </p>
                         </div>
                         <div class="bg-light rounded d-flex gap-3 p-4">
@@ -335,71 +314,9 @@ onMounted(async () => {
                     </div>
                 </div>
             </div>
-            <div class="img-text__container mt-5">
-                <div class="row align-items-center my-4">
-                    <div class="col-md-6 col-12">
-                        <img src="https://relaxtheback.com/cdn/shop/files/2022-layout-tablet-screen-cz-716-1536x1052_1390x953.jpg?v=1693951500"
-                            alt="CHAIR DOCTOR™ POWERED BY AI" />
-                    </div>
-                    <div class="col-md-6 col-12">
-                        <div class="img-text__container-content">
-                            <h2>CHAIR DOCTOR™ POWERED BY AI</h2>
-                            <p class="my-4">One of the most important massage advancements to date, the Chair Doctor™
-                                program, uses AI technology to create a massage based on your current tension and stress.
-                                Using the hand-held biometric scanner, GSR control sensors are utilized to send biofeedback
-                                information to sense your tension areas. PPG technology can read your heart rate to analyze
-                                your stress levels. The Chair Doctor™ also measures your SP02 blood oxygen levels. The
-                                program uses all of this data to provide a unique massage just for you.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="row align-items-center my-4">
-                    <div class="col-md-6 col-12">
-                        <div class="img-text__container-content">
-                            <h2>IMMEDIATE PAIN RELIEF</h2>
-                            <p class="my-4">Compressed spinal discs are a leading cause of back pain. If you suffer from
-                                this, the Qi XE Pro offers four different stretch options. The Cozzia Qi XE Pro holds you in
-                                place, bends you backward slowly but firmly, which takes pressure off the discs in your
-                                spine proving a similar effect to a spinal adjustment at a chiropractor’s office.</p>
-                        </div>
-                    </div>
-                    <div class="col-md-6 col-12">
-                        <img src="https://relaxtheback.com/cdn/shop/files/DSC9272__v_-i_720x480.png?v=1693950326"
-                            alt="IMMEDIATE PAIN RELIEF" />
-                    </div>
-                </div>
-                <div class="row align-items-center my-4">
-                    <div class="col-md-6 col-12">
-                        <img src="https://relaxtheback.com/cdn/shop/files/2022-layout-quick-dial-cz-716-1536x1052_1390x953.jpg?v=1693950335"
-                            alt="CHAIR DOCTOR™ POWERED BY AI" />
-                    </div>
-                    <div class="col-md-6 col-12">
-                        <div class="img-text__container-content">
-                            <h2>CHAIR DOCTOR™ POWERED BY AI</h2>
-                            <p class="my-4">Use the quick action controls to get into a relax and stretch program straight
-                                away, adjust the heat, or control the recline adjustments of your chair. The smart dial
-                                allows you to power on and off the chair quickly and adjusts the back massage intensity on
-                                the fly by simply turning the dial right for more depth or left for a gentler massage.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="row align-items-center my-4">
-                    <div class="col-md-6 col-12">
-                        <div class="img-text__container-content">
-                            <h2>4D VARIOMOTION™ INTELLIGENT ROLLERS</h2>
-                            <p class="my-4">Bringing your massage therapist home, the most advanced 4D rollers glide with a
-                                wider massage area than ever before. 4D VarioMotion™ rollers deliver a more accurate massage
-                                than any other massage chair. Fast sensing technology elevates the massage by targeting
-                                therapy to problem areas and quickly relieve tight back muscles. Pinpointing key muscle
-                                groups along the spine, Smart Acupunctural Point Detection targets 36 Acupuncture points for
-                                optimal spinal relief.</p>
-                        </div>
-                    </div>
-                    <div class="col-md-6 col-12">
-                        <img src="https://relaxtheback.com/cdn/shop/files/2022-vario-motion-cz-716-2_1079x608.jpg?v=1693950979"
-                            alt="4D VARIOMOTION™ INTELLIGENT ROLLERS" />
-                    </div>
-                </div>
+
+
+            <div class="img-text__container mt-5" v-html="data?.details">
             </div>
             <!-- Product Review Head -->
             <div class="product-review border-top">
@@ -845,5 +762,16 @@ i {
 
 .featured-collection h2 {
     margin: 50px 0 30px 0;
+}
+.pre-wrap{
+    white-space: pre-wrap;
+}
+.image-slider-scroll{
+    max-height:500px;
+    overflow-y:scroll;
+}
+.selected-image{
+    border: 2px solid var(--gk-info);
+    border-radius: 10px;
 }
 </style>

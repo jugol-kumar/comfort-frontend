@@ -1,0 +1,26 @@
+.img-text__container img{
+    max-width: 100% !important;
+}
+
+
+.image-slider-scroll{
+    scroll-behavior: smooth;
+}
+.image-slider-scroll::-webkit-scrollbar {
+    width: 10px;
+  }
+  
+  /* Track */
+.image-slider-scroll::-webkit-scrollbar-track {
+    background: #f1f1f1; 
+  }
+   
+/* Handle */
+.image-slider-scroll::-webkit-scrollbar-thumb {
+    background: #888; 
+}
+  
+/* Handle on hover */
+.image-slider-scroll::-webkit-scrollbar-thumb:hover {
+background: #555; 
+}
