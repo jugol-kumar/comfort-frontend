@@ -1,0 +1,42 @@
+nav {
+    .navbar-brand {
+        img {
+            width: 270px;
+        }
+    }
+    .search {
+        input {
+            width: 400px;
+            padding: 10px;
+            border: 1px solid #ebebeb;
+            border-right: none;
+            border-top-left-radius: 6px;
+            border-bottom-left-radius: 6px;
+        }
+        button {
+            background: $primary-color;
+            padding: 11px;
+            border-top-right-radius: 6px;
+            border-bottom-right-radius: 6px;
+            i {
+                color: #fff;
+            }
+        }
+    }
+    .find-store {
+        i {
+            font-size: 36px;
+            color: $text-dark;
+        }
+        h4 {
+            color: $text-dark;
+            font-size: 16px;
+            font-weight: 600;
+            line-height: 21px;
+        }
+        p {
+            color: $text-dark;
+            font-size: 14px;
+        }
+    }
+}

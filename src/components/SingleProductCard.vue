@@ -35,18 +35,17 @@
 
 </script>
 
-<style scoped>
-    
-    .card-btns {
-        position: relative;
-        opacity: 0;
-        transform: translateY(-20px) !important;
-        transition: all ease-in-out 0.4s;
+<style lang="scss" scoped>
+    .card {
+        &:hover {
+            .card-btns {
+                opacity: 1;
+                transition: all ease-in-out 0.4s;
+            }
+        }
     }
-    .card:hover .card-btns {
-        display: flex;
-        opacity: 1;
-        transform: translateY(0px) !important;
+    .card-btns {
+        opacity: 0;
         transition: all ease-in-out 0.4s;
     }
 </style>
