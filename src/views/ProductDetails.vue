@@ -3,7 +3,7 @@ import ProductReviewQuestion from '../components/ProductReviewQuestion.vue'
 import SingleProductCard from '@/components/SingleProductCard.vue'
 import { onMounted, ref, watch } from 'vue'
 import useAxios from "@/composables/useAxios"
-import {useCartStore} from "@/stores/useCartStore"
+import { useCartStore } from "@/stores/useCartStore"
 const cartStore = useCartStore();
 
 import { useRoute } from 'vue-router'
@@ -17,36 +17,36 @@ const data = ref(null);
 const selectVarient = ref([]);
 const getThambImage = ref(null)
 
-const setThambImage = (image) =>{
+const setThambImage = (image) => {
     getThambImage.value = {
-        id:image.id,
-        img:image.image
+        id: image.id,
+        img: image.image
     }
 }
 
 const buyQty = ref(1)
 const varientPrice = ref(0)
 const selectVarientProduct = ref({});
-watch([selectVarient,buyQty], ([item, qty]) => {
+watch([selectVarient, buyQty], ([item, qty]) => {
     varientPrice.value = 10 * qty
-    const title = item.map(item => item.selectVariant).join('/')+"/";
+    const title = item.map(item => item.selectVariant).join('/') + "/";
     const selectVarient = data?.value?.stocks?.filter(item => {
-        if(item.varient === title ){
+        if (item.varient === title) {
             return item;
         }
     })[0]
-    selectVarientProduct.value = {...selectVarient, totalPrice:selectVarient.price * qty}
-}, {deep:true})
+    selectVarientProduct.value = { ...selectVarient, totalPrice: selectVarient.price * qty }
+}, { deep: true })
 
 
 const qtyUp = () => {
-    if(buyQty.value < 10){
+    if (buyQty.value < 10) {
         buyQty.value++
     }
 }
 
 const qtyDown = () => {
-    if(buyQty.value > 1){
+    if (buyQty.value > 1) {
         buyQty.value--
     }
 }
@@ -61,8 +61,8 @@ onMounted(async () => {
     selectVarient.value = res.data.attributes
     data.value = res.data
     getThambImage.value = {
-        id:res.data?.images[0]?.id,
-        img:res.data?.images[0]?.image
+        id: res.data?.images[0]?.id,
+        img: res.data?.images[0]?.image
     }
 
     document.title = "The title property sets or returns the title of the document."
@@ -70,8 +70,8 @@ onMounted(async () => {
 
 
 
-const addToCart =()=>{
-    cartStore.addToCart({data, selectSku:{...selectVarientProduct.value, selectQty:buyQty.value}})
+const addToCart = () => {
+    cartStore.addToCart({ data, selectSku: { ...selectVarientProduct.value, selectQty: buyQty.value } })
 }
 
 
@@ -94,23 +94,20 @@ const addToCart =()=>{
             <div class="row">
                 <div class="col-md-1 image-slider-scroll">
                     <templatel v-for="(img, i) in data?.images" :key="`image-${i}`">
-                        <img :src="`${$API_URL}/storage/uploads/${img.image}`"
-                        alt="" class="w-100" 
-                        @click="setThambImage(img)"
-                        :class="getThambImage.id === img.id ? 'selected-image' : ''">
+                        <img :src="`${$API_URL}/storage/uploads/${img.image}`" alt="" class="w-100"
+                            @click="setThambImage(img)" :class="getThambImage.id === img.id ? 'selected-image' : ''">
                     </templatel>
                 </div>
 
                 <div class="col-md-5 col-12">
                     <div>
-                        <img :src="`${$API_URL}/storage/uploads/${getThambImage?.img}`"
-                        alt="" 
-                        class="w-100 h-auto">
+                        <img :src="`${$API_URL}/storage/uploads/${getThambImage?.img}`" alt="" class="w-100 h-auto">
                     </div>
                 </div>
                 <div class="col-md-6 col-12">
                     <div class="product-detail">
-                        <h1 class="product-title text-capitalize">{{ data?.title }} - {{ selectVarientProduct.varient?.replace(/\//g, '-').slice(0, -1)  }}</h1>
+                        <h1 class="product-title text-capitalize">{{ data?.title }} - {{
+                            selectVarientProduct.varient?.replace(/\//g, '-').slice(0, -1) }}</h1>
                         <p class="fs-3 text-secondary">by <RouterLink to="" class="fw-semibold text-dark text-capitalize">{{
                             data?.category?.name }}</RouterLink>
                         </p>
@@ -189,7 +186,8 @@ const addToCart =()=>{
                                         <button class="btn btn-info" @click="qtyUp">+</button>
                                     </div>
                                     <div>
-                                        <button class="bg-light border-0 p-3 text-uppercase text-dark fs-3" @click="addToCart">ADD TOCART</button>
+                                        <button class="bg-light border-0 p-3 text-uppercase text-dark fs-3"
+                                            @click="addToCart">ADD TOCART</button>
                                     </div>
                                     <div>
                                         <button
@@ -225,7 +223,7 @@ const addToCart =()=>{
                                 </li>
                             </ul>
                             <p class="fs-4 text-dark fw-normal pre-wrap">
-                                {{data?.description}}
+                                {{ data?.description }}
                             </p>
                         </div>
                         <div class="bg-light rounded d-flex gap-3 p-4">
@@ -286,13 +284,14 @@ const addToCart =()=>{
                                     aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
                                     <div class="accordion-body">
                                         <ul>
-                                            <li class="text-dark d-flex gap-2" v-for="(item , i) in data?.attributes" :key="`feature-${i}`">
+                                            <li class="text-dark d-flex gap-2" v-for="(item, i) in data?.attributes"
+                                                :key="`feature-${i}`">
                                                 <span class="fw-semibold">
                                                     {{ item?.option?.name }}:
                                                 </span>
                                                 <div>
                                                     <span v-for="(tag, j) in item.tags" :key="`tag-${j}`">
-                                                        {{  tag }}<span v-if='j < item.tags.length - 1'>, </span> 
+                                                        {{ tag }}<span v-if='j < item.tags.length - 1'>, </span>
                                                     </span>
                                                 </div>
                                             </li>
@@ -323,8 +322,8 @@ const addToCart =()=>{
 
             <div class="img-text__container mt-5" v-html="data?.details">
             </div>
-           
-            
+
+
             <!-- Product Review & Question -->
             <ProductReviewQuestion />
             <!-- Featured Collection -->
@@ -355,6 +354,7 @@ i {
 .product-title {
     text-align: left;
 }
+
 .compare-at-pricing-new {
     width: 45%;
 }
@@ -376,156 +376,163 @@ i {
 }
 
 .or-new span {
-.or-new {
-    &::before {
+    .or-new {
+        &::before {
+            content: '';
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 1px;
+            height: 50%;
+            background-color: #000;
+        }
+
+        &::after {
+            content: '';
+            position: absolute;
+            bottom: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 1px;
+            height: 50%;
+            background-color: #000;
+        }
+    }
+
+    .or-new span {
+        background-color: #fff;
+        font-size: 20px;
+        padding: 10px 0;
+        color: #000;
+    }
+
+    .interest-new {
+        width: 45%;
+    }
+
+    .interest-new img {
+        width: 85px;
+        height: auto;
+    }
+
+    .share-this ul li a {
+        width: 40px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 999px;
+        color: #fff;
+        font-size: 18px;
+        transition: all ease-in-out 0.3s;
+    }
+
+    .share-this ul li a:hover {
+        transform: translateY(-5px);
+    }
+
+    .share-this .facebook {
+        background-color: #425DAB;
+    }
+
+    .share-this .twitter {
+        background-color: #1DA1F2;
+    }
+
+    .share-this .linkedin {
+        background-color: #0877B5;
+    }
+
+    .share-this .pinterest {
+        background-color: #BD1C1C;
+    }
+
+    .img-text__container img {
+        width: 100%;
+        height: auto;
+    }
+
+    .user-profile {
+        min-width: 60px;
+        height: 60px;
+        border-radius: 999px;
+        background-color: #9b91dc;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .user-letter {
+        font-size: 28px;
+        font-weight: 600;
+        color: #fff;
+    }
+
+    .review-submit,
+    .question-submit {
+        padding: 8px 50px;
+    }
+
+    .review-question-tab .nav-link {
+        color: #000;
+        text-transform: uppercase;
+        border-radius: 0;
+        padding-inline: 0;
+        border-bottom: 1px solid transparent;
+    }
+
+    .review-question-tab .nav-link.active {
+        background: transparent !important;
+        border-color: black;
+    }
+
+    .question-items__item-answer {
+        margin: 30px 0 0 30px;
+        padding: 30px 0 30px 30px;
+        position: relative;
+    }
+
+    .question-items__item-answer::after {
         content: '';
         position: absolute;
-        top: -20px;
-        left: 50%;
-        transform: translateX(-50%);
-        width: 1px;
-        height: 50%;
-        background-color: #000;
+        top: 0;
+        left: 0;
+        width: 2px;
+        height: 100%;
+        background-color: rgb(131, 131, 137);
     }
-    &::after {
-        content: '';
-        position: absolute;
-        bottom: -20px;
-        left: 50%;
-        transform: translateX(-50%);
-        width: 1px;
-        height: 50%;
-        background-color: #000;
+
+    .featured-collection h2 {
+        margin: 50px 0 30px 0;
     }
-}
 
-.or-new span{
-    background-color: #fff;
-    font-size: 20px;
-    padding: 10px 0;
-    color: #000;
-}
-
-.interest-new {
-    width: 45%;
-}
-
-.interest-new img {
-    width: 85px;
-    height: auto;
-}
-
-.share-this ul li a {
-    width: 40px;
-    height: 40px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 999px;
-    color: #fff;
-    font-size: 18px;
-    transition: all ease-in-out 0.3s;
-}
-
-.share-this ul li a:hover {
-    transform: translateY(-5px);
-}
-
-.share-this .facebook {
-    background-color: #425DAB;
-}
-
-.share-this .twitter {
-    background-color: #1DA1F2;
-}
-
-.share-this .linkedin {
-    background-color: #0877B5;
-}
-
-.share-this .pinterest {
-    background-color: #BD1C1C;
-}
-
-.img-text__container img {
-    width: 100%;
-    height: auto;
-}
-
-.user-profile {
-    min-width: 60px;
-    height: 60px;
-    border-radius: 999px;
-    background-color: #9b91dc;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.user-letter {
-    font-size: 28px;
-    font-weight: 600;
-    color: #fff;
-}
-
-.review-submit,
-.question-submit {
-    padding: 8px 50px;
-}
-
-.review-question-tab .nav-link {
-    color: #000;
-    text-transform: uppercase;
-    border-radius: 0;
-    padding-inline: 0;
-    border-bottom: 1px solid transparent;
-}
-
-.review-question-tab .nav-link.active {
-    background: transparent !important;
-    border-color: black;
-}
-
-.question-items__item-answer {
-    margin: 30px 0 0 30px;
-    padding: 30px 0 30px 30px;
-    position: relative;
-}
-
-.question-items__item-answer::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 2px;
-    height: 100%;
-    background-color: rgb(131, 131, 137);
-}
-
-.featured-collection h2 {
-    margin: 50px 0 30px 0;
-}
-.pre-wrap{
-    white-space: pre-wrap;
-}
-.image-slider-scroll{
-    max-height:500px;
-    overflow-y:scroll;
-}
-.selected-image{
-    border: 2px solid var(--gk-info);
-    border-radius: 10px;
-}
-
-.img-text__container {
-    h2 {
-        text-align: left;
+    .pre-wrap {
+        white-space: pre-wrap;
     }
-    p {
-        color: #6b6d76;
+
+    .image-slider-scroll {
+        max-height: 500px;
+        overflow-y: scroll;
     }
-}
-.accordion-button:focus {
-    border-color:unset !important;
+
+    .selected-image {
+        border: 2px solid var(--gk-info);
+        border-radius: 10px;
+    }
+
+    .img-text__container {
+        h2 {
+            text-align: left;
+        }
+
+        p {
+            color: #6b6d76;
+        }
+    }
+
+    .accordion-button:focus {
+        border-color: unset !important;
+    }
 }
 </style>
