@@ -119,7 +119,7 @@
           <i class="bi bi-heart"></i>
         </RouterLink>
         <RouterLink to="/cart" class="cart">
-          <span>2</span>
+          <span>{{ cartStore.getCartLength }}</span>
           <i class="bi bi-cart"></i>
         </RouterLink>
       </div>
@@ -176,8 +176,8 @@
 <script setup>
   import {useCartStore} from "@/stores/useCartStore"
   const cartStore = useCartStore();
-
   cartStore.initCart();
+
 </script>
 
 <style>

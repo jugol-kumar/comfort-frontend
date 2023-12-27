@@ -106,8 +106,7 @@ const addToCart = () => {
                 </div>
                 <div class="col-md-6 col-12">
                     <div class="product-detail">
-                        <h1 class="product-title text-capitalize">{{ data?.title }} - {{
-                            selectVarientProduct.varient?.replace(/\//g, '-').slice(0, -1) }}</h1>
+                        <h1 class="product-title text-capitalize">{{ data?.title }} - {{ selectVarientProduct.varient?.replace(/\//g, '-').slice(0, -1) }}</h1>
                         <p class="fs-3 text-secondary">by <RouterLink to="" class="fw-semibold text-dark text-capitalize">{{
                             data?.category?.name }}</RouterLink>
                         </p>
@@ -320,9 +319,7 @@ const addToCart = () => {
             </div>
 
 
-            <div class="img-text__container mt-5" v-html="data?.details">
-            </div>
-
+            <div class="img-text__container mt-5" v-html="data?.details"/>
 
             <!-- Product Review & Question -->
             <ProductReviewQuestion />
@@ -504,20 +501,6 @@ i {
         margin: 50px 0 30px 0;
     }
 
-    .pre-wrap {
-        white-space: pre-wrap;
-    }
-
-    .image-slider-scroll {
-        max-height: 500px;
-        overflow-y: scroll;
-    }
-
-    .selected-image {
-        border: 2px solid var(--gk-info);
-        border-radius: 10px;
-    }
-
     .img-text__container {
         h2 {
             text-align: left;
@@ -531,5 +514,19 @@ i {
     .accordion-button:focus {
         border-color: unset !important;
     }
+}
+
+.pre-wrap {
+    white-space: pre-wrap;
+}
+
+.image-slider-scroll {
+    max-height: 500px;
+    overflow-y: scroll;
+}
+
+.selected-image {
+    border: 2px solid var(--gk-info);
+    border-radius: 10px;
 }
 </style>
