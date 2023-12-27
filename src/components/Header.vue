@@ -166,7 +166,10 @@
 </template>
 
 <script setup>
+  import {useCartStore} from "@/stores/useCartStore"
+  const cartStore = useCartStore();
 
+  cartStore.initCart();
 </script>
 
 <style>

@@ -2,11 +2,12 @@
 import SingleProductCard from '@/components/SingleProductCard.vue'
 import { onMounted, ref, watch } from 'vue'
 import useAxios from "@/composables/useAxios"
+import {useCartStore} from "@/stores/useCartStore"
+const cartStore = useCartStore();
 
 import { useRoute } from 'vue-router'
 
 const { params } = useRoute();
-
 
 const { loading, error, sendRequest } = useAxios();
 const data = ref(null);
@@ -33,7 +34,6 @@ watch([selectVarient,buyQty], ([item, qty]) => {
             return item;
         }
     })[0]
-
     selectVarientProduct.value = {...selectVarient, totalPrice:selectVarient.price * qty}
 }, {deep:true})
 
@@ -69,6 +69,13 @@ onMounted(async () => {
 
 
 
+const addToCart =()=>{
+    cartStore.addToCart({data, selectSku:{...selectVarientProduct.value, selectQty:buyQty.value}})
+}
+
+
+
+
 </script>
 
 <template>
@@ -95,12 +102,9 @@ onMounted(async () => {
 
                 <div class="col-md-5 col-12">
                     <div>
-                        
                         <img :src="`${$API_URL}/storage/uploads/${getThambImage?.img}`"
                         alt="" 
                         class="w-100 h-auto">
-
-                            
                     </div>
                 </div>
                 <div class="col-md-6 col-12">
@@ -175,7 +179,7 @@ onMounted(async () => {
                                 <label for="quantity-selector-input" class="fs-3 text-dark fw-semibold">
                                     Quantity
                                 </label>
-                                <small>(Available: {{ selectVarientProduct.stock }})</small>
+                                <small>(Available: {{ selectVarientProduct.qty }})</small>
                                 <div class="d-flex align-items-center">
                                     <div class="d-flex align-items-center">
                                         <button class="btn btn-info" @click="qtyDown">-</button>
@@ -183,8 +187,7 @@ onMounted(async () => {
                                         <button class="btn btn-info" @click="qtyUp">+</button>
                                     </div>
                                     <div>
-                                        <button class="bg-light border-0 p-3 text-uppercase text-dark fs-3">ADD TO
-                                            CART</button>
+                                        <button class="bg-light border-0 p-3 text-uppercase text-dark fs-3" @click="addToCart">ADD TOCART</button>
                                     </div>
                                     <div>
                                         <button
@@ -281,15 +284,15 @@ onMounted(async () => {
                                     aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
                                     <div class="accordion-body">
                                         <ul>
-                                            <li class="text-dark"><span class="fw-semibold">Upright:</span>62.2"L x 33.1"W x
-                                                47.6"H</li>
-                                            <li class="text-dark"><span class="fw-semibold">Fully Relined::</span>77.2"L x
-                                                33.1"W x 41.3"H</li>
-                                            <li class="text-dark"><span class="fw-semibold">Power Voltage:</span>110 -120V
-                                            </li>
-                                            <li class="text-dark"><span class="fw-semibold">Rated Frequency::</span>60Hz
-                                            </li>
-                                            <li class="text-dark"><span class="fw-semibold">Weight Capacity:</span>320 Lbs.
+                                            <li class="text-dark d-flex gap-2" v-for="(item , i) in data?.attributes" :key="`feature-${i}`">
+                                                <span class="fw-semibold">
+                                                    {{ item?.option?.name }}:
+                                                </span>
+                                                <div>
+                                                    <span v-for="(tag, j) in item.tags" :key="`tag-${j}`">
+                                                        {{  tag }}<span v-if='j < item.tags.length - 1'>, </span> 
+                                                    </span>
+                                                </div>
                                             </li>
                                         </ul>
                                     </div>
