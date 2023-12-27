@@ -1,0 +1,75 @@
+.product-cart {
+    &__head {
+            p {
+                color: $text-gray;
+                font-size: 16px;
+                font-weight: 400;
+            }
+            h3 {
+                color: $text-dark;
+                font-size: 24px;
+                font-weight: 500;
+            }
+        }
+    &__items {
+        padding: 20px 0;
+        &-item {
+            display: flex;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            padding: 20px 30px 20px 20px;
+            box-shadow: 0 1px 4px #8080801c;
+            border: 1px solid rgba(128, 128, 128, .16);
+            
+            .left {
+                img {
+                    width: 200px;
+                    height: auto;
+                }
+            }
+
+            .right {
+                width: 100%;
+                display: flex;
+                align-content: center;
+                justify-content: space-between;
+                .product-title {
+                    color: $text-dark;
+                    font-size: 18px;
+                    font-weight: 500;
+                    margin-bottom: 10px;
+                    transition: all ease-in-out 0.3s;
+                    &:hover {
+                        color: $primary-color;
+                    }
+                }
+                strong {
+                    color: $text-dark;
+                }
+                p {
+                    font-size: 18px;
+                }
+                .cancel-button {
+                    width: 30px;
+                    height: 30px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    background-color: #f2f2f2;
+                    border-radius: 999px;
+                    transition: all ease-in-out 0.3s;
+                    i {
+                        color: #000;
+                        transition: all ease-in-out 0.3s;
+                    }
+                    &:hover {
+                        background: $primary-color;
+                        i {
+                            color: #fff;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

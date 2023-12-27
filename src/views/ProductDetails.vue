@@ -9,8 +9,8 @@ import ProductReviewQuestion from '../components/ProductReviewQuestion.vue'
         <div class="container-fluid">
             <nav aria-label="breadcrumb" class="my-4">
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><RouterLink to="/" class="fs-3">Home</RouterLink></li>
-                    <li class="breadcrumb-item active fs-3" aria-current="page">Mid Back Ultimate Executive Office Chair</li>
+                    <li class="breadcrumb-item"><RouterLink to="/" class="fs-4">Home</RouterLink></li>
+                    <li class="breadcrumb-item active fs-4" aria-current="page">Mid Back Ultimate Executive Office Chair</li>
                 </ol>
             </nav>
             <div class="row">
@@ -21,26 +21,26 @@ import ProductReviewQuestion from '../components/ProductReviewQuestion.vue'
                 </div>
                 <div class="col-md-6 col-12">
                     <div class="product-detail">
-                        <h1 class="product-title">Mid Back Ultimate Executive Office Chair</h1>
-                        <p class="fs-3 text-secondary">by <RouterLink to="" class="fw-semibold text-dark">Cozzia</RouterLink></p>
-                        <div class="product-review d-flex align-items-center gap-1">
-                            <div class="fs-3 text-dark">
+                        <h2 class="product-title">Mid Back Ultimate Executive Office Chair</h2>
+                        <p class="fs-4 mb-2 text-secondary">by <RouterLink to="" class="fw-semibold text-dark">Cozzia</RouterLink></p>
+                        <div class="product-review d-flex align-items-center gap-2">
+                            <div class="fs-3 text-info d-flex align-items-center gap-1">
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i> 
                                 <i class="bi bi-star-fill"></i>
                                 <i class="bi bi-star-fill"></i>
-                                <i class="bi bi-star-fill"></i>
-                                <i class="bi bi-star-fill"></i>
-                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star"></i>
                             </div>
-                            <span class="fs-4">1 Review</span>
+                            <span class="fs-4 text-secondary">1 Review</span>
                         </div>
-                        <div class="d-flex align-items-center gap-3 bg-light p-3 rounded my-4">
+                        <div class="d-flex align-items-center gap-3 secondary-button text-white my-3">
                             <i class="bi bi-box-seam text-dark fs-3"></i>
-                            <p class="fs-3 fw-semibold text-dark m-0">This product qualifies for free shipping.</p>
+                            <p class=" text-capitalize fw-semibold">This product qualifies for free shipping.</p>
                         </div>
-                        <div class="text-center bg-danger p-3 rounded text-white fw-semibold fs-3 mb-4">Save $500.00</div>
+                        <div class="primary-button w-100 text-center mb-3">Save $500.00</div>
                         <div class="pricing-new p-4 rounded border border-secondary d-flex align-items-center justify-content-between">
                             <div class="compare-at-pricing-new text-center">
-                                <p class="m-0 fs-3 fw-semibold text-dark">ONE TIME PAYMENT</p>
+                                <p class="m-0 fs-4 fw-semibold text-dark">ONE TIME PAYMENT</p>
                                 <h2 class="m-0 fs-2 fw-semibold text-dark">$7,999.00</h2>
                                 <strike class="text-danger fw-normal fs-3">$8,499.00</strike>
                             </div>
@@ -63,12 +63,12 @@ import ProductReviewQuestion from '../components/ProductReviewQuestion.vue'
                         <div class="product-form-action mt-4">
                             <div class="quantity-selector">
                                 <label for="quantity-selector-input" class="fs-3 text-dark fw-semibold">Quantity</label>
-                                <div class="d-flex align-items-center">
+                                <div class="d-flex align-items-center gap-3 py-3">
                                     <div>
                                         quantity-selector
                                     </div>
-                                    <div>
-                                        <button class="bg-light border-0 p-3 text-uppercase text-dark fs-3">ADD TO CART</button>
+                                    <div class="w-100">
+                                        <RouterLink to="" class="secondary-button text-dark fw-medium fs-3 w-100 d-inline-block text-center">ADD TO CART</RouterLink>
                                     </div>
                                     <div>
                                         <button class="d-flex align-items-center justify-content-center p-0 border-0 rounded">
@@ -79,7 +79,7 @@ import ProductReviewQuestion from '../components/ProductReviewQuestion.vue'
                             </div>
                         </div>
                         <div class="share-this py-4">
-                            <h4 class="fs-3 fw-semibold text-dark">Share this:</h4>
+                            <h4 class="fs-3 fw-semibold text-dark mb-4">Share this:</h4>
                             <ul class="list-unstyled d-flex align-items-center gap-3 mb-4">
                                 <li>
                                     <a href="#" target="_blank" class="facebook">
@@ -102,7 +102,7 @@ import ProductReviewQuestion from '../components/ProductReviewQuestion.vue'
                                     </a>
                                 </li>
                             </ul>
-                            <p class="fs-4 text-dark fw-normal">Inside the Qi XE Pro Massage Chair, every experience is personal. An onboard assistant tracks usage patterns and preferences, integrating seamlessly with your digital life. Everything is tuned to your liking, from cueing up your favorite music to creating your own customized massage.
+                            <p class="fs-4  fw-normal text-secondary">Inside the Qi XE Pro Massage Chair, every experience is personal. An onboard assistant tracks usage patterns and preferences, integrating seamlessly with your digital life. Everything is tuned to your liking, from cueing up your favorite music to creating your own customized massage.
                             <br><br>
                             Equipped with Dual Lumbar Massage, Tri-Zone Heat Therapy, and 4D Vario Motion Intelligent Rollers, experience a life-changing massage all in the comfort of your home or office. The smart massage rollers built into this recliner chair track the natural shape of your spine and allow for full-body tension relief. The Chair Doctor program built into this AI massage chair allows each massage session to be customized to your current tension and stress. Experience immediate chiropractic pain relief through any of the 24 detailed massage programs.
                             <br><br>
@@ -110,52 +110,52 @@ import ProductReviewQuestion from '../components/ProductReviewQuestion.vue'
                             </p>
                         </div>
                         <div class="bg-light rounded d-flex gap-3 p-4">
-                            <i class="bi bi-info-circle mt-2 fs-3"></i>
+                            <i class="bi bi-info-circle mt-1 fs-3"></i>
                             <div>
-                                <h3 class="fs-3 fw-semibold text-dark">Ask An Expert</h3>
-                                <p class="m-0 fs-3">Schedule a free virtual appointment! <RouterLink to="">Learn More</RouterLink></p>
+                                <h3 class="fs-4 fw-semibold text-dark mb-1">Ask An Expert</h3>
+                                <p class="m-0 fs-4">Schedule a free virtual appointment! <RouterLink to="">Learn More</RouterLink></p>
                             </div>
                         </div>
-                        <div class="accordion accordion-flush mt-5" id="accordionFlushExample">
+                        <div class="accordion accordion-flush my-5" id="accordionFlushExample">
                             <div class="accordion-item">
                                 <h2 class="accordion-header" id="flush-headingOne">
-                                <button class="accordion-button collapsed fw-semibold text-dark" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+                                <button class="accordion-button collapsed fw-semibold text-dark fs-3" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
                                     Features & Benefits
                                 </button>
                                 </h2>
                                 <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
                                 <div class="accordion-body">
-                                    <ul>
-                                        <li class="text-dark"><span class="fw-semibold">L-Track Massage-</span> The Qi XE™ Pro massage ​chair uses a 54-inch-long massage roller track that follows the natural shape of the spine. The L shaped track allows for massage starting at the back of the head, neck, and shoulders, traveling down the spine contouring underneath the glues to target and release these important muscle groups.</li>
-                                        <li class="text-dark"><span class="fw-semibold">Chair Doctor-</span> One of the most important massage advancements to date, the Chair Doctor program, uses AI technology to create a massage based on your current tension and stress. Using the hand-held biometric scanner, GSR control sensors are utilized to send biofeedback information to sense your tension areas.</li>
-                                        <li class="text-dark"><span  class="fw-semibold">Dual Lumbar Massage-</span> Dual air compression chambers are strategically placed in the left and right sides of the lower back to target and release stiffness.</li>
-                                        <li class="text-dark"><span class="fw-semibold">Immediate Pain Relief-</span> The Cozzia Qi XE™ Pro holds you in place, bends you backward slowly but firmly, which takes pressure off the discs in your spine proving a similar effect to a spinal adjustment at a chiropractor’s office.</li>
-                                        <li class="text-dark"><span class="fw-semibold">Tri-Zone Heat Therapy-</span> Heated care targets the lower back, buttock, knees, and calves.</li>
+                                    <ul class="d-flex flex-column gap-3">
+                                        <li class="text-secondary"><span class="fw-semibold text-dark">L-Track Massage-</span> The Qi XE™ Pro massage ​chair uses a 54-inch-long massage roller track that follows the natural shape of the spine. The L shaped track allows for massage starting at the back of the head, neck, and shoulders, traveling down the spine contouring underneath the glues to target and release these important muscle groups.</li>
+                                        <li class="text-secondary"><span class="text-dark fw-semibold">Chair Doctor-</span> One of the most important massage advancements to date, the Chair Doctor program, uses AI technology to create a massage based on your current tension and stress. Using the hand-held biometric scanner, GSR control sensors are utilized to send biofeedback information to sense your tension areas.</li>
+                                        <li class="text-secondary"><span  class="text-dark fw-semibold">Dual Lumbar Massage-</span> Dual air compression chambers are strategically placed in the left and right sides of the lower back to target and release stiffness.</li>
+                                        <li class="text-secondary"><span class="text-dark fw-semibold">Immediate Pain Relief-</span> The Cozzia Qi XE™ Pro holds you in place, bends you backward slowly but firmly, which takes pressure off the discs in your spine proving a similar effect to a spinal adjustment at a chiropractor’s office.</li>
+                                        <li class="text-secondary"><span class="text-dark fw-semibold">Tri-Zone Heat Therapy-</span> Heated care targets the lower back, buttock, knees, and calves.</li>
                                     </ul>
                                 </div>
                                 </div>
                             </div>
                             <div class="accordion-item">
                                 <h2 class="accordion-header" id="flush-headingTwo">
-                                <button class="accordion-button collapsed fw-semibold text-dark" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
+                                <button class="accordion-button collapsed fw-semibold text-dark fs-3" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
                                     Specifications & Details
                                 </button>
                                 </h2>
                                 <div id="flush-collapseTwo" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
                                 <div class="accordion-body">
-                                    <ul>
-                                        <li class="text-dark"><span class="fw-semibold">Upright:</span>62.2"L x 33.1"W x 47.6"H</li>
-                                        <li class="text-dark"><span class="fw-semibold">Fully Relined::</span>77.2"L x 33.1"W x 41.3"H</li>
-                                        <li class="text-dark"><span class="fw-semibold">Power Voltage:</span>110 -120V</li>
-                                        <li class="text-dark"><span class="fw-semibold">Rated Frequency::</span>60Hz</li>
-                                        <li class="text-dark"><span class="fw-semibold">Weight Capacity:</span>320 Lbs.</li>
+                                    <ul class="d-flex flex-column gap-3">
+                                        <li class="text-secondary"><span class="text-dark fw-semibold">Upright:</span>62.2"L x 33.1"W x 47.6"H</li>
+                                        <li class="text-secondary"><span class="text-dark fw-semibold">Fully Relined::</span>77.2"L x 33.1"W x 41.3"H</li>
+                                        <li class="text-secondary"><span class="text-dark fw-semibold">Power Voltage:</span>110 -120V</li>
+                                        <li class="text-secondary"><span class="text-dark fw-semibold">Rated Frequency::</span>60Hz</li>
+                                        <li class="text-secondary"><span class="text-dark fw-semibold">Weight Capacity:</span>320 Lbs.</li>
                                     </ul>
                                 </div>
                                 </div>
                             </div>
                             <div class="accordion-item">
                                 <h2 class="accordion-header" id="flush-headingThree">
-                                <button class="accordion-button collapsed  text-dark fw-semibold" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
+                                <button class="accordion-button collapsed  text-dark fw-semibold fs-3" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
                                     Warranty
                                 </button>
                                 </h2>
@@ -238,9 +238,12 @@ import ProductReviewQuestion from '../components/ProductReviewQuestion.vue'
 <script setup>
     
 </script>
-<style scoped>
+<style lang="scss" scoped>
 i {
     line-height: 0;
+}
+.product-title {
+    text-align: left;
 }
 .compare-at-pricing-new {
     width: 45%;
@@ -249,16 +252,29 @@ i {
     position: relative;
     width: 10%;
 }
-.or-new::before {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translateX(-50%) translateY(-50%);
-    width: 1px;
-    height: 100%;
-    background-color: #000;
+.or-new {
+    &::before {
+        content: '';
+        position: absolute;
+        top: -20px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 1px;
+        height: 50%;
+        background-color: #000;
+    }
+    &::after {
+        content: '';
+        position: absolute;
+        bottom: -20px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 1px;
+        height: 50%;
+        background-color: #000;
+    }
 }
+
 .or-new span{
     background-color: #fff;
     font-size: 20px;
@@ -302,5 +318,16 @@ i {
 .img-text__container img{
     width: 100%;
     height: auto;
+}
+.img-text__container {
+    h2 {
+        text-align: left;
+    }
+    p {
+        color: #6b6d76;
+    }
+}
+.accordion-button:focus {
+    border-color:unset !important;
 }
 </style>

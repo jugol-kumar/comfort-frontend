@@ -1,0 +1,306 @@
+.img-text-wrapper {
+    &__img {
+        img {
+            width: 100%;
+            height: auto;
+        }
+    }
+
+    &__text {
+        text-align: center;
+        padding-left: 26px;
+
+        h2 {
+            font-size: 28px;
+            margin-bottom: 20px;
+        }
+    }
+}
+
+.promo-container {
+
+    &__content {
+        width: 100%;
+        height: 100%;
+        position: relative;
+        display: flex;
+        align-items: flex-end;
+        padding: 28px;
+        padding-top: 88px;
+
+        &--one {
+            background-image: url('https://relaxtheback.com/cdn/shop/files/Via-ONDA_Man-Setup_Lifestyle_envir_c-j_1826x1283.jpg?v=1697751187');
+            background-position: center;
+            background-size: cover;
+            background-repeat: no-repeat;
+        }
+
+        &--two {
+            background-image: url('https://relaxtheback.com/cdn/shop/files/LifeformChairs_GENERIC_HomePage-1348x400_2_1699x504.jpg?v=1668534873');
+            background-position: center;
+            background-size: cover;
+            background-repeat: no-repeat;
+        }
+
+        &--three {
+            background-image: url('https://relaxtheback.com/cdn/shop/files/TranscendDesk-Save400_ManStanding_1200x628_RDA_2023_964x504.jpg?v=1675284598');
+            background-position: center;
+            background-size: cover;
+            background-repeat: no-repeat;
+        }
+
+        &::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            background-color: rgba(0, 0, 0, 0.2);
+        }
+
+        img {
+            width: 100%;
+            min-height: 300px;
+            object-fit: cover;
+        }
+
+        &__text {
+            max-width: 60%;
+            z-index: 1;
+
+            &--left {
+                max-width: 70%;
+
+                h2 {
+                    font-size: 28px !important;
+
+                }
+            }
+
+            h2 {
+                color: #fff;
+                text-align: left;
+                font-size: 38px;
+                font-weight: 500;
+            }
+
+            p {
+                color: #fff;
+                font-size: 18px;
+                font-weight: 500;
+            }
+        }
+
+    }
+
+    &--shop-massage {
+        .promo-container__content--one {
+            background-image: url('https://relaxtheback.com/cdn/shop/files/2HT_SuperNovo_ZGMan_envir_c-t_1746x983.jpg?v=1678917060');
+        }
+
+        .promo-container__content--two {
+            background-image: url('https://relaxtheback.com/cdn/shop/files/mastercare_inversiontable_model_fall15__0280_fpo_600_599x599.webp?v=1677727625');
+        }
+
+        .promo-container__content--three {
+            background-image: url('https://relaxtheback.com/cdn/shop/files/theracane_ecbe9798-5a2b-4d4e-bbaf-9415e89c7091_914x686.png?v=1670405137');
+        }
+    }
+
+    &--shop-sleep {
+        .promo-container__content--one {
+            background-image: url('https://relaxtheback.com/cdn/shop/files/Technogel-Estasi_SleepingModel-Adjust_envir_c-t_3ba9ecff-92f8-42c8-a892-3f7417895b5b_1798x1012.jpg?v=1698829713');
+        }
+
+        .promo-container__content--two {
+            background-image: url('https://relaxtheback.com/cdn/shop/files/Frame_97-1_914x631.png?v=1652985128');
+        }
+
+        .promo-container__content--three {
+            background-image: url('https://relaxtheback.com/cdn/shop/files/Perfect_Fit_Pillow_Event_Hero_v2_914x610.jpg?v=1613744756');
+        }
+    }
+
+
+}
+
+.new-arrivals {
+    &__content {
+        position: relative;
+        display: inline-block;
+        min-height: 80vh;
+        max-height: 80vh;
+        overflow: hidden;
+
+        &::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            background-color: rgba(0, 0, 0, 0.2);
+        }
+
+        img {
+            width: 100%;
+            min-height: 100%;
+            object-fit: cover;
+        }
+
+        &__text {
+            position: absolute;
+            left: 30px;
+            bottom: 30px;
+            max-width: 60%;
+
+            h2 {
+                color: #fff;
+                text-align: left;
+                font-size: 38px;
+                font-weight: 500;
+            }
+
+            p {
+                color: #fff;
+                font-size: 18px;
+                font-weight: 500;
+            }
+        }
+    }
+}
+
+.appointment-section {
+    background: #DDDDDD;
+
+    &__left {
+        display: flex;
+        height: 100%;
+        align-items: center;
+        justify-content: center;
+        background-image: url('https://relaxtheback.com/cdn/shop/files/HP_Virtual_Appointment_2_900x375.png?v=1684185934');
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: cover;
+
+        .play-button {
+            width: 70px;
+            height: 70px;
+            background-color: #fff;
+            border-radius: 999px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            i {
+                font-size: 44px;
+                color: #000;
+            }
+        }
+    }
+
+    &__right {
+        padding: 100px 40px;
+
+        h2 {
+            font-size: 28px;
+            text-align: left;
+            margin: 10px 0;
+            text-transform: capitalize;
+            font-weight: 500;
+        }
+
+        p {
+            margin: 16px 0;
+        }
+    }
+}
+
+.blog-section {
+    .card {
+        transition: all ease-in-out 0.3s;
+        &-thumbnail {
+            display: inline-block;
+            overflow: hidden;
+            position: relative;
+            transition: all ease-in-out 0.4s;
+            &::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                width: 0;
+                height: 100%;
+                background-color: rgba(15, 165, 233, 0.3);
+                transition: all ease-in-out 0.4s;
+            }
+        }
+        &:hover {
+            .card-thumbnail::before {
+                width: 100%;
+                transition: all ease-in-out 0.4s;
+            }
+        }
+        &-title {
+            color: #243766 !important;
+            font-size: 22px !important;
+            margin-bottom: 16px;
+            transition: all ease-in-out 0.3s;
+        }
+
+        &-text {
+            font-size: 16px;
+            margin: 16px 0;
+        }
+
+        &:hover {
+            .card-title {
+                color: $primary-color !important;
+            }
+        }
+        .blog-read {
+            color: $text-dark !important;
+            transition: all ease-in-out 0.3s;
+            &:hover {
+                color: $primary-color !important;
+                
+            }
+        }
+    }
+    .read-more {
+        color: $text-dark !important;
+        transition: all ease-in-out 0.3s;
+        i {
+            transition: all ease-in-out 0.3s;
+        }
+        &:hover {
+            color: $primary-color !important;
+            i {
+                color: $primary-color !important;
+                transform: translateX(5px);
+                transition: all ease-in-out 0.3s;
+            }
+        }
+    }
+}
+
+.banner {
+    &-icon {
+        font-size: 48px;
+        text-align: center;
+        color: #243766;
+    }
+
+    h4,
+    p,
+    a {
+        color: #243766;
+    }
+}

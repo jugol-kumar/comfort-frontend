@@ -1,7 +1,23 @@
+.top_nav {
+    &-link {
+        color: $text-dark;
+        transition: all ease-in-out 0.3s;
+        &:hover {
+            color: $primary-color !important;
+        }
+        @media #{$small_mobile} {
+            font-size: 11px !important;
+        }
+    }
+}
 nav {
     .navbar-brand {
         img {
             width: 270px;
+            height: auto;
+            @media #{$lg_device} {
+                width: 250px;
+            }
         }
     }
     .search {
@@ -12,6 +28,9 @@ nav {
             border-right: none;
             border-top-left-radius: 6px;
             border-bottom-left-radius: 6px;
+            @media #{$lg_device} {
+                width: 270px;
+            }
         }
         button {
             background: $primary-color;
@@ -27,16 +46,100 @@ nav {
         i {
             font-size: 36px;
             color: $text-dark;
+            transition: all ease-in-out 0.3s;
         }
         h4 {
             color: $text-dark;
             font-size: 16px;
             font-weight: 600;
             line-height: 21px;
+            transition: all ease-in-out 0.3s;
         }
         p {
             color: $text-dark;
             font-size: 14px;
+            transition: all ease-in-out 0.3s;
+        }
+        &:hover {
+            i,h4,p {
+                color: $primary-color;
+                
+            }
         }
     }
+    .login {
+        font-size: 16px;
+        font-weight: 500;
+        color: $text-dark;
+        transition: all ease-in-out 0.3s;
+        i {
+            font-size: 20px;
+        }
+        &:hover {
+            color: $primary-color;
+        }
+    }
+    .cart,.wish {
+        line-height: 0;
+        font-size: 16px;
+        font-weight: 500;
+        color: $text-dark;
+        transition: all ease-in-out 0.3s;
+        position: relative;
+    
+        i {
+            font-size: 20px;
+        }
+    
+        &:hover {
+            color: $primary-color;
+        }
+        span {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-color: $primary-color;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            border-radius: 999px;
+            top: -10px;
+            right: -10px;
+        }
+    }
+    .navbar-nav {
+        .nav{
+            &-link {
+                color: $text-dark;
+                font-size: 18px;
+        
+                &:hover {
+                    color: $primary-color !important;
+                }
+            }
+            &-item {
+                .nav-link{
+                    &:hover {
+                        color: $primary-color !important;
+                    }
+                }
+            }
+        }
+        .dropdown-item:hover {
+            color: $primary-color !important;
+        }
+    }
+}
+
+
+
+// Mobile Nav
+
+.navbar .navbar-toggler {
+    border: none !important;
+    padding: 0 !important;
+}
+.navbar {
+    --gk-navbar-toggler-icon-bg:url('');
 }
