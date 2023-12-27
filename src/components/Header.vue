@@ -22,19 +22,19 @@
       <nav class="navbar navbar-expand-lg flex-column p-0">
       <div class="container-fluid">
         <RouterLink class="navbar-brand" to="/">
-          <img src="/logo.png" alt="Comfort" style="width:75%"/>
+          <img src="/logo.png" alt="Comfort"/>
         </RouterLink>
-        <div class="d-flex align-items-center shadow-sm">
-          <input type="text" class="p-3 border border-secondary-subtle" style="width:500px" placeholder="What are you looking for?">
-          <button class="bg-info border-0 p-3 rounded-end">
+        <div class="search d-flex align-items-center">
+          <input type="text" placeholder="What are you looking for?">
+          <button>
               <i class="bi bi-search"></i>
           </button> 
         </div>
-        <RouterLink to="" class="d-flex gap-3 align-items-center">
-          <svg class="icon-store " aria-hidden="true" focusable="false" role="presentation" xmlns="http://www.w3.org/2000/svg" width="44" height="44" viewBox="0 0 44 44" fill="none">      <path d="M39.875 23.375V39.875C39.875 40.6043 39.5853 41.3038 39.0695 41.8195C38.5538 42.3353 37.8543 42.625 37.125 42.625H6.875C6.14565 42.625 5.44618 42.3353 4.93046 41.8195C4.41473 41.3038 4.125 40.6043 4.125 39.875V23.375" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>      <path d="M38.7713 1.375H5.22867C4.91571 1.37495 4.61208 1.48151 4.3678 1.67714C4.12352 1.87276 3.95317 2.14577 3.88483 2.45117L1.375 13.75C1.375 14.844 1.8096 15.8932 2.58318 16.6668C3.35677 17.4404 4.40598 17.875 5.5 17.875C6.59402 17.875 7.64323 17.4404 8.41682 16.6668C9.1904 15.8932 9.625 14.844 9.625 13.75C9.625 14.844 10.0596 15.8932 10.8332 16.6668C11.6068 17.4404 12.656 17.875 13.75 17.875C14.844 17.875 15.8932 17.4404 16.6668 16.6668C17.4404 15.8932 17.875 14.844 17.875 13.75C17.875 14.844 18.3096 15.8932 19.0832 16.6668C19.8568 17.4404 20.906 17.875 22 17.875C23.094 17.875 24.1432 17.4404 24.9168 16.6668C25.6904 15.8932 26.125 14.844 26.125 13.75C26.125 14.844 26.5596 15.8932 27.3332 16.6668C28.1068 17.4404 29.156 17.875 30.25 17.875C31.344 17.875 32.3932 17.4404 33.1668 16.6668C33.9404 15.8932 34.375 14.844 34.375 13.75C34.375 14.844 34.8096 15.8932 35.5832 16.6668C36.3568 17.4404 37.406 17.875 38.5 17.875C39.594 17.875 40.6432 17.4404 41.4168 16.6668C42.1904 15.8932 42.625 14.844 42.625 13.75L40.1133 2.45117C40.0457 2.14576 39.8758 1.8726 39.6317 1.6769C39.3877 1.48121 39.0841 1.3747 38.7713 1.375Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>      <path d="M34.375 30.25C34.375 28.7913 33.7955 27.3924 32.7641 26.3609C31.7326 25.3295 30.3337 24.75 28.875 24.75C27.4163 24.75 26.0174 25.3295 24.9859 26.3609C23.9545 27.3924 23.375 28.7913 23.375 30.25V42.625H34.375V30.25Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>      <path d="M9.625 28.875H17.875V37.125H9.625V28.875Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+        <RouterLink to="" class="find-store d-flex gap-2 align-items-center">
+          <i class="bi bi-shop-window"></i>
           <div>
-            <h4 class="font-bold m-0 text-dark">Find Your Local Store</h4>
-            <p class="m-0 text-dark">Click Here</p>
+            <h4 class="text-capitalize">Find Your Local Store</h4>
+            <p>Click Here</p>
           </div>
         </RouterLink>
         <div class="d-flex align-items-center gap-3">

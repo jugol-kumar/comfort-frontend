@@ -614,10 +614,13 @@ const addToCart =()=>{
                     </div>
                 </div>
             </div>
+            
+            <!-- Product Review & Question -->
+            <ProductReviewQuestion />
 
             <!-- Featured Collection -->
-            <div class="featured-collection">
-                <h2 class="text-center text-uppercase fs-3 fw-semibold">YOU MAY ALSO LIKE</h2>
+            <div class="featured-collection mt-6">
+                <h2 class="text-center text-uppercase fs-3 fw-semibold my-5">YOU MAY ALSO LIKE</h2>
                 <div class="row">
                     <SingleProductCard />
                     <SingleProductCard />

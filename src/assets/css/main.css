@@ -24,3 +24,8 @@
 .image-slider-scroll::-webkit-scrollbar-thumb:hover {
 background: #555; 
 }
+@import url("theme.min.css");
+@import url("simplebar.min.css");
+@import url("@/assets/scss/app.scss");
+@import url("@/assets/fonts/feather/feather.css");
+@import url("bootstrap-icon/bootstrap-icons.min.css");
