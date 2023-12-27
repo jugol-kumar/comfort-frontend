@@ -10,6 +10,14 @@ Table of Contents
 
 04/ Header
 
+05/ product card
+
+06/ Index Page
+
+07/ Product Cart
+
+08/ Footer
+
 ============================ **/
 /*------------------------------------
 	01/ Variables
@@ -30,3 +38,24 @@ Table of Contents
 	04/ Header
 ------------------------------------*/
 @import "components/header";
+
+/*------------------------------------
+	05/ Product Card
+------------------------------------*/
+@import "components/product-card";
+
+/*------------------------------------
+	06/ Index Page
+------------------------------------*/
+@import "components/index";
+
+/*------------------------------------
+	07/ Product Cart
+------------------------------------*/
+@import "components/product-cart";
+
+
+/*------------------------------------
+	08/ Footer
+------------------------------------*/
+@import "components/footer";

@@ -121,8 +121,9 @@ const addToCart =()=>{
                                 <i class="bi bi-star-fill"></i>
                                 <i class="bi bi-star-fill"></i>
                                 <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star"></i>
                             </div>
-                            <span class="fs-4">1 Review</span>
+                            <span class="fs-4 text-secondary">1 Review</span>
                         </div>
                         <div class="text-center bg-danger p-3 rounded text-white fw-semibold fs-3 mb-4">
                             {{ data?.showPrice }}
@@ -200,7 +201,7 @@ const addToCart =()=>{
                             </div>
                         </div>
                         <div class="share-this py-4">
-                            <h4 class="fs-3 fw-semibold text-dark">Share this:</h4>
+                            <h4 class="fs-3 fw-semibold text-dark mb-4">Share this:</h4>
                             <ul class="list-unstyled d-flex align-items-center gap-3 mb-4">
                                 <li>
                                     <a href="#" target="_blank" class="facebook">
@@ -228,7 +229,7 @@ const addToCart =()=>{
                             </p>
                         </div>
                         <div class="bg-light rounded d-flex gap-3 p-4">
-                            <i class="bi bi-info-circle mt-2 fs-3"></i>
+                            <i class="bi bi-info-circle mt-1 fs-3"></i>
                             <div>
                                 <h3 class="fs-3 fw-semibold text-dark">Ask An Expert</h3>
                                 <p class="m-0 fs-3">Schedule a free virtual appointment! <RouterLink to="">Learn More
@@ -236,7 +237,7 @@ const addToCart =()=>{
                                 </p>
                             </div>
                         </div>
-                        <div class="accordion accordion-flush mt-5" id="accordionFlushExample">
+                        <div class="accordion accordion-flush my-5" id="accordionFlushExample">
                             <div class="accordion-item">
                                 <h2 class="accordion-header" id="flush-headingOne">
                                     <button class="accordion-button collapsed fw-semibold text-dark" type="button"
@@ -346,11 +347,14 @@ const addToCart =()=>{
 <script setup>
     
 </script>
-<style scoped>
+<style lang="scss" scoped>
 i {
     line-height: 0;
 }
 
+.product-title {
+    text-align: left;
+}
 .compare-at-pricing-new {
     width: 45%;
 }
@@ -372,6 +376,30 @@ i {
 }
 
 .or-new span {
+.or-new {
+    &::before {
+        content: '';
+        position: absolute;
+        top: -20px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 1px;
+        height: 50%;
+        background-color: #000;
+    }
+    &::after {
+        content: '';
+        position: absolute;
+        bottom: -20px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 1px;
+        height: 50%;
+        background-color: #000;
+    }
+}
+
+.or-new span{
     background-color: #fff;
     font-size: 20px;
     padding: 10px 0;
@@ -489,4 +517,15 @@ i {
     border-radius: 10px;
 }
 
+.img-text__container {
+    h2 {
+        text-align: left;
+    }
+    p {
+        color: #6b6d76;
+    }
+}
+.accordion-button:focus {
+    border-color:unset !important;
+}
 </style>

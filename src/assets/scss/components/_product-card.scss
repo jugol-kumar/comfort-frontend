@@ -1,0 +1,23 @@
+.card {
+    &:hover {
+        .card-btns {
+            opacity: 1;
+            transition: all ease-in-out 0.4s;
+            .b-one {
+                color: $text-dark;
+                background: $secondary-color;
+                transition: all ease-in-out 0.4s;
+            }
+            .b-two {
+                color: #fff;
+                background-color: $primary-color;
+                transition: all ease-in-out 0.4s;
+            }
+        }
+    }
+}
+
+.card-btns {
+    opacity: 0;
+    transition: all ease-in-out 0.4s;
+}

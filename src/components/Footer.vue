@@ -139,36 +139,3 @@
 
 <script setup>
 </script>
-
-<style scoped>
-ul {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-}
-
-.footer {
-    background-color: #B2C1D3;
-    padding-top: 50px;
-}
-
-
-.footer-socials li a {
-    color: var(--primary);
-}
-
-.footer-socials li a i {
-    font-size: 18px;
-}
-
-.footer h3 {
-    margin-bottom: 10px;
-}
-
-.footer-link {
-    text-transform: capitalize;
-    color: var(--text-color);
-    font-size: 15px;
-    padding: 5px;
-    display: inline-block;
-}</style>
