@@ -1,39 +1,62 @@
 <template>
     <!-- Content -->
     <section class="pb-8">
-        <div class="container">
+        <div class="container-fluid">
+            <nav aria-label="breadcrumb" class="my-4">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><RouterLink to="/" class="fs-4">Home</RouterLink></li>
+                    <li class="breadcrumb-item active fs-4" aria-current="page">Recliners</li>
+                </ol>
+            </nav>
             <div class="row">
-                <div class="col-xl-12 col-lg-12 col-md-12 col-12">
-                    <!-- Flush Nav -->
-                    <div class="flush-nav">
-                        <nav class="nav">
-                            <a class="nav-link active ps-0" href="#">All</a>
-                            <a class="nav-link" href="blog-category.html">Courses</a>
-                            <a class="nav-link" href="blog-category.html">Workshop</a>
-                            <a class="nav-link" href="blog-category.html">Tutorial</a>
-                            <a class="nav-link" href="blog-category.html">Company</a>
-                        </nav>
+                <div class="col-lg-2 col-12">
+                    <div class="product-filter">
+                        <h3>Filters</h3>
+                        <div class="accordion accordion-flush" id="accordionFlushExample">
+                            <div class="accordion-item">
+                                <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+                                    Price
+                                </button>
+                                </h2>
+                                <div id="flush-collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+                                <div class="accordion-body">
+                                    ....
+                                </div>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
+                                    Brand
+                                </button>
+                                </h2>
+                                <div id="flush-collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+                                <div class="accordion-body">...</div>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
+                                    Product Type
+                                </button>
+                                </h2>
+                                <div id="flush-collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+                                <div class="accordion-body">...</div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-
-                <div v-if="loading">
-                    loading Component
-                </div>
-
-                <div v-if="error">
-                    {{  error  }}
-                </div>
-
-                <SingleProductCardVue v-else v-for="i in data" :key="i"/>
-
-                <!-- Buttom -->
-                <div class="col-xl-12 col-lg-12 col-md-12 col-12 text-center mt-4">
-                    <a href="#" class="btn btn-primary">
-                        <div class="spinner-border spinner-border-sm me-2" role="status">
-                            <span class="visually-hidden">Loading...</span>
+                <div class="col-lg-10 col-12">
+                    <div class="products">
+                        <div class="row">
+                            <SingleProductCard />
+                            <SingleProductCard />
+                            <SingleProductCard />
+                            <SingleProductCard />
                         </div>
-                        Load More
-                    </a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -43,7 +66,7 @@
 <script setup>
     import {onMounted, ref} from 'vue'
 
-    import SingleProductCardVue from "@/components/SingleProductCard.vue";
+    import SingleProductCard from "@/components/SingleProductCard.vue";
     import useAxios from "@/composables/useAxios"
     const { loading, error, sendRequest } = useAxios();
     const data = ref(null);

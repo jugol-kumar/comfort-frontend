@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="bg-info py-3 text-center">
-      <router-link to="" class="text-white text-capitalize fs-5 fs-md-4 fw-bold">***Super Holiday Savings! Shop Our Gift Guide***</router-link>
+      <router-link to="" class="text-white text-capitalize fs-4 fw-bold">***Super Holiday Savings! Shop Our Gift Guide***</router-link>
     </div> 
     <div class="bg-light">
       <div class="container-fluid">
@@ -103,13 +103,13 @@
           </div>
         </form>
       </div>
-      <RouterLink to="" class="find-store d-flex gap-2 align-items-center">
+      <!-- <RouterLink to="" class="find-store d-flex gap-2 align-items-center">
         <i class="bi bi-shop-window"></i>
         <div>
           <h4 class="text-capitalize">Find Your Local Store</h4>
           <p>Click Here</p>
         </div>
-      </RouterLink>
+      </RouterLink> -->
       <div class="d-flex align-items-center gap-3">
         <RouterLink to="" class="login d-flex align-items-center gap-1">
             <i class="bi bi-person"></i>Login

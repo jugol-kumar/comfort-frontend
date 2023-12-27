@@ -81,7 +81,7 @@
                                                 </span>
                                                 <div>
                                                     <h3 class="fs-4 fw-semibold text-dark m-0">Porfie M.</h3>
-                                                    <span class="text-dark">
+                                                    <span class="text-info">
                                                         <i class="bi bi-star-fill"></i>
                                                         <i class="bi bi-star-fill"></i>
                                                         <i class="bi bi-star-fill"></i>
@@ -89,8 +89,8 @@
                                                         <i class="bi bi-star-fill"></i>
                                                     </span>
                                                     <div class="review-items__item-content">
-                                                        <h3>Love my Cozzia Qi XE PRO</h3>
-                                                        <p>We have had this chair for about a month, and I am so happy with my purchase. The chair doctor program really does give you a custom massage based</p>
+                                                        <h3 class="text-capitalize fs-4 fw-medium">Love my Cozzia Qi XE PRO</h3>
+                                                        <p class="text-secondary">We have had this chair for about a month, and I am so happy with my purchase. The chair doctor program really does give you a custom massage based</p>
                                                     </div>
                                                 </div>
                                             </div>
@@ -127,7 +127,7 @@
                                                     </span>
                                                     <div>
                                                         <h3 class="fs-4 fw-semibold text-dark m-0">Porfie M.</h3>
-                                                        <span class="text-dark">
+                                                        <span class="text-info">
                                                             <i class="bi bi-star-fill"></i>
                                                             <i class="bi bi-star-fill"></i>
                                                             <i class="bi bi-star-fill"></i>
@@ -135,8 +135,8 @@
                                                             <i class="bi bi-star-fill"></i>
                                                         </span>
                                                         <div class="review-items__item-content">
-                                                            <h3>Love my Cozzia Qi XE PRO</h3>
-                                                            <p>We have had this chair for about a month, and I am so happy with my purchase. The chair doctor program really does give you a custom massage based on the information it gathers after it scans your back. The variety of the massage options, and types of massage has something sure to please everyone. This also gives you heat in the lower back, lumba</p>
+                                                            <h3 class="text-capitalize fs-4 fw-medium">Love my Cozzia Qi XE PRO</h3>
+                                                            <p class="text-secondary">We have had this chair for about a month, and I am so happy with my purchase. The chair doctor program really does give you a custom massage based on the information it gathers after it scans your back. The variety of the massage options, and types of massage has something sure to please everyone. This also gives you heat in the lower back, lumba</p>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -172,7 +172,7 @@
                                                     <div>
                                                         <h3 class="fs-4 fw-semibold text-dark m-0 text-uppercase">Comfort Wings</h3>
                                                         <p>Hi Porfie M.!</p>
-                                                        <p class="m-0">We are so happy to hear you how much you love the Qi Massage Chair. Thank you for being a loyal customer and we hope to be of help again soon!</p>
+                                                        <p class="m-0 text-secondary">We are so happy to hear you how much you love the Qi Massage Chair. Thank you for being a loyal customer and we hope to be of help again soon!</p>
                                                     </div>
                                                 </div>
                                                 <p class="m-0">04/12/23</p>
@@ -237,7 +237,7 @@
                                                 <div>
                                                     <h3 class="fs-4 fw-semibold text-dark m-0 text-uppercase">Comfort Wings</h3>
                                                     <p><span>A:</span>Hello,</p>
-                                                    <p class="m-0">Thank you for contacting Comfort Wings. Unfortunately, we can only ship within the United States at this time. I apologize for any inconvenience this may have caused. Please let us know if we can assist with anything else!</p>
+                                                    <p class="m-0 text-secondary">Thank you for contacting Comfort Wings. Unfortunately, we can only ship within the United States at this time. I apologize for any inconvenience this may have caused. Please let us know if we can assist with anything else!</p>
                                                 </div>
                                             </div>
                                             <p class="m-0">04/12/23</p>
