@@ -8,6 +8,12 @@ import "./assets/js/theme.min.js"
 import "./assets/js/vendors/validation.js"
 
 
+import { createToaster } from "@meforma/vue-toaster";
+window.$toast = createToaster({
+    position: 'bottom'
+});
+
+
 import { createApp } from 'vue'
 import { createPinia } from 'pinia'
 

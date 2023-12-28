@@ -21,10 +21,17 @@ export const useCartStore = defineStore('cart', {
                 this.cart.push(product);
             }
             this.setInLocalStorage();
+            $toast.info("Added To Cart...")
         },
         removeFromCart(item) {
-            this.cart.splice(item, 1);
-            localStorage.setItem('cart', JSON.stringify(this.cart));
+
+            const index = this.cart.indexOf(item);
+            if (index > -1) {
+                this.cart.splice(index, 1);
+                localStorage.setItem('cart', JSON.stringify(this.cart));
+            }
+            
+            $toast.info("Remove From Cart...")
         },
         incrementQty(id) {
             const index = this.cart.findIndex(item => {
@@ -32,6 +39,7 @@ export const useCartStore = defineStore('cart', {
             });
             this.cart[index].selectSku.selectQty++;
             this.setInLocalStorage();
+            $toast.info("Quantity Updated...")
         },
         decrementQty(id) {
 
@@ -49,6 +57,7 @@ export const useCartStore = defineStore('cart', {
             // }
 
             this.setInLocalStorage();
+            $toast.info("Quantity Updated...")
         },
         setInLocalStorage() {
             localStorage.setItem('cart', JSON.stringify(this.cart));

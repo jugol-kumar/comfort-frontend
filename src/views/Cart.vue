@@ -58,7 +58,7 @@ const cartStore = useCartStore();
                             </div>
 
                             <p>$ {{ item.selectSku?.price * item.selectSku?.selectQty }}</p>
-                            <button @click="cartStore.removeFromCart(i)" class="cancel-button">
+                            <button @click="cartStore.removeFromCart(item)" class="cancel-button">
                                 <i class="bi bi-x-lg"></i>
                             </button>
                         </div>

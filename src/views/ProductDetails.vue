@@ -69,7 +69,6 @@ onMounted(async () => {
 });
 
 
-
 const addToCart = () => {
     cartStore.addToCart({ data, selectSku: { ...selectVarientProduct.value, selectQty: buyQty.value } })
 }
