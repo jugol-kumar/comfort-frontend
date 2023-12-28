@@ -1,19 +1,19 @@
 <template>
   <div>
     <div class="bg-info py-3 text-center">
-      <router-link to="" class="text-white text-capitalize fs-4 fw-bold">***Super Holiday Savings! Shop Our Gift Guide***</router-link>
+      <router-link to="/super-holiday" class="text-white text-capitalize fs-4 fw-bold">***Super Holiday Savings! Shop Our Gift Guide***</router-link>
     </div> 
     <div class="bg-light">
       <div class="container-fluid">
         <ul class="top_nav d-flex items-center gap-4 py-2 list-unstyled">
           <li>
-            <RouterLink to="" class="text-capitalize fs-4 top_nav-link">Own a Franchise</RouterLink>
+            <RouterLink to="/franchise" class="text-capitalize fs-4 top_nav-link">Own a Franchise</RouterLink>
           </li>
           <li>
-            <RouterLink to="" class="text-capitalize fs-4 top_nav-link">Book A Virtual Appointment</RouterLink>
+            <RouterLink to="/virtual-appointment" class="text-capitalize fs-4 top_nav-link">Book A Virtual Appointment</RouterLink>
           </li>
           <li>
-            <RouterLink to="" class="text-capitalize fs-4 top_nav-link">Finance Options</RouterLink>
+            <RouterLink to="/finance-option" class="text-capitalize fs-4 top_nav-link">Finance Options</RouterLink>
           </li>
         </ul>
       </div>
@@ -42,45 +42,38 @@
           <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
         </div>
         <div class="offcanvas-body">
-          <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
-            <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="#">Home</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">New Arrivals</a>
-            </li>
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                Products
-              </a>
-              <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="#">Sleep</a></li>
-                <li><a class="dropdown-item" href="#">Office</a></li>
-                <li><a class="dropdown-item" href="#">Massage</a></li>
-              </ul>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link d-flex align-items-center gap-2" href="#">
-                Wishlist <i class="bi bi-heart"></i>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link d-flex align-items-center gap-2" href="/cart">
-                Cart <i class="bi bi-cart"></i>
-              </a>
-            </li>
-          </ul>
-          <RouterLink to="" class="find-store d-flex gap-2 align-items-center my-5">
-            <i class="bi bi-shop-window"></i>
-            <div>
-              <h4 class="text-capitalize">Find Your Local Store</h4>
-              <p>Click Here</p>
-            </div>
-          </RouterLink>
           <form class="d-flex mt-3" role="search">
             <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
             <button class="btn btn-outline-info" type="submit">Search</button>
           </form>
+          <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+            <li class="nav-item">
+              <RouterLink to="/" class="nav-link active" aria-current="page">Home</RouterLink>
+            </li>
+            <li class="nav-item">
+              <RouterLink to="" class="nav-link">New Arrivals</RouterLink>
+            </li>
+            <li class="nav-item dropdown">
+              <RouterLink to="/products" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Products
+              </RouterLink>
+              <ul class="dropdown-menu">
+                <li><RouterLink to="" class="dropdown-item">Sleep</RouterLink></li>
+                <li><RouterLink to="" class="dropdown-item">Office</RouterLink></li>
+                <li><RouterLink to="" class="dropdown-item">Massage</RouterLink></li>
+              </ul>
+            </li>
+            <li class="nav-item">
+              <RouterLink to="" class="nav-link d-flex align-items-center gap-2">
+                Wishlist <i class="bi bi-heart"></i>
+              </RouterLink>
+            </li>
+            <li class="nav-item">
+              <RouterLink to="/cart" class="nav-link d-flex align-items-center gap-2">
+                Cart <i class="bi bi-cart"></i>
+              </RouterLink>
+            </li>
+          </ul>
         </div>
       </div>
     </div>
@@ -103,18 +96,11 @@
           </div>
         </form>
       </div>
-      <!-- <RouterLink to="" class="find-store d-flex gap-2 align-items-center">
-        <i class="bi bi-shop-window"></i>
-        <div>
-          <h4 class="text-capitalize">Find Your Local Store</h4>
-          <p>Click Here</p>
-        </div>
-      </RouterLink> -->
       <div class="d-flex align-items-center gap-3">
-        <RouterLink to="" class="login d-flex align-items-center gap-1">
+        <RouterLink to="/login" class="login d-flex align-items-center gap-1">
             <i class="bi bi-person"></i>Login
         </RouterLink>
-        <RouterLink to="" class="wish">
+        <RouterLink to="/wish" class="wish">
           <span>0</span>
           <i class="bi bi-heart"></i>
         </RouterLink>
@@ -129,8 +115,8 @@
       <div class="collapse navbar-collapse" id="navbar-default">
         <ul class="navbar-nav gap-5">
           <li class="nav-item dropdown">
-            <RouterLink to="" class="nav-link text-uppercase">
-              RECLINERS
+            <RouterLink to="/" class="nav-link text-uppercase">
+              Home
             </RouterLink>
           </li>
           <li class="nav-item dropdown">
@@ -139,31 +125,28 @@
             </RouterLink>
             <ul class="dropdown-menu">
               <li>
-                <router-link to="" class="dropdown-item fs-3 fw-normal py-2">Product One</router-link>
+                <RouterLink to="/sleep" class="dropdown-item fs-3 fw-normal py-2">Sleep</RouterLink>
               </li>
               <li>
-                <router-link to="" class="dropdown-item fs-3 fw-normal py-2">Product Two</router-link>
+                <RouterLink to="/office" class="dropdown-item fs-3 fw-normal py-2">Office</RouterLink>
               </li>
               <li>
-                <router-link to="" class="dropdown-item fs-3 fw-normal py-2">Product Three</router-link>
-              </li>
-              <li>
-                <router-link to="" class="dropdown-item fs-3 fw-normal py-2">Product Four</router-link>
+                <RouterLink to="/massage" class="dropdown-item fs-3 fw-normal py-2">Massage</RouterLink>
               </li>
             </ul>
           </li>
           <li class="nav-item dropdown">
-            <RouterLink to="/" class="nav-link text-uppercase">
+            <RouterLink to="/new-arrivals" class="nav-link text-uppercase">
               NEW ARRIVALS
             </RouterLink>
           </li>
           <li class="nav-item dropdown">
-            <RouterLink to="/" class="nav-link  text-uppercase">
+            <RouterLink to="/office" class="nav-link  text-uppercase">
               OFFICE
             </RouterLink>
           </li>
           <li class="nav-item dropdown">
-            <RouterLink to="/" class="nav-link text-uppercase">
+            <RouterLink to="/fitness-therapy" class="nav-link text-uppercase">
               FITNESS & THERAPY 
             </RouterLink>
           </li>

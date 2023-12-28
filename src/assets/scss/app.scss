@@ -16,7 +16,13 @@ Table of Contents
 
 07/ Product Cart
 
-08/ Footer
+08/ Product Filter
+
+09/ Logon Register
+
+10/ Checkout
+
+11/ Footer
 
 ============================ **/
 /*------------------------------------
@@ -54,8 +60,24 @@ Table of Contents
 ------------------------------------*/
 @import "components/product-cart";
 
+/*------------------------------------
+	08/ Product Filter
+------------------------------------*/
+@import "components/product-filter";
 
 /*------------------------------------
-	08/ Footer
+	09/ Login Register
+------------------------------------*/
+@import "components/login-reg";
+
+
+/*------------------------------------
+	10/ Checkout
+------------------------------------*/
+@import "components/checkout";
+
+
+/*------------------------------------
+	11/ Footer
 ------------------------------------*/
 @import "components/footer";

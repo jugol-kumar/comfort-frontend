@@ -1,22 +1,25 @@
 <script setup>
-import SingleProductCard from '../components/SingleProductCard.vue'
-import ProductReviewQuestion from '../components/ProductReviewQuestion.vue'
+import SingleProductCard from '@/components/SingleProductCard.vue'
+import ProductReviewQuestion from '@/components/ProductReviewQuestion.vue'
+import QuantityCounter from '@/components/QuantityCounter.vue'
+import Breadcrumb from '@/components/Breadcrumb.vue'
 </script>
 
 <template>
     <!-- Content -->
     <section class="pb-8">
         <div class="container-fluid">
-            <nav aria-label="breadcrumb" class="my-4">
-                <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><RouterLink to="/" class="fs-4">Home</RouterLink></li>
-                    <li class="breadcrumb-item active fs-4" aria-current="page">Mid Back Ultimate Executive Office Chair</li>
-                </ol>
-            </nav>
+
+            <!-- Breadcrumb -->
+            <Breadcrumb />
+
             <div class="row">
                 <div class="col-md-6 col-12">
                     <div>
-                        <img src="https://relaxtheback.com/cdn/shop/products/Cozzia_QiPro_FacingForward-Display_WEB_clip-j_456x456.jpg?v=1663823010" alt="" class="w-100 h-auto" />
+                        <img src="https://relaxtheback.com/cdn/shop/products/Cozzia_QiPro_Black_Right-Turning1-Display_WEB_clip-j_1024x1024.jpg?v=1663732636" alt="" class="w-100 h-auto" />
+                    </div>
+                    <div class="p-3">
+                        <iframe width="100%" height="400px" src="https://www.youtube.com/embed/S-A0qLTxf-U?si=JulyLlKcLWHaOG2G" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
                     </div>
                 </div>
                 <div class="col-md-6 col-12">
@@ -57,15 +60,13 @@ import ProductReviewQuestion from '../components/ProductReviewQuestion.vue'
                                 </div>
                             </div>
                         </div>
-                        <div class="product-form">
-                            <!-- Product Form -->
-                        </div>
                         <div class="product-form-action mt-4">
                             <div class="quantity-selector">
                                 <label for="quantity-selector-input" class="fs-3 text-dark fw-semibold">Quantity</label>
                                 <div class="d-flex align-items-center gap-3 py-3">
                                     <div>
-                                        quantity-selector
+                                        <!-- QuantityCounter -->
+                                        <QuantityCounter />
                                     </div>
                                     <div class="w-100">
                                         <RouterLink to="" class="secondary-button text-dark fw-medium fs-3 w-100 d-inline-block text-center">ADD TO CART</RouterLink>

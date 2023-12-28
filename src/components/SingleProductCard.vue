@@ -1,19 +1,16 @@
 <template>
     <div class="col-xl-3 col-lg-4 col-md-6 col-12">
-        <div class="card border mb-5">
-            <RouterLink :to="`/product-details/`">
-                <img src="https://relaxtheback.com/cdn/shop/products/Cozzia_QiPro_FacingForward-Display_WEB_clip-j_456x456.jpg?v=1663823010" alt="" class="card-img-top" />
+        <div class="product-card">
+            <RouterLink :to="`/product-details/`" class="product-card__thumbnail">
+                <img src="https://relaxtheback.com/cdn/shop/products/Cozzia_QiPro_Black_Right-Turning1-Display_WEB_clip-j_1024x1024.jpg?v=1663732636" alt="" class="card-img-top" />
             </RouterLink>
-            <div class="card-body">
-                <div class="card-content">
-                    <RouterLink to="/product-details" class="card-title text-dark fs-3 fw-semibold d-inline-block">Mid Back Ultimate Executive Office Chair</RouterLink>
-                    <s class="card-text fs-4">$8,499.00</s>
-                    <p class="card-text fs-3 text-danger">$7,999.00</p>
-                    <p class="card-text fs-3">MSRP at 10.499.00</p>
-                </div>
-                <div class="card-btns d-flex align-item-center gap-3 pt-4">
-                    <button class="b-one border-0 py-2 px-3 fs-5">QUICK VIEW</button>
-                    <button class="b-two border-0 py-2 px-3 fs-5">CHOOSE OPTION</button>
+            <div class="product-card__body">
+                <RouterLink to="/product-details" class="product-card__body-title">Mid Back Ultimate Executive Office Chair</RouterLink>
+                <h3 class="product-card__body-price">$8,499.00 <strike>$9,999.00</strike></h3>
+                <div class="">
+                    <RouterLink to="/cart" class="primary-button w-100 text-center">
+                        <i class="bi bi-cart"></i> Add To Cart
+                    </RouterLink>
                 </div>
             </div>
         </div>

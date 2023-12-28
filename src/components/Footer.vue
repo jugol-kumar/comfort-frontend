@@ -2,9 +2,12 @@
     <footer class="footer">
         <div class="container-fluid">
             <div class="row justify-content-between g-0 py-2">
-                <div class="col-xl-3 col-md-6">
+                <div class="col-xl-4 col-md-6">
                     <div class="pe-md-5">
-                        <h3>SIGN UP FOR OUR NEWSLETTER</h3>
+                        <div class="pb-3">
+                            <img src="/logo.png" alt="Logo" />
+                        </div>
+                        <h3 class="fw-semibold">SIGN UP FOR OUR NEWSLETTER</h3>
                         <p class="fs-4">Join our email list to get access to exclusive offers and notifications of new
                             product launches.</p>
                         <div class="mb-5">
@@ -49,7 +52,7 @@
                 </div>
                 <div class="col-xl-2 col-md-6">
                     <div>
-                        <h3>WE'RE HERE TO HELP</h3>
+                        <h3 class="fw-semibold">WE'RE HERE TO HELP</h3>
                         <ul>
                             <li>
                                 <RouterLink to="/" class="footer-link">Contact Us</RouterLink>
@@ -74,7 +77,7 @@
                 </div>
                 <div class="col-xl-2 col-md-6">
                     <div>
-                        <h3>OUR COMPANY</h3>
+                        <h3 class="fw-semibold">OUR COMPANY</h3>
                         <ul>
                             <li>
                                 <RouterLink to="/" class="footer-link">About Us</RouterLink>
@@ -93,32 +96,7 @@
                 </div>
                 <div class="col-xl-2 col-md-6">
                     <div>
-                        <h3>RESOURCES & OFFERS</h3>
-                        <ul>
-                            <li>
-                                <RouterLink to="/" class="footer-link">Browse Our Current Catalog</RouterLink>
-                            </li>
-                            <li>
-                                <RouterLink to="/" class="footer-link">Request a Catalog</RouterLink>
-                            </li>
-                            <li>
-                                <RouterLink to="/" class="footer-link">Blog</RouterLink>
-                            </li>
-                            <li>
-                                <RouterLink to="/" class="footer-link">Financing Options</RouterLink>
-                            </li>
-                            <li>
-                                <RouterLink to="/" class="footer-link">Store Sitemap</RouterLink>
-                            </li>
-                            <li>
-                                <RouterLink to="/" class="footer-link">Reviews</RouterLink>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-xl-2 col-md-6">
-                    <div>
-                        <h3>PRIVACY & USE</h3>
+                        <h3 class="fw-semibold">PRIVACY & USE</h3>
                         <ul>
                             <li>
                                 <RouterLink to="/" class="footer-link">Terms & Conditions</RouterLink>

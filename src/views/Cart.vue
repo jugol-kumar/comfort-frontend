@@ -1,4 +1,5 @@
 <script setup>
+    import QuantityCounter from '@/components/QuantityCounter.vue'
 </script>
 
 <template>
@@ -15,7 +16,7 @@
                         <p>Subtotal</p>
                         <h3>$5,598.00</h3>
                     </div>
-                    <RouterLink to="" class="primary-button">
+                    <RouterLink to="/checkout" class="primary-button">
                         <i class="bi bi-cart"></i> Check Out
                     </RouterLink>
                 </div>
@@ -33,7 +34,7 @@
                         
                         <div class="d-flex align-items-center gap-5">
                             <div>
-                                Quantity
+                                <QuantityCounter />
                             </div>
                             <p>$2,799.00</p>
                             <RouterLink to="" class="cancel-button">
@@ -54,7 +55,7 @@
                     
                         <div class="d-flex align-items-center gap-5">
                             <div>
-                                Quantity
+                                <QuantityCounter />
                             </div>
                             <p>$2,799.00</p>
                             <RouterLink to="" class="cancel-button">
@@ -70,7 +71,7 @@
                     <p class="fs-3 fw-medium">$5,598.00</p>
                 </div>
                 <p class="text-secondary mb-3">Taxes and shipping calculated at checkout</p>
-                <RouterLink to="" class="primary-button px-8">
+                <RouterLink to="/checkout" class="primary-button px-8">
                     <i class="bi bi-cart"></i> Check Out
                 </RouterLink>
                 <div class="d-flex justify-content-center mt-8">
