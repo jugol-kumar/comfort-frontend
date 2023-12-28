@@ -19,6 +19,11 @@
                 color: $text-gray;
                 border: 1px solid $dark-gray;
             }
+            input[type="checkbox"] {
+                accent-color: $primary-color;
+                width: 18px;
+                height: 18px;
+            }
         }
     }
 }

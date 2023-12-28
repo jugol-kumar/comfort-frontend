@@ -5,27 +5,29 @@ ul {
 }
 
 .footer {
-    background-color: #B2C1D3;
+    background-color: #dddddd;
     padding-top: 50px;
-}
+    .logo {
+        img {
+            width: 270px;
+            height: auto;
+        }
+    }
+    h3 {
+        margin-bottom: 10px;
+    }
 
-
-.footer-socials li a {
-    color: $text-dark;
-}
-
-.footer-socials li a i {
-    font-size: 18px;
-}
-
-.footer h3 {
-    margin-bottom: 10px;
-}
-
-.footer-link {
-    text-transform: capitalize;
-    color: $text-dark;
-    font-size: 15px;
-    padding: 5px;
-    display: inline-block;
+    &-socials li a {
+        color: $text-dark; 
+        i  {
+            font-size: 18px;
+        }
+    }
+    &-link {
+        text-transform: capitalize;
+        color: $text-dark;
+        font-size: 15px;
+        padding: 5px;
+        display: inline-block;
+    }
 }
