@@ -20,7 +20,7 @@ const router = createRouter({
     },
     {
       path: '/products',
-      name: 'about',
+      name: 'products',
       meta: (route) => ({ 
         title: 'Team Member'
       }),
@@ -49,8 +49,18 @@ const router = createRouter({
     },
     {
       path: '/checkout',
-      name: 'wish',
+      name: 'checkout',
       component: () => import('@/views/Checkout.vue')
+    },
+    {
+      path: '/contact',
+      name: 'contact',
+      component: () => import('@/views/Contact.vue')
+    },
+    {
+      path: '/about',
+      name: 'about',
+      component: () => import('@/views/About.vue')
     }
   ]
 })

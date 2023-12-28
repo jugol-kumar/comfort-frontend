@@ -55,7 +55,7 @@
                         <h3 class="fw-semibold">WE'RE HERE TO HELP</h3>
                         <ul>
                             <li>
-                                <RouterLink to="/" class="footer-link">Contact Us</RouterLink>
+                                <RouterLink to="/contact" class="footer-link">Contact Us</RouterLink>
                             </li>
                             <li>
                                 <RouterLink to="/" class="footer-link">Book a Virtual Appointment</RouterLink>
@@ -80,7 +80,7 @@
                         <h3 class="fw-semibold">OUR COMPANY</h3>
                         <ul>
                             <li>
-                                <RouterLink to="/" class="footer-link">About Us</RouterLink>
+                                <RouterLink to="/about" class="footer-link">About Us</RouterLink>
                             </li>
                             <li>
                                 <RouterLink to="/" class="footer-link">Find a Store</RouterLink>

@@ -35,7 +35,7 @@
       <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
         <div class="offcanvas-header">
           <h5 class="offcanvas-title" id="offcanvasNavbarLabel">
-            <RouterLink to="" class="login d-flex align-items-center gap-1">
+            <RouterLink to="/login" class="login d-flex align-items-center gap-1">
               <i class="bi bi-person"></i>Login
           </RouterLink>
           </h5>
