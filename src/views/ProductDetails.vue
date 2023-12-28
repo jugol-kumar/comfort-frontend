@@ -1,6 +1,10 @@
 <script setup>
-import ProductReviewQuestion from '../components/ProductReviewQuestion.vue'
 import SingleProductCard from '@/components/SingleProductCard.vue'
+import ProductReviewQuestion from '@/components/ProductReviewQuestion.vue'
+import QuantityCounter from '@/components/QuantityCounter.vue'
+import Breadcrumb from '@/components/Breadcrumb.vue'
+
+
 import { onMounted, ref, watch } from 'vue'
 import useAxios from "@/composables/useAxios"
 import { useCartStore } from "@/stores/useCartStore"
@@ -75,21 +79,15 @@ const addToCart = () => {
 
 
 
-
 </script>
 
 <template>
     <!-- Content -->
     <section class="pb-8">
         <div class="container-fluid">
-            <nav aria-label="breadcrumb" class="my-4">
-                <ol class="breadcrumb">
-                    <li class="breadcrumb-item">
-                        <RouterLink to="/" class="fs-3">Home</RouterLink>
-                    </li>
-                    <li class="breadcrumb-item active fs-3" aria-current="page">{{ data?.title }}</li>
-                </ol>
-            </nav>
+            <!-- Breadcrumb -->
+            <Breadcrumb :data="data"/>
+
             <div class="row">
                 <div class="col-md-1 image-slider-scroll">
                     <templatel v-for="(img, i) in data?.images" :key="`image-${i}`">
@@ -101,6 +99,9 @@ const addToCart = () => {
                 <div class="col-md-5 col-12">
                     <div>
                         <img :src="`${$API_URL}/storage/uploads/${getThambImage?.img}`" alt="" class="w-100 h-auto">
+                    </div>
+                    <div class="p-3">
+                        <iframe width="100%" height="400px" src="https://www.youtube.com/embed/S-A0qLTxf-U?si=JulyLlKcLWHaOG2G" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
                     </div>
                 </div>
                 <div class="col-md-6 col-12">
@@ -173,23 +174,17 @@ const addToCart = () => {
                         </div>
                         <div class="product-form-action mt-4">
                             <div class="quantity-selector">
-                                <label for="quantity-selector-input" class="fs-3 text-dark fw-semibold">
-                                    Quantity
-                                </label>
-                                <small>(Available: {{ selectVarientProduct.qty }})</small>
-                                <div class="d-flex align-items-center">
-                                    <div class="d-flex align-items-center">
-                                        <button class="btn btn-info" @click="qtyDown">-</button>
-                                        <input class="form-control founded-0" min="1" v-model="buyQty">
-                                        <button class="btn btn-info" @click="qtyUp">+</button>
+                                <label for="quantity-selector-input" class="fs-3 text-dark fw-semibold">Quantity</label>
+                                <div class="d-flex align-items-center gap-3 py-3">
+                                    <div>
+                                        <!-- QuantityCounter -->
+                                        <QuantityCounter v-model="buyQty"/>
+                                    </div>
+                                    <div class="w-100">
+                                        <button class="secondary-button text-dark fw-medium fs-3 w-100 d-inline-block text-center" @click="addToCart">ADD TO CART</button>
                                     </div>
                                     <div>
-                                        <button class="bg-light border-0 p-3 text-uppercase text-dark fs-3"
-                                            @click="addToCart">ADD TOCART</button>
-                                    </div>
-                                    <div>
-                                        <button
-                                            class="d-flex align-items-center justify-content-center p-0 border-0 rounded">
+                                        <button class="d-flex align-items-center justify-content-center p-0 border-0 rounded">
                                             <i class="bi bi-heart fs-3"></i>
                                         </button>
                                     </div>

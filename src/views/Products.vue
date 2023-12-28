@@ -1,39 +1,30 @@
 <template>
     <!-- Content -->
     <section class="pb-8">
-        <div class="container">
+        <div class="container-fluid">
+
+            <!-- Breadcrumb -->
+            <Breadcrumb />
+
             <div class="row">
-                <div class="col-xl-12 col-lg-12 col-md-12 col-12">
-                    <!-- Flush Nav -->
-                    <div class="flush-nav">
-                        <nav class="nav">
-                            <a class="nav-link active ps-0" href="#">All</a>
-                            <a class="nav-link" href="blog-category.html">Courses</a>
-                            <a class="nav-link" href="blog-category.html">Workshop</a>
-                            <a class="nav-link" href="blog-category.html">Tutorial</a>
-                            <a class="nav-link" href="blog-category.html">Company</a>
-                        </nav>
-                    </div>
+                <div class="col-lg-2 col-12">
+
+                    <!-- Product Filter -->
+                    <ProductFilter />
                 </div>
-
-                <div v-if="loading">
-                    loading Component
-                </div>
-
-                <div v-if="error">
-                    {{  error  }}
-                </div>
-
-                <SingleProductCardVue v-else v-for="i in data" :key="i"/>
-
-                <!-- Buttom -->
-                <div class="col-xl-12 col-lg-12 col-md-12 col-12 text-center mt-4">
-                    <a href="#" class="btn btn-primary">
-                        <div class="spinner-border spinner-border-sm me-2" role="status">
-                            <span class="visually-hidden">Loading...</span>
+                <div class="col-lg-10 col-12">
+                    <div class="products">
+                        <div class="row">
+                            <SingleProductCard />
+                            <SingleProductCard />
+                            <SingleProductCard />
+                            <SingleProductCard />
+                            <SingleProductCard />
+                            <SingleProductCard />
+                            <SingleProductCard />
+                            <SingleProductCard />
                         </div>
-                        Load More
-                    </a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -43,7 +34,9 @@
 <script setup>
     import {onMounted, ref} from 'vue'
 
-    import SingleProductCardVue from "@/components/SingleProductCard.vue";
+    import SingleProductCard from "@/components/SingleProductCard.vue";
+    import Breadcrumb from "@/components/Breadcrumb.vue";
+    import ProductFilter from "@/components/ProductFilter.vue"
     import useAxios from "@/composables/useAxios"
     const { loading, error, sendRequest } = useAxios();
     const data = ref(null);

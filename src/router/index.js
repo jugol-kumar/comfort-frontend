@@ -9,6 +9,16 @@ const router = createRouter({
       component: Index
     },
     {
+      path: '/login',
+      name: 'login',
+      component: () => import('@/views/Login.vue')
+    },
+    {
+      path: '/register',
+      name: 'register',
+      component: () => import('@/views/Register.vue')
+    },
+    {
       path: '/products',
       name: 'about',
       meta: (route) => ({ 
@@ -31,6 +41,16 @@ const router = createRouter({
       path: '/cart',
       name: 'cart',
       component: () => import('@/views/Cart.vue')
+    },
+    {
+      path: '/wish',
+      name: 'wish',
+      component: () => import('@/views/Wish.vue')
+    },
+    {
+      path: '/checkout',
+      name: 'wish',
+      component: () => import('@/views/Checkout.vue')
     }
   ]
 })

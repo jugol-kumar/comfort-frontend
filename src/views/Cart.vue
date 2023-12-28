@@ -1,6 +1,13 @@
 <script setup>
+import QuantityCounter from '@/components/QuantityCounter.vue'
 import { useCartStore } from "@/stores/useCartStore"
+import { useAuthStore } from '@/stores/useAuthStore';
 const cartStore = useCartStore();
+const authStore = useAuthStore();
+
+
+
+
 </script>
 
 <template>
@@ -20,7 +27,12 @@ const cartStore = useCartStore();
                         <p>Subtotal</p>
                         <h3>$ {{ cartStore.getCartTotalPrice }}</h3>
                     </div>
-                    <RouterLink to="" class="primary-button">
+
+                    <RouterLink v-if="authStore.isLoggedIn" to="/checkout" class="primary-button">
+                        <i class="bi bi-cart"></i> Check Out
+                    </RouterLink>
+
+                    <RouterLink v-else to="/login" class="primary-button">
                         <i class="bi bi-cart"></i> Check Out
                     </RouterLink>
                 </div>
@@ -33,9 +45,11 @@ const cartStore = useCartStore();
                     </div>
                     <div class="right">
                         <div class="d-flex flex-column justify-content-center">
-                            <RouterLink to="/product-details" class="d-inline-block product-title text-capitalize">
+                            <RouterLink :to="`/product-detials/${item?.data?.id}`"
+                                class="d-inline-block product-title text-capitalize">
                                 <h2 class="fw-bold">
-                                    {{ item?.data?.title }} - {{ item?.selectSku?.varient?.replace(/\//g, '-').slice(0, -1)}}
+                                    {{ item?.data?.title }} - {{ item?.selectSku?.varient?.replace(/\//g, '-').slice(0, -1)
+                                    }}
                                 </h2>
                             </RouterLink>
                             <small>Varient: {{ item?.selectSku?.varient?.replace(/\//g, '-').slice(0, -1) }}</small>
@@ -46,7 +60,8 @@ const cartStore = useCartStore();
                             <div>
                                 <h3 class="card-title fw-semibold">
                                     Quantity
-                                    <small class="fs-6 fw-normal text-capitalize">({{ item.selectSku?.qty }} Available)</small>
+                                    <small class="fs-6 fw-normal text-capitalize">({{ item.selectSku?.qty }}
+                                        Available)</small>
                                 </h3>
                                 <div class="d-flex align-items-center">
                                     <button class="btn btn-info"
@@ -71,14 +86,20 @@ const cartStore = useCartStore();
                     <p class="fs-3 fw-medium">$ {{ cartStore.getCartTotalPrice }}</p>
                 </div>
                 <p class="text-secondary mb-3">Taxes and shipping calculated at checkout</p>
-                <RouterLink to="" class="primary-button px-8">
+
+                <RouterLink v-if="authStore.isLoggedIn" to="/checkout" class="primary-button">
+                    <i class="bi bi-cart"></i> Check Out
+                </RouterLink>
+
+                <RouterLink v-else to="/login" class="primary-button">
                     <i class="bi bi-cart"></i> Check Out
                 </RouterLink>
                 <div class="d-flex justify-content-center mt-8">
-                    <RouterLink to="" class="text-dark fs-4 d-flex align-items-center gap-2">
+                    <RouterLink to="/" class="text-dark fs-4 d-flex align-items-center gap-2">
                         Continue Shopping <i class="bi bi-arrow-right"></i>
                     </RouterLink>
+                </div>
             </div>
         </div>
-    </div>
-</section></template>
+    </section>
+</template>
