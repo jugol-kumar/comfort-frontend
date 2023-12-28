@@ -44,11 +44,7 @@
             <h2 class="py-5">SHOP OUR HOLIDAY SPECIALS</h2>
             <div class="row">
 
-                <!-- <SingleProductCardVue v-for="item in data" :key="`product-${item.id}`" :info="item"/> -->
-                <SingleProductCardVue />
-                <SingleProductCardVue />
-                <SingleProductCardVue />
-                <SingleProductCardVue />
+                <SingleProductCardVue v-for="item in data" :key="`product-${item.id}`" :info="item"/>
                 <!-- Buttom -->
                 <div v-if="loading" class="col-xl-12 col-lg-12 col-md-12 col-12 text-center mt-4">
                     <a href="#" class="btn btn-primary">
