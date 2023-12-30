@@ -24,7 +24,7 @@
             <div class="product-cart__items">
                 <div class="product-cart__items-item">
                     <div class="left">
-                        <img src="https://relaxtheback.com/cdn/shop/products/Cozzia_QiPro_FacingForward-Display_WEB_clip-j_456x456.jpg?v=1663823010" alt="Chair">
+                        <img src="https://relaxtheback.com/cdn/shop/products/Cozzia_QiPro_Black_Right-Turning1-Display_WEB_clip-j_1024x1024.jpg?v=1663732636" alt="Chair">
                     </div>
                     <div class="right">
                         <div class="d-flex flex-column justify-content-center">
@@ -45,7 +45,7 @@
                 </div>
                 <div class="product-cart__items-item">
                     <div class="left">
-                        <img src="https://relaxtheback.com/cdn/shop/products/Cozzia_QiPro_FacingForward-Display_WEB_clip-j_456x456.jpg?v=1663823010" alt="Chair">
+                        <img src="https://relaxtheback.com/cdn/shop/products/Cozzia_QiPro_Black_Right-Turning1-Display_WEB_clip-j_1024x1024.jpg?v=1663732636" alt="Chair">
                     </div>
                     <div class="right">
                         <div class="d-flex flex-column justify-content-center">

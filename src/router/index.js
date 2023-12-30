@@ -43,11 +43,6 @@ const router = createRouter({
       component: () => import('@/views/Cart.vue')
     },
     {
-      path: '/wish',
-      name: 'wish',
-      component: () => import('@/views/Wish.vue')
-    },
-    {
       path: '/checkout',
       name: 'checkout',
       component: () => import('@/views/Checkout.vue')
@@ -61,6 +56,36 @@ const router = createRouter({
       path: '/about',
       name: 'about',
       component: () => import('@/views/About.vue')
+    },
+    {
+      path: '/dashboard',
+      name: 'dashboard',
+      component: () => import('@/views/dashboard.vue')
+    },
+    {
+      path: '/customer/order',
+      name: 'customer.order',
+      component: () => import('@/views/CustomerOrder.vue')
+    },
+    {
+      path: '/customer/address',
+      name: 'customer.address',
+      component: () => import('@/views/CustomerAddress.vue')
+    },
+    {
+      path: '/customer/profile',
+      name: 'customer.profile',
+      component: () => import('@/views/CustomerProfile.vue')
+    },
+    {
+      path: '/customer/reset-password',
+      name: 'customer.reset.password',
+      component: () => import('@/views/CustomerPasswordReset.vue')
+    },
+    {
+      path: '/customer/wishlist',
+      name: 'customer.wishlist',
+      component: () => import('@/views/CustomerWishlist.vue')
     }
   ]
 })

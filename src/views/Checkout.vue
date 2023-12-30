@@ -1,4 +1,12 @@
-<script setup></script>
+<script>
+export default {
+    data() {
+        return {
+            newAddress: false
+        }
+    }
+}
+</script>
 
 <template>
     <section class="checkout">
@@ -35,7 +43,7 @@
                                 </label>
                             </div>
                             <div class="col-md-6 col-12 pe-2">
-                                <button class="add-new-add" @click="toggleAddressForm()">
+                                <button class="add-new-add" v-show="!newAddress" @click="newAddress = true">
                                     <div class="d-flex flex-column align-items-center">
                                         <i class="bi bi-plus"></i>
                                         Add New Address
@@ -43,24 +51,47 @@
                                 </button>
                             </div>
                         </div>
-                        <!-- <div class="py-5">
-                            <form>
-                                <div>
-                                    <input type="text" placeholder="Full Name" v-model="full_name">
-                                </div>
-                                <div>
-                                    <input type="text" placeholder="Address" v-model="full_name">
-                                </div>
-                                <div class="d-flex align-items-center gap-3">
-                                    <input type="text" placeholder="City" v-model="city">
-                                    <input type="text" placeholder="State" v-model="state">
-                                    <input type="text" placeholder="ZIP Code" v-model="zip_code">
-                                </div>
-                                <div>
-                                    <input type="text" placeholder="Phone Number" v-model="phone_number">
-                                </div>
-                            </form>
-                        </div> -->
+                        <div v-if="newAddress"  class="checkout__shipping-add-wrapper">
+                            <div class="checkout__shipping-add-wrapper-new" >
+                                <h3>New Address</h3>
+                                <form @submit.prevent="">
+                                    <div class="form-floating">
+                                        <input type="text" class="form-control" id="floatingInput" placeholder="Full Name" v-model="full_name">
+                                        <label for="floatingInput">Full Name</label>
+                                    </div>
+                                    <div class="form-floating">
+                                        <input type="text" class="form-control" id="floatingInput" placeholder="Address" v-model="address">
+                                        <label for="floatingInput">Address</label>
+                                    </div>
+                                    <div class="d-flex align-items-center gap-3">
+                                        <select class="form-select" aria-label="Default select example">
+                                            <option selected disabled>Add New City</option>
+                                            <option value="1">Dhaka</option>
+                                            <option value="2">Rajshahi</option>
+                                            <option value="3">Pabna</option>
+                                        </select>
+                                        <div class="form-floating">
+                                            <input type="text" class="form-control" id="floatingInput" placeholder="State" v-model="state">
+                                            <label for="floatingInput">State</label>
+                                        </div>
+                                        <div class="form-floating">
+                                            <input type="text" class="form-control" id="floatingInput" placeholder="ZIP Code" v-model="zip_code">
+                                            <label for="floatingInput">ZIP Code</label>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <div class="form-floating">
+                                            <input type="text" class="form-control" id="floatingInput" placeholder="Phone Number" v-model="phone_number">
+                                            <label for="floatingInput">Phone Number</label>
+                                        </div>
+                                    </div>
+                                    <div class="d-flex align-items-center justify-content-end gap-3">
+                                        <button class="primary-button" type="submit">Save</button>
+                                        <button class="secondary-button" @click="newAddress = !newAddress">Close</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="col-lg-5 col-12">

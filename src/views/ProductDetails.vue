@@ -120,7 +120,7 @@ import Breadcrumb from '@/components/Breadcrumb.vue'
                         <div class="accordion accordion-flush my-5" id="accordionFlushExample">
                             <div class="accordion-item">
                                 <h2 class="accordion-header" id="flush-headingOne">
-                                <button class="accordion-button collapsed fw-semibold text-dark fs-3" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+                                <button class="accordion-button collapsed fw-semibold text-dark fs-3 shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
                                     Features & Benefits
                                 </button>
                                 </h2>
@@ -138,7 +138,7 @@ import Breadcrumb from '@/components/Breadcrumb.vue'
                             </div>
                             <div class="accordion-item">
                                 <h2 class="accordion-header" id="flush-headingTwo">
-                                <button class="accordion-button collapsed fw-semibold text-dark fs-3" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
+                                <button class="accordion-button collapsed fw-semibold text-dark fs-3 shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
                                     Specifications & Details
                                 </button>
                                 </h2>
@@ -156,7 +156,7 @@ import Breadcrumb from '@/components/Breadcrumb.vue'
                             </div>
                             <div class="accordion-item">
                                 <h2 class="accordion-header" id="flush-headingThree">
-                                <button class="accordion-button collapsed  text-dark fw-semibold fs-3" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
+                                <button class="accordion-button collapsed  text-dark fw-semibold fs-3 shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
                                     Warranty
                                 </button>
                                 </h2>

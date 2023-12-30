@@ -100,7 +100,7 @@
         <RouterLink to="/login" class="login d-flex align-items-center gap-1">
             <i class="bi bi-person"></i>Login
         </RouterLink>
-        <RouterLink to="/wish" class="wish">
+        <RouterLink to="/customer/wishlist" class="wish">
           <span>0</span>
           <i class="bi bi-heart"></i>
         </RouterLink>

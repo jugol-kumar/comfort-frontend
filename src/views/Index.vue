@@ -276,7 +276,7 @@
         </div>
     </section>
     <section>
-        <div class="container-fluid py-8">
+        <div class="container-fluid py-8" style="background: #f5f5f5;">
             <div class="row banner">
                 <div class="col-lg-4 col-md-6 col-12">
                     <div class="d-flex flex-column mb-5 mb-lg-0">
