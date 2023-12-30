@@ -11,4 +11,17 @@
 import Header from "@/components/Header.vue"
 import Footer from "@/components/Footer.vue"
 import PreLoader from "@/components/PreLoader.vue";
+import { useAuthStore } from '@/stores/useAuthStore';
+import { onMounted } from "vue";
+
+
+
+onMounted(async()=>{
+  const auth = useAuthStore();
+  if(!auth.isLoggedIn){
+    await auth.fetchUser()
+  }
+})
+
+
 </script>

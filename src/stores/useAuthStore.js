@@ -8,11 +8,15 @@ export const useAuthStore = defineStore('auth', ()=>{
     const isLoggedIn = computed(() => !! user.value)
 
     async function fetchUser(){
+        const token = await getLocalStoreage();
         const data = await sendRequest({
             method: 'get',
             url: "/api/user",
+            headers:{
+                "Authorization": `Bearer ${token}`
+            }
         })
-        user.value = data?.value
+        user.value = data?.data
     }
 
     async function login(credential){
@@ -27,8 +31,8 @@ export const useAuthStore = defineStore('auth', ()=>{
             data:credential
         })
 
-
-        if(login?.data?.status) await fetchUser();
+        await setLocalStoreage(login.data?.data?.token)
+        user.value = login.data?.data
 
         return login;
     }
@@ -36,7 +40,6 @@ export const useAuthStore = defineStore('auth', ()=>{
     async function signup(signupData){
         const singup = await sendRequest("/register")
         console.log(singup)
-        // await fetchUser();
         return singup;
     }
 
@@ -45,6 +48,19 @@ export const useAuthStore = defineStore('auth', ()=>{
         // navigateTo('/')
     }
 
-    return {user, login, signup, isLoggedIn, fetchUser, logout, loading, error}
+    async function setLocalStoreage(token){
+        localStorage.setItem('token', token);
+    }
+    
+    async function clearLocalStoreage(){
+        localStorage.removeItem('token');
+    }
+    
+    async function getLocalStoreage(){
+        return localStorage.getItem('token');
+    }
+
+
+    return {user, login, signup, isLoggedIn, fetchUser, logout, loading, error, getLocalStoreage}
 
 })
