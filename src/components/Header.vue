@@ -97,9 +97,15 @@
         </form>
       </div>
       <div class="d-flex align-items-center gap-3">
-        <RouterLink to="/login" class="login d-flex align-items-center gap-1">
+        
+        <RouterLink v-if="isLoggedIn" to="/login" class="login d-flex align-items-center gap-1">
+            <i class="bi bi-person"></i>Profile
+        </RouterLink>
+
+        <RouterLink v-else to="/login" class="login d-flex align-items-center gap-1">
             <i class="bi bi-person"></i>Login
         </RouterLink>
+
         <RouterLink to="/wish" class="wish">
           <span>0</span>
           <i class="bi bi-heart"></i>
@@ -134,7 +140,7 @@
                 <RouterLink to="/massage" class="dropdown-item fs-3 fw-normal py-2">Massage</RouterLink>
               </li>
             </ul>
-          </li>
+          </li> 
           <li class="nav-item dropdown">
             <RouterLink to="/new-arrivals" class="nav-link text-uppercase">
               NEW ARRIVALS
@@ -158,9 +164,10 @@
 
 <script setup>
   import {useCartStore} from "@/stores/useCartStore"
+  import { useAuthStore } from "@/stores/useAuthStore";
   const cartStore = useCartStore();
+  const {user, isLoggedIn} = useAuthStore();
   cartStore.initCart();
-
 </script>
 
 <style>

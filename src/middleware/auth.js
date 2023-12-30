@@ -1,15 +1,25 @@
-import { useAuthStore } from '@/stores/useAuthStore';
+import { useAuthStore } from '@/stores/useAuthStore'
 
-export function authMiddleware(to, from, next) {
-  const authStore = useAuthStore();
+export default (to, from, next) => {
+	const auth = useAuthStore()
 
+	let exceptionalRoutes = ['login', 'register', 'forgot-password']
+	let isGoingExceptionalRoutes = exceptionalRoutes.includes(to.name)
 
-  console.log('user', authStore.user)
-  console.log('login', authStore.isLoggedIn)
+  
+	if (!auth.isLoggedIn) {
+		if (isGoingExceptionalRoutes) {
+			next()
+			return
+		} else {
+			next({ name: 'login' })
+			return
+		}
+	}
 
-  if (authStore.isLoggedIn) {
-    next();
-  } else {
-    next({ name: 'login' });
-  }
+	if (auth.isLoggedIn && isGoingExceptionalRoutes) {
+		next({ name: 'dashboard'})
+	} else {
+		next()
+	}
 }

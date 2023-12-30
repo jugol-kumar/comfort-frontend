@@ -9,7 +9,7 @@ export const useAuthStore = defineStore('auth', ()=>{
 
     async function fetchUser(){
         const token = await getLocalStoreage();
-        const data = await sendRequest({
+        const data = await sendRequest({ 
             method: 'get',
             url: "/api/user",
             headers:{
