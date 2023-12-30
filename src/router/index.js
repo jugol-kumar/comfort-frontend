@@ -1,5 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import Index from "@/views/Index.vue"
+import { authMiddleware } from '@/middleware/auth';
+import { useAuthStore } from '@/stores/useAuthStore';
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
@@ -24,17 +26,11 @@ const router = createRouter({
       meta: (route) => ({ 
         title: 'Team Member'
       }),
-      // route level code-splitting
-      // this generates a separate chunk (About.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
       component: () => import('@/views/Products.vue')
     },
     {
       path: '/product-detials/:id',
       name: 'productDetails',
-      // route level code-splitting
-      // this generates a separate chunk (About.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
       component: () => import('@/views/ProductDetails.vue')
     },
     {
@@ -51,8 +47,41 @@ const router = createRouter({
       path: '/checkout',
       name: 'wish',
       component: () => import('@/views/Checkout.vue')
+    },
+    {
+      path:"/customer",
+      name:"custoemr",
+      children: [
+        {
+          path: '/dashboard',
+          name:"dashboard",
+          meta: {
+            requiresAuth: true
+          },
+          component: () => import("@/views/customer/Dashbaord.vue"),
+        },
+      ],
     }
-  ]
+  ],
 })
+
+
+
+router.beforeEach((to, from, next) => {
+  const authStore = useAuthStore();
+  if (to.matched.some(record => record.meta.requiresAuth)) {
+    if (!authStore.isLoggedIn) {
+      next({ name: 'login' })
+    }else if(authStore.is){
+
+    } else {
+      next()
+    }
+  } else {
+    next()
+  }
+})
+
+
 
 export default router
