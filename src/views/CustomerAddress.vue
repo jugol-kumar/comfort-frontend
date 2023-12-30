@@ -46,7 +46,7 @@ export default {
                                         <i class="bi bi-three-dots-vertical"></i>
                                     </button>
                                     <div class="action-toggle" v-show="actionToggle">
-                                        <button>
+                                        <button @click="newAddress = !newAddress, actionToggle = false">
                                             <i class="bi bi-pencil-square"></i> Edit
                                         </button>
                                         <button>
@@ -71,7 +71,7 @@ export default {
                                         <i class="bi bi-three-dots-vertical"></i>
                                     </button>
                                     <div class="action-toggle" v-show="actionToggle">
-                                        <button>
+                                        <button  @click="newAddress = !newAddress, actionToggle = false">
                                             <i class="bi bi-pencil-square"></i> Edit
                                         </button>
                                         <button>

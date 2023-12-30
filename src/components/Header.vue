@@ -82,32 +82,34 @@
   <!-- Desktop Nav -->
 
   <nav class="navbar navbar-expand-lg flex-column p-0 d-none d-lg-flex">
-    <div class="container-fluid my-3">
+    <div class="container-fluid py-3">
       <RouterLink class="navbar-brand" to="/">
         <img src="/logo.png" alt="Comfort"/>
       </RouterLink>
-      <div class="d-flex align-items-center">
-        <form>
-          <div class="search">
-            <input type="text" placeholder="What are you looking for?">
-            <button>
-                <i class="bi bi-search"></i>
-            </button> 
-          </div>
-        </form>
-      </div>
-      <div class="d-flex align-items-center gap-3">
-        <RouterLink to="/login" class="login d-flex align-items-center gap-1">
-            <i class="bi bi-person"></i>Login
-        </RouterLink>
-        <RouterLink to="/customer/wishlist" class="wish">
-          <span>0</span>
-          <i class="bi bi-heart"></i>
-        </RouterLink>
-        <RouterLink to="/cart" class="cart">
-          <span>2</span>
-          <i class="bi bi-cart"></i>
-        </RouterLink>
+      <div class="d-flex align-items-center gap-4">
+        <div class="d-flex align-items-center">
+          <form>
+            <div class="search">
+              <input type="text" placeholder="What are you looking for?">
+              <button>
+                  <i class="bi bi-search"></i>
+              </button> 
+            </div>
+          </form>
+        </div>
+        <div class="d-flex align-items-center gap-3">
+          <RouterLink to="/login" class="login d-flex align-items-center gap-1">
+              <i class="bi bi-person"></i>Login
+          </RouterLink>
+          <RouterLink to="/customer/wishlist" class="wish">
+            <span>0</span>
+            <i class="bi bi-heart"></i>
+          </RouterLink>
+          <RouterLink to="/cart" class="cart">
+            <span>2</span>
+            <i class="bi bi-cart"></i>
+          </RouterLink>
+        </div>
       </div>
     </div>
     <div class="container-fluid py-3">
