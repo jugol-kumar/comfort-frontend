@@ -158,7 +158,27 @@
   </nav>
 </template>
 
-<script setup>
+<script>
+export default {
+  data() {
+    return {
+        isFixed: false
+      }
+  },
+  mounted() {
+    window.addEventListener('scroll', this.handleScroll)
+  },
+  methods: {
+    handleScroll() {
+      if (window.scrollY >= 300) {
+        this.isFixed = true
+      }
+      else {
+        this.isFixed = false
+      }
+    }
+  },
+}
 
 </script>
 

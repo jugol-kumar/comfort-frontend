@@ -192,7 +192,7 @@ export default {
                                         <span>$567</span>
                                     </li>
                                 </ul>
-                                <RouterLink to="" class="primary-button text-center">Place Order</RouterLink>
+                                <RouterLink to="/payment" class="primary-button text-center">Place Order</RouterLink>
                             </div>
                         </div>
                     </div>
