@@ -79,7 +79,7 @@
         <div class="container-fluid">
             <h2  class="pb-5 pt-8">IMPROVE YOUR WORK PERFORMANCE</h2>
             <div class="row promo-container">
-                <div class="col-lg-8 col-12">
+                <div class="col-lg-8 col-12  mb-3 mb-lg-0">
                     <RouterLink to="" class="promo-container__content promo-container__content--one">
                         <div class="promo-container__content__text">
                             <h2>Ergonomic Office Furniture</h2>
@@ -88,7 +88,7 @@
                     </RouterLink>
                 </div>
                 <div class="col-lg-4 col-12">
-                    <div class="row align-items-center flex-column gap-3">
+                    <div class="row align-items-center flex-column gap-3" style="padding-inline:12px;">
                         <RouterLink to="" class="promo-container__content  promo-container__content--two">
                             <div class="promo-container__content__text promo-container__content__text--left">
                                 <h2>ERGONOMIC CHAIRS</h2>
@@ -123,7 +123,7 @@
         <div class="container-fluid">
             <h2  class="py-5">LIVE A WELL-BALANCED LIFE</h2>
             <div class="row promo-container  promo-container--shop-massage">
-                <div class="col-lg-8 col-12">
+                <div class="col-lg-8 col-12  mb-3 mb-lg-0">
                     <RouterLink to="" class="promo-container__content promo-container__content--one">
                         <div class="promo-container__content__text">
                             <h2>Massage</h2>
@@ -132,7 +132,7 @@
                     </RouterLink>
                 </div>
                 <div class="col-lg-4 col-12">
-                    <div class="row align-items-center flex-column gap-3">
+                    <div class="row align-items-center flex-column gap-3"  style="padding-inline:12px;">
                         <RouterLink to="" class="promo-container__content  promo-container__content--two">
                             <div class="promo-container__content__text promo-container__content__text--left">
                                 <h2>Inversion Tables</h2>
@@ -193,7 +193,7 @@
         <div class="container-fluid">
             <h2 class="py-5">IMPROVE YOUR MENTAL & PHYSICAL HEALTH WITH A BETTER NIGHTS SLEEP</h2>
             <div class="row promo-container  promo-container--shop-sleep">
-                <div class="col-lg-8 col-12">
+                <div class="col-lg-8 col-12 mb-3 mb-lg-0">
                     <RouterLink to="" class="promo-container__content promo-container__content--one">
                         <div class="promo-container__content__text">
                             <h2>Sleep</h2>
@@ -202,7 +202,7 @@
                     </RouterLink>
                 </div>
                 <div class="col-lg-4 col-12">
-                    <div class="row align-items-center flex-column gap-3">
+                    <div class="row align-items-center flex-column gap-3"  style="padding-inline:12px;">
                         <RouterLink to="" class="promo-container__content  promo-container__content--two">
                             <div class="promo-container__content__text promo-container__content__text--left">
                                 <h2>SHOP MATTRESSES</h2>
@@ -236,11 +236,14 @@
     <section>
         <div class="container-fluid">
             <div class="row appointment-section">
-                <div class="col-lg-6 col-12">
-                    <div class="appointment-section__left">
+                <div class="col-lg-6 col-12 position-relative">
+                    <div class="appointment-section__left" role="button" @click="isVideo = !isVideo">
                         <span to="" class="play-button">
                             <i class="bi bi-play-fill"></i>
                         </span>
+                    </div>
+                    <div v-if="isVideo" class="appointment-section__video">
+                        <iframe width="100%" height="100%" src="https://www.youtube.com/embed/S-A0qLTxf-U?si=JulyLlKcLWHaOG2G" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
                     </div>
                 </div>
                 <div class="col-lg-6 col-12">

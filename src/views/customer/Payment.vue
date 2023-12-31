@@ -1,60 +1,146 @@
 <template>
-    
-    <div class="d-flex align-items-center justify-content-center" style="min-height: 100vh;">
-
-        <div class="" v-for="item in paymentMethods" :key="item.value">
-            <label :for="item.value">{{  item.name }}</label>
-            <input type="radio" name="payment-method" v-model="order.paymentMethod" :value="item.value" :id="item.value" class="form-control-checkbox">
+    <section class="customer-section">
+        <div class="container">
+            <h3 class="text-capitalize fw-semibold fs-3">Select Your Payment Method</h3>
+            <div class="method row flex-wrap mt-5">
+                <div class="col-lg-6">
+                    <div class="row flex-wrap">
+                        <div class="col-6">
+                            <input type="radio" v-model="order.paymentMethod" name="payment" id="cash_on_delivery"
+                                value="cod" class="method-radio">
+                            <label for="cash_on_delivery" class="method-item" role="button">
+                                <i class="bi bi-cash-coin"></i>
+                                <p>Cash On Delivery</p>
+                            </label>
+                        </div>
+                        <div class="col-6">
+                            <input type="radio" v-model="order.paymentMethod" name="payment" id="credit_card" value="card"
+                                class="method-radio">
+                            <label for="credit_card" class="method-item" role="button">
+                                <i class="bi bi-credit-card"></i>
+                                <p>Credit/Debit Card</p>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6 col-12">
+                    <div class="method-item align-items-start">
+                        <h3 class="text-start fw-semibold">Order Summary</h3>
+                        <ul class="w-100 mb-4">
+                            <li class="d-flex align-items-center justify-content-between mb-3">
+                                <p class="fs-5">Subtotal ({{ cartStore.getCartLength }} Items Total Of Qty And Prices)</p>
+                                <p>$ {{ cartStore.getCartTotalPrice }}</p>
+                            </li>
+                            <li class="d-flex align-items-center justify-content-between mb-3">
+                                <p class="fs-5">Incluted Delivery Charge </p>
+                                <p v-if="loading">...</p>
+                                <p v-else>{{ deliveryDeails?.order_area?.delivery_charge }} $</p>
+                            </li>
+                            <li class="d-flex align-items-center justify-content-between">
+                                <p class="fs-3">Total Amount</p>
+                                <p v-if="loading">...</p>
+                                <p class="fs-3 text-info" v-else>$ {{ (cartStore.getCartTotalPrice +
+                                    deliveryDeails?.order_area?.delivery_charge) ?? '...' }}</p>
+                            </li>
+                        </ul>
+                        <button @click="makePayment" class="primary-button">Confirm Order</button>
+                    </div>
+                </div>
+            </div>
         </div>
-
-        <button class="btn btn-lg btn-info">
-            Order By Cache On Delivery
-
-        </button>
-
-        
-    </div>
+    </section>
 </template>
 
 <script setup>
 
+import useAxios from '@/composables/useAxios';
+import { useAuthStore } from '@/stores/useAuthStore';
 import { useCartStore } from '@/stores/useCartStore';
-import { ref } from 'vue';
-import {  useRoute } from 'vue-router';
-const route = useRoute();
+import { onMounted, ref } from 'vue';
+import { useRoute, useRouter } from 'vue-router';
 const cartStore = useCartStore();
+const route = useRoute();
+const router = useRouter()
+const authStore = useAuthStore();
+
+const { loading, sendRequest } = useAxios();
+
+const deliveryDeails = ref(null)
 
 const order = ref({
-    addressId:route.query.addressId,
+    addressId: route.query.addressId,
     orders: cartStore.getCartItems,
-    paymentMethod:'cod'
+    paymentMethod: null,
+    orderTotal: cartStore.getCartTotalPrice,
 })
 
-const paymentMethods = ref([
-    {
-        name: 'Cash On Delivery',
-        value: 'cod'
-    },
-    {
-        name: 'Stripe',
-        value: 'strip'
-    },
-    {
-        name: 'Paypal',
-        value: 'paypal'
-    },
-    {
-        name: 'Others',
-        value: 'other'
-    },
 
-])
-
-const setPaymentMethod = (event) => order.value.paymentMethod = event.target.value
-
-const makePayment = () => {
-    //
+const makePayment = async () => {
+    const token = await authStore.getToken();
+    if (!order.value.paymentMethod) {
+        $toast.error("Please Select Your Payment Method...")
+    } else {
+        await sendRequest({
+            url:"/api/save-order",
+            method:"POST",
+            data:order.value,
+            headers: {
+                "Authorization": `Bearer ${token}`
+            }
+        })
+    }
 }
+
+onMounted(async () => {
+    const token = await authStore.getToken();
+    if (route.query.addressId) {
+        const data = await sendRequest({
+            method: 'get',
+            url: `/api/address/${route.query.addressId}`,
+            headers: {
+                "Authorization": `Bearer ${token}`
+            }
+        })
+        deliveryDeails.value = data?.data
+    }else{
+        router.push({name:'checkout', query:{invalidAddressId:true}})
+    }
+
+})
 
 </script>
 
+
+<style lang="scss" scoped>
+.method {
+    &-item {
+
+        background: #fff;
+        display: flex;
+        flex-direction: column;
+        gap: 18px;
+        align-items: center;
+        padding: 30px;
+
+        i {
+            font-size: 28px;
+        }
+
+        p {
+            font-weight: 500;
+        }
+    }
+}
+
+.method-radio {
+    display: none;
+}
+
+.method-radio:checked+label {
+    background: #0FA5E9;
+
+    i,
+    p {
+        color: #fff;
+    }
+}</style>
