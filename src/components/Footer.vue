@@ -1,10 +1,10 @@
 <template>
-    <footer class="footer">
-        <div class="container-fluid">
+    <footer class="footer border-top">
+        <div class="container-fluid position-relative z-10">
             <div class="row justify-content-between g-0 py-2">
                 <div class="col-xl-4 col-md-6">
                     <div class="pe-md-5">
-                        <div class="pb-3">
+                        <div class="logo pb-3">
                             <img src="/logo.png" alt="Logo" />
                         </div>
                         <h3 class="fw-semibold">SIGN UP FOR OUR NEWSLETTER</h3>
@@ -14,7 +14,7 @@
                             <form>
                                 <div class="py-3">
                                     <input type="email" name="newsletter_email" id="newsletter_email"
-                                        v-model="newsletter_email" placeholder="Email Address" class="w-100 p-2 border-0">
+                                        v-model="newsletter_email" placeholder="Email Address" class="w-100 p-2 border">
                                 </div>
                                 <button type="submit" class="newsletter_submit primary-button">SIGN UP</button>
                             </form>
@@ -55,7 +55,7 @@
                         <h3 class="fw-semibold">WE'RE HERE TO HELP</h3>
                         <ul>
                             <li>
-                                <RouterLink to="/" class="footer-link">Contact Us</RouterLink>
+                                <RouterLink to="/contact" class="footer-link">Contact Us</RouterLink>
                             </li>
                             <li>
                                 <RouterLink to="/" class="footer-link">Book a Virtual Appointment</RouterLink>
@@ -80,7 +80,7 @@
                         <h3 class="fw-semibold">OUR COMPANY</h3>
                         <ul>
                             <li>
-                                <RouterLink to="/" class="footer-link">About Us</RouterLink>
+                                <RouterLink to="/about" class="footer-link">About Us</RouterLink>
                             </li>
                             <li>
                                 <RouterLink to="/" class="footer-link">Find a Store</RouterLink>
@@ -108,7 +108,9 @@
                     </div>
                 </div>
             </div>
-            <div class="my-5  d-inline-block">
+        </div>
+        <div class="py-5  d-block" style="background: #f5f5f5;">
+            <div class="container-fluid">
                 <p class="m-0">Copyright © 2023 Comfort Wings</p>
             </div>
         </div>

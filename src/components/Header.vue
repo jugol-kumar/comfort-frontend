@@ -35,7 +35,7 @@
       <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
         <div class="offcanvas-header">
           <h5 class="offcanvas-title" id="offcanvasNavbarLabel">
-            <RouterLink to="" class="login d-flex align-items-center gap-1">
+            <RouterLink to="/login" class="login d-flex align-items-center gap-1">
               <i class="bi bi-person"></i>Login
           </RouterLink>
           </h5>
@@ -97,10 +97,15 @@
         </form>
       </div>
       <div class="d-flex align-items-center gap-3">
-        <RouterLink to="/login" class="login d-flex align-items-center gap-1">
+
+        <RouterLink v-if="authStore.isLoggedIn" :to="{name:'dashboard'}" class="login d-flex align-items-center gap-1">
+            <i class="bi bi-person"></i>Profile
+        </RouterLink>
+
+        <RouterLink v-else to="/login" class="login d-flex align-items-center gap-1">
             <i class="bi bi-person"></i>Login
         </RouterLink>
-        <RouterLink to="/wish" class="wish">
+        <RouterLink to="/customer/wishlist" class="wish">
           <span>0</span>
           <i class="bi bi-heart"></i>
         </RouterLink>
@@ -134,7 +139,7 @@
                 <RouterLink to="/massage" class="dropdown-item fs-3 fw-normal py-2">Massage</RouterLink>
               </li>
             </ul>
-          </li>
+          </li> 
           <li class="nav-item dropdown">
             <RouterLink to="/new-arrivals" class="nav-link text-uppercase">
               NEW ARRIVALS
@@ -157,9 +162,13 @@
 </template>
 
 <script setup>
-  import {useCartStore} from "@/stores/useCartStore"
+  import { useAuthStore } from "@/stores/useAuthStore";
+import {useCartStore} from "@/stores/useCartStore"
   const cartStore = useCartStore();
   cartStore.initCart();
+
+  const authStore = useAuthStore();
+
 
 </script>
 

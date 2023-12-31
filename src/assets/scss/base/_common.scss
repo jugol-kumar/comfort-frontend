@@ -97,7 +97,7 @@ button {
 
 .primary-button {
     color: #fff;
-    padding: 12px 18px;
+    padding: 12px 22px;
     display: inline-block;
     border-radius: 3px;
     text-transform: uppercase;
@@ -108,10 +108,21 @@ button {
     }
 }
 .secondary-button {
-    color: #fff;
+    color: $text-dark;
     padding: 12px 18px;
     display: inline-block;
     border-radius: 3px;
     text-transform: uppercase;
     background-color: $secondary-color;
+}
+
+.customer-section {
+    padding: 60px 180px;
+    min-height: 100vh;
+    background-color: $gray-color;
+
+    @media #{$small_mobile} {
+        padding: 30px 0px;
+        height: auto;
+    }
 }

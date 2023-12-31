@@ -9,8 +9,9 @@ const router = useRouter()
 
 
 const loginData = ref({
-    email: "mail@mail.com",
-    password: "12345678"
+    email: "customer@mail.com",
+    password: "12345678",
+    remember_me:false,
 })
 
 
@@ -27,8 +28,6 @@ const handelLogin = async () => {
 //     router.push({name:"dashboard"})
 //   }
 // })
-
-
 </script>
 
 <template>
@@ -37,11 +36,6 @@ const handelLogin = async () => {
             <div class="d-flex align-items-center justify-content-center">
                 <div class="form mt-8">
                     <h3>Login</h3>
-
-                    <router-link :to="{ name: 'dashboard'}">
-                        User
-                    </router-link>
-
                     <div class="form__content">
                         <form @submit.prevent="handelLogin">
                             <div class="d-flex flex-column">
@@ -50,6 +44,15 @@ const handelLogin = async () => {
                             </div>
                             <input type="password" placeholder="Password" v-model="loginData.password" :disabled="authStore.loading">
 
+                            
+                            <div class="d-flex align-items-center justify-content-between">
+                                <label for="remember_me" class="d-flex align-items-center gap-1" role="button">
+                                    <input type="checkbox" id="remember_me" name="remember_me" v-model="loginData.remember_me">
+                                    <span>Remember Me</span>
+                                </label>
+                                <RouterLink to="/" class="text-info">Forgot your password?</RouterLink>
+                            </div>
+                            
                             <button v-if="authStore.loading" type="submit" class="primary-button mt-3" :disabled="authStore.loading">
                                 <div class="spinner-border" role="status">
                                     <span class="visually-hidden">Loading...</span>
@@ -61,7 +64,6 @@ const handelLogin = async () => {
                         <div class="d-flex align-items-center gap-2 py-3">
                             <span>New Customer?</span>
                             <RouterLink  to="/register" class="text-dark">Create Account</RouterLink>
-                            <RouterLink to="/" class="text-info">Forgot your password?</RouterLink>
                         </div>
                     </div>
                 </div>

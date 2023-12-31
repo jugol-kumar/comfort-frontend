@@ -24,7 +24,7 @@
         info:{
             type:Object,
             default:{},
-            required:true,
+            required:false,
         }
     })
 </script>
