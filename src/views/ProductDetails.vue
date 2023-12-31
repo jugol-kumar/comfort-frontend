@@ -231,11 +231,9 @@ const addToCart = () => {
                         <div class="accordion accordion-flush my-5" id="accordionFlushExample">
                             <div class="accordion-item">
                                 <h2 class="accordion-header" id="flush-headingOne">
-                                    <button class="accordion-button collapsed fw-semibold text-dark" type="button"
-                                        data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false"
-                                        aria-controls="flush-collapseOne">
-                                        Features & Benefits
-                                    </button>
+                                <button class="accordion-button collapsed fw-semibold text-dark fs-3 shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+                                    Features & Benefits
+                                </button>
                                 </h2>
                                 <div id="flush-collapseOne" class="accordion-collapse collapse"
                                     aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
@@ -267,11 +265,9 @@ const addToCart = () => {
                             </div>
                             <div class="accordion-item">
                                 <h2 class="accordion-header" id="flush-headingTwo">
-                                    <button class="accordion-button collapsed fw-semibold text-dark" type="button"
-                                        data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false"
-                                        aria-controls="flush-collapseTwo">
-                                        Specifications & Details
-                                    </button>
+                                <button class="accordion-button collapsed fw-semibold text-dark fs-3 shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
+                                    Specifications & Details
+                                </button>
                                 </h2>
                                 <div id="flush-collapseTwo" class="accordion-collapse collapse"
                                     aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
@@ -294,11 +290,9 @@ const addToCart = () => {
                             </div>
                             <div class="accordion-item">
                                 <h2 class="accordion-header" id="flush-headingThree">
-                                    <button class="accordion-button collapsed  text-dark fw-semibold" type="button"
-                                        data-bs-toggle="collapse" data-bs-target="#flush-collapseThree"
-                                        aria-expanded="false" aria-controls="flush-collapseThree">
-                                        Warranty
-                                    </button>
+                                <button class="accordion-button collapsed  text-dark fw-semibold fs-3 shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
+                                    Warranty
+                                </button>
                                 </h2>
                                 <div id="flush-collapseThree" class="accordion-collapse collapse"
                                     aria-labelledby="flush-headingThree" data-bs-parent="#accordionFlushExample">

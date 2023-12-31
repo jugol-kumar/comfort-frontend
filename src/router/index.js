@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import Index from "@/views/Index.vue"
-// import authMiddleware from '@/middleware/auth';
+import authMiddleware from '@/middleware/auth';
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
@@ -21,8 +21,8 @@ const router = createRouter({
     },
     {
       path: '/products',
-      name: 'about',
-      meta: (route) => ({ 
+      name: 'products',
+      meta: (route) => ({
         title: 'Team Member'
       }),
       component: () => import('@/views/Products.vue')
@@ -38,30 +38,77 @@ const router = createRouter({
       component: () => import('@/views/Cart.vue')
     },
     {
-      path: '/wish',
-      name: 'wish',
-      component: () => import('@/views/Wish.vue')
-    },
-    {
       path: '/checkout',
-      name: 'wish',
+      name: 'checkout',
       component: () => import('@/views/Checkout.vue')
     },
     {
-      path:"/customer",
-      name:"custoemr",
+      path: '/customer',
+      name: 'customer',
       children: [
         {
           path: '/dashboard',
-          name:"dashboard",
-          component: () => import("@/views/customer/Dashbaord.vue"),
+          name: "dashboard",
+          component: () => import("@/views/customer/Dashboard.vue"),
         },
-      ],
-    }
+        {
+          path: '/checkout',
+          name: 'wish',
+          component: () => import('@/views/Checkout.vue')
+        },
+        {
+          path:'/payment',
+          name: 'payment',
+          props:true,
+          component: ()=> import('@/views/customer/Payment.vue')
+        },
+        {
+          path: '/contact',
+          name: 'contact',
+          component: () => import('@/views/Contact.vue')
+        },
+        {
+          path: '/about',
+          name: 'about',
+          component: () => import('@/views/About.vue')
+        },
+        {
+          path: '/customer/order',
+          name: 'customer.order',
+          component: () => import('@/views/CustomerOrder.vue')
+        },
+        {
+          path: '/customer/address',
+          name: 'customer.address',
+          component: () => import('@/views/CustomerAddress.vue')
+        },
+        {
+          path: '/customer/profile',
+          name: 'customer.profile',
+          component: () => import('@/views/CustomerProfile.vue')
+        },
+        {
+          path: '/customer/reset-password',
+          name: 'customer.reset.password',
+          component: () => import('@/views/CustomerPasswordReset.vue')
+        },
+        {
+          path: '/customer/wishlist',
+          name: 'customer.wishlist',
+          component: () => import('@/views/CustomerWishlist.vue')
+        },
+
+      ]
+    },
+    {
+      path: '/:pathMatch(.*)*',
+      name: 'not-found',
+      component: () => import("@/views/Error.vue")
+    },
   ],
 })
 
 
 
-// router.beforeEach(authMiddleware)
+router.beforeEach(authMiddleware)
 export default router

@@ -1,19 +1,21 @@
 import { defineStore } from 'pinia'
-import {ref, computed} from "vue"
+import {ref, computed, onMounted} from "vue"
 import useAxios from "@/composables/useAxios";
+import { useRouter } from 'vue-router';
 const {loading,error,sendRequest,} = useAxios();
 
 export const useAuthStore = defineStore('auth', ()=>{
-    const user = ref(null)
+    const router = useRouter();
+    const user = ref(JSON.parse(localStorage.getItem("user")) ?? null)
     const isLoggedIn = computed(() => !! user.value)
 
     async function fetchUser(){
-        const token = await getLocalStoreage();
+        const user = await getLocalStoreage();
         const data = await sendRequest({ 
             method: 'get',
             url: "/api/user",
             headers:{
-                "Authorization": `Bearer ${token}`
+                "Authorization": `Bearer ${user?.token}`
             }
         })
         user.value = data?.data
@@ -31,7 +33,7 @@ export const useAuthStore = defineStore('auth', ()=>{
             data:credential
         })
 
-        await setLocalStoreage(login.data?.data?.token)
+        await setLocalStoreage(login.data?.data)
         user.value = login.data?.data
 
         return login;
@@ -44,23 +46,32 @@ export const useAuthStore = defineStore('auth', ()=>{
     }
 
     async function logout(){
-        await sendRequest("/logout")
-        // navigateTo('/')
+        await sendRequest({
+            url:"/api/logout",
+            method:"GET"
+        })
+
+        user.value = null;
+        await clearLocalStoreage();
+        router.push({name:"home"})
     }
 
-    async function setLocalStoreage(token){
-        localStorage.setItem('token', token);
+    async function setLocalStoreage(user){
+        localStorage.setItem('user', JSON.stringify(user));
     }
     
     async function clearLocalStoreage(){
-        localStorage.removeItem('token');
+        localStorage.removeItem('user');
     }
     
     async function getLocalStoreage(){
-        return localStorage.getItem('token');
+        return localStorage.getItem('user');
     }
 
+    function getToken(){
+        return JSON.parse(localStorage.getItem("user"))?.token;
+    }
 
-    return {user, login, signup, isLoggedIn, fetchUser, logout, loading, error, getLocalStoreage}
+    return {user, login, signup, isLoggedIn, fetchUser, logout, loading, error, getLocalStoreage, getToken}
 
 })

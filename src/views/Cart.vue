@@ -48,8 +48,7 @@ const authStore = useAuthStore();
                             <RouterLink :to="`/product-detials/${item?.data?.id}`"
                                 class="d-inline-block product-title text-capitalize">
                                 <h2 class="fw-bold">
-                                    {{ item?.data?.title }} - {{ item?.selectSku?.varient?.replace(/\//g, '-').slice(0, -1)
-                                    }}
+                                    {{ item?.data?.title }} - {{ item?.selectSku?.varient?.replace(/\//g, '-').slice(0, -1)}}
                                 </h2>
                             </RouterLink>
                             <small>Varient: {{ item?.selectSku?.varient?.replace(/\//g, '-').slice(0, -1) }}</small>
