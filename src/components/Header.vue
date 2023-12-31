@@ -81,7 +81,7 @@
 
   <!-- Desktop Nav -->
 
-  <nav class="navbar navbar-expand-lg flex-column p-0 d-none d-lg-flex">
+  <nav :class="'navbar navbar-expand-lg flex-column p-0 d-none d-lg-flex'">
     <div class="container-fluid py-3">
       <RouterLink class="navbar-brand" to="/">
         <img src="/logo.png" alt="Comfort"/>
@@ -170,7 +170,7 @@ export default {
   },
   methods: {
     handleScroll() {
-      if (window.scrollY >= 300) {
+      if (window.scrollY >= 100) {
         this.isFixed = true
       }
       else {
