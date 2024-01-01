@@ -80,7 +80,7 @@ const makePayment = async () => {
     if (!order.value.paymentMethod) {
         $toast.error("Please Select Your Payment Method...")
     } else {
-        await sendRequest({
+        const savedOrder =  await sendRequest({
             url:"/api/save-order",
             method:"POST",
             data:order.value,
@@ -88,6 +88,9 @@ const makePayment = async () => {
                 "Authorization": `Bearer ${token}`
             }
         })
+
+        return router.push({name: "dashboard"});
+
     }
 }
 
