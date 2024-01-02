@@ -3,12 +3,13 @@ import { onMounted, ref } from 'vue';
 import { useCartStore } from "@/stores/useCartStore";
 import useAxios from "@/composables/useAxios"
 import { useAuthStore } from "@/stores/useAuthStore";
-import {useRouter} from "vue-router"
+import {useRouter, useRoute} from "vue-router"
 
 const cartStore = useCartStore();
 const authStore = useAuthStore();
 const { loading, error, sendRequest } = useAxios();
 const router = useRouter()
+const route = useRoute();
 
 const newAddress = ref(false)
 const deliveryCharg = ref({
@@ -49,6 +50,10 @@ onMounted(async () => {
         }
     })
     addresses.value = data?.data?.addresses
+
+    if(route.query.invalidAddressId){
+        $toast.error("Please Select Your Shipping Details Before Payment.")
+    }
 })
 
 </script>

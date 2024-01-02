@@ -63,6 +63,11 @@ const router = createRouter({
           component: ()=> import('@/views/customer/Payment.vue')
         },
         {
+          path: '/order-complate',
+          name: 'ordercomplate',
+          component: () => import('@/views/customer/OrderComplate.vue')
+        },
+        {
           path: '/contact',
           name: 'contact',
           component: () => import('@/views/Contact.vue')
@@ -73,11 +78,11 @@ const router = createRouter({
           component: () => import('@/views/About.vue')
         },
         {
-          path: '/customer/order',
+          path: '/order',
           name: 'customer.order',
-          component: () => import('@/views/CustomerOrder.vue')
+          component: () => import('@/views/customer/Order.vue')
         },
-        {
+        { 
           path: '/customer/address',
           name: 'customer.address',
           component: () => import('@/views/CustomerAddress.vue')

@@ -22,7 +22,7 @@ nav {
     }
     .search {
         input {
-            width: 560px;
+            width: 460px;
             padding: 15px;
             border: 1px solid #ebebeb;
             border-right: none;
@@ -132,6 +132,11 @@ nav {
     }
 }
 
+.navbar-fixed {
+    position: fixed !important;
+    width: 100% !important;
+    z-index: 999 !important;
+}
 
 
 // Mobile Nav

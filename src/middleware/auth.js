@@ -6,7 +6,7 @@ export default (to, from, next) => {
 	let exceptionalRoutes = ['login', 'register', 'forgot-password']
 	let isGoingExceptionalRoutes = exceptionalRoutes.includes(to.name)
 
-	let authProcted = ['dashboard', 'order']
+	let authProcted = ['dashboard', 'customer.order', 'payment', 'checkout']
 	let isAuthProcted = authProcted.includes(to.name)
 	if (!auth.isLoggedIn && isAuthProcted) {
 		

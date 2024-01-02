@@ -1,4 +1,12 @@
 <script>
+    export default {
+        data() {
+            return {
+                isDisabled: true,
+                isReadonly: true
+            }
+        }
+    }
 </script>
 
 <template>
@@ -20,20 +28,21 @@
                 <h3>Edit Profile</h3>
             </div>
             <div class="profile-info">
-                <form>
+                <form @submit.prevent="">
                     <div class="mb-2">
                         <label for="name">Name</label>
-                        <input type="text" value="Customer" readonly disabled>
+                        <input type="text" value="Customer" :readonly="isReadonly" :disabled="isDisabled">
                     </div>
                     <div class="mb-2">
                         <label for="email">Email</label>
-                        <input type="email" value="customer@gmail.com" readonly disabled>
+                        <input type="email" value="customer@gmail.com"  :readonly="isReadonly" :disabled="isDisabled">
                     </div>
                     <div class="mb-2">
                         <label for="phone">Phone</label>
-                        <input type="text" value="++7657473" readonly disabled>
+                        <input type="text" value="++7657473"  :readonly="isReadonly" :disabled="isDisabled">
                     </div>
-                    <button class="primary-button mt-4">Edit Profile</button>
+                    <button v-if="isDisabled && isReadonly" class="primary-button mt-4" @click="isDisabled = !isDisabled, isReadonly = !isReadonly">Edit Profile</button>
+                    <button v-if="!isDisabled && !isReadonly" class="primary-button mt-4">Update Profile</button>
                 </form>
             </div>
         </div>

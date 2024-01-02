@@ -5,20 +5,31 @@ import { useRouter } from 'vue-router';
 const {loading,error,sendRequest,} = useAxios();
 
 export const useAuthStore = defineStore('auth', ()=>{
+    
     const router = useRouter();
     const user = ref(JSON.parse(localStorage.getItem("user")) ?? null)
     const isLoggedIn = computed(() => !! user.value)
 
     async function fetchUser(){
-        const user = await getLocalStoreage();
-        const data = await sendRequest({ 
-            method: 'get',
-            url: "/api/user",
-            headers:{
-                "Authorization": `Bearer ${user?.token}`
+        const user = JSON.parse(await getLocalStoreage());
+        if(user){
+            const data = await sendRequest({ 
+                method: 'get',
+                url: "/api/user",
+                headers:{
+                    "Authorization": `Bearer ${user?.token}`
+                }
+            })
+            if(data?.data){
+                user.value = data?.data
+            }else{
+                await clearLocalStoreage();
             }
-        })
-        user.value = data?.data
+        }else{
+            await clearLocalStoreage();
+        }
+
+
     }
 
     async function login(credential){
