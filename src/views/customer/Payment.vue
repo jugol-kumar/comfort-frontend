@@ -76,6 +76,7 @@ const order = ref({
 
 
 const makePayment = async () => {
+
     const token = await authStore.getToken();
     if (!order.value.paymentMethod) {
         $toast.error("Please Select Your Payment Method...")
@@ -88,9 +89,8 @@ const makePayment = async () => {
                 "Authorization": `Bearer ${token}`
             }
         })
-
-        return router.push({name: "dashboard"});
-
+        cartStore.clearCart()
+        return router.push({name: "ordercomplate"});
     }
 }
 

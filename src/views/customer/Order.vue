@@ -1,22 +1,22 @@
 <script setup>
-    import useAxios from "@/composables/useAxios";
-    import { useAuthStore } from "@/stores/useAuthStore";
-    import { onMounted, ref } from "vue";
-    const {sendRequest, loading, error} = useAxios();
-    const orderrs = ref(null);
+import useAxios from "@/composables/useAxios";
+import { useAuthStore } from "@/stores/useAuthStore";
+import { onMounted, ref } from "vue";
+const { sendRequest, loading, error } = useAxios();
+const orderrs = ref(null);
 
-    onMounted(async()=>{
-        const {user} = useAuthStore();
-        const data = await sendRequest({ 
-            method: 'get',
-            url: "/api/my-orders",
-            headers:{
-                "Authorization": `Bearer ${user?.token}`
-            }
-        })
-        orderrs.value = data?.data?.data;
-        console.log(data)
+onMounted(async () => {
+    const { user } = useAuthStore();
+    const data = await sendRequest({
+        method: 'get',
+        url: "/api/my-orders",
+        headers: {
+            "Authorization": `Bearer ${user?.token}`
+        }
     })
+    orderrs.value = data?.data?.data;
+    console.log(data)
+})
 
 </script>
 <template>
@@ -39,38 +39,42 @@
                     <h3>Order History</h3>
                 </div>
                 <div class="order-items row flex-column gap-5 mt-4">
-                    <div class="order-items__item" v-for="(item , i) in  orderrs?.data" :key="`single-order-${i}`">
-                        <div class="order-items__item-head border-bottom">
-                            <div>
-                                <h3 class="text-capitalize fs-3 fw-semibold">Order #{{ item.id }}</h3>
-                                <p>Order Date: {{ item.order_date }}</p>
-                            </div>
-                            <p class="pending">
-                                <i class="bi bi-check2-circle"></i> Pending
-                            </p>
-                        </div>
-                        <div class="order-items__item-body">
-                            <div class="thumbnail">
-                                <img src="https://relaxtheback.com/cdn/shop/products/Cozzia_QiPro_Black_Right-Turning1-Display_WEB_clip-j_1024x1024.jpg?v=1663732636" alt="">
-                            </div>
-                            <div class="d-flex justify-content-between align-items-center w-100">
+                    <template v-if="orderrs?.data?.length">
+                        <div class="order-items__item" v-for="(item, i) in  orderrs?.data" :key="`single-order-${i}`">
+                            <div class="order-items__item-head border-bottom">
                                 <div>
-                                    <h3 class="title">
-                                        {{ item?.orderdetails[0]?.product?.title }}
-                                    </h3>
-                                    <p>+ {{ item?.orderdetails ? item?.orderdetails.length : ' '}} item(s)</p>
-                                    {{  }}
+                                    <h3 class="text-capitalize fs-3 fw-semibold">Order #{{ item.id }}</h3>
+                                    <p>Order Date: {{ item.order_date }}</p>
                                 </div>
-                                <p class="fw-semibold fs-3">$ {{ item?.grand_total }}</p>
-                                <div>
-                                    <RouterLink to="" class="primary-button">View</RouterLink>
+                                <p class="pending">
+                                    <i class="bi bi-check2-circle"></i> Pending
+                                </p>
+                            </div>
+                            <div class="order-items__item-body">
+                                <div class="thumbnail">
+                                    <img src="https://relaxtheback.com/cdn/shop/products/Cozzia_QiPro_Black_Right-Turning1-Display_WEB_clip-j_1024x1024.jpg?v=1663732636"
+                                        alt="">
+                                </div>
+                                <div class="d-flex justify-content-between align-items-center w-100">
+                                    <div>
+                                        <h3 class="title">
+                                            {{ item?.orderdetails[0]?.product?.title }}
+                                        </h3>
+                                        <p>+ {{ item?.orderdetails ? item?.orderdetails.length : ' ' }} item(s)</p>
+                                        {{ }}
+                                    </div>
+                                    <p class="fw-semibold fs-3">$ {{ item?.grand_total }}</p>
+                                    <div>
+                                        <RouterLink to="" class="primary-button">View</RouterLink>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                
+                    </template>
+                    <h2 v-else>No Orders Found...</h2>
                 </div>
-                <div class="order-footer">
+
+                <div class="order-footer" v-if="orderrs?.data?.length">
                     <nav aria-label="Page navigation example">
                         <ul class="pagination">
                             <li class="page-item">

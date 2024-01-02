@@ -25,6 +25,8 @@ export const useAuthStore = defineStore('auth', ()=>{
             }else{
                 await clearLocalStoreage();
             }
+        }else{
+            await clearLocalStoreage();
         }
 
 

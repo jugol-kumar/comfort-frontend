@@ -69,7 +69,7 @@ export const useCartStore = defineStore('cart', {
             }
         },
         clearCart() {
-            this.items = [];
+            this.cart = [];
             localStorage.removeItem("cart");
             this.initCart();
         }

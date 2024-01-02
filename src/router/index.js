@@ -63,6 +63,11 @@ const router = createRouter({
           component: ()=> import('@/views/customer/Payment.vue')
         },
         {
+          path: '/order-complate',
+          name: 'ordercomplate',
+          component: () => import('@/views/customer/OrderComplate.vue')
+        },
+        {
           path: '/contact',
           name: 'contact',
           component: () => import('@/views/Contact.vue')

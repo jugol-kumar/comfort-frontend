@@ -1,4 +1,5 @@
 <script setup>
+    import CustomerUser from "@/components/CustomerUser.vue";
     import { useAuthStore } from "@/stores/useAuthStore";
 
 
@@ -9,15 +10,8 @@
 <template>
     <section class="dashboard customer-section">
         <div class="container">
-            <div class="dashboard-user">
-                <div class="dashboard-user__icon">
-                    <i class="bi bi-person"></i>
-                </div>
-                <div>
-                    <p>Hello,</p>
-                    <h3 class="text-capitalize">Tushar Imran</h3>
-                </div>
-            </div>
+            <CustomerUser/>
+
             <div class="row flex-wrap mt-5 dashboard-items">
                 <div class="col-lg-3 col-md-6 col-12">
                     <RouterLink to="/order" class="dashboard-items__box">
