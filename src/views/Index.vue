@@ -39,6 +39,19 @@
             </div>
         </div>
     </section>
+    <!-- Course Card -->
+    <section>
+        <div class="container mt-5" style="background-color: #F2F2F0;padding: 15px;">
+            <div class="row">
+                <CourseCard />
+            </div>
+        </div>
+        <div class="container mt-5">
+            <div class="row">
+                <BlogCard />
+            </div>
+        </div>
+    </section>
     <section>
         <div class="container-fluid py-8">
             <h2 class="py-5">SHOP OUR HOLIDAY SPECIALS</h2>
@@ -61,6 +74,7 @@
             </div>
         </div>
     </section>
+    
     <section>
         <div class="container-fluid">
             <div class="row align-items-center img-text-wrapper">
@@ -324,6 +338,8 @@
     import {onMounted, ref} from 'vue'
     import SingleProductCardVue from "@/components/SingleProductCard.vue";
     import SingleBlogCard from "@/components/SingleBlogCard.vue";
+    import CourseCard from "@/components/CourseCard.vue";
+    import BlogCard from "@/components/BlogCard.vue";
     import useAxios from "@/composables/useAxios"
     const { loading, error, sendRequest } = useAxios();
     const data = ref(null);
