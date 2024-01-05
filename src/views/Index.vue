@@ -39,8 +39,7 @@
             </div>
         </div>
     </section>
-    <!-- Course Card -->
-    <section>
+    <!-- <section>
         <div class="container mt-5" style="background-color: #F2F2F0;padding: 15px;">
             <div class="row">
                 <CourseCard />
@@ -51,7 +50,7 @@
                 <BlogCard />
             </div>
         </div>
-    </section>
+    </section> -->
     <section>
         <div class="container-fluid py-8">
             <h2 class="py-5">SHOP OUR HOLIDAY SPECIALS</h2>
@@ -345,10 +344,11 @@
     const data = ref(null);
 
     onMounted(async () => {
-      const res = await sendRequest({
+    const res = await sendRequest({
         method: 'get',
         url: '/api/product-with-variations',
-      });
-      data.value = res.data
     });
+    data.value = res.data
+    })
+
 </script>

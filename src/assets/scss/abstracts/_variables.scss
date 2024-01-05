@@ -10,12 +10,12 @@ $desktop: '(min-width: 1281px)';
 /*------------------
 Colors
 ------------------*/
-$primary-color: #0FA5E9;
-$secondary-color: #C1CDDD;
-$text-dark: #243766;
-$text-gray: #6B6D76;
-$black-color: #000000;
-$light-black: #333333;
-$light-gray: #f5f5f5;
-$gray-color: #f1f1f1;
-$dark-gray: #ebebeb;
+$primary-color: var(--primary-color, #0FA5E9);
+$secondary-color: var(--secondary-color, #C1CDDD);
+$text-dark: var(--text-dark, #243766);
+$text-gray: var(--text-gray, #6B6D76);
+$black-color: var(--black-color, #000000);
+$light-black: var(--light-black, #333333);
+$light-gray: var(--light-gray, #f5f5f5);
+$gray-color: var(--gray-color, #f1f1f1);
+$dark-gray: var(--dark-gray, #ebebeb);

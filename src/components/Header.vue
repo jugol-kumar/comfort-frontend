@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="bg-info py-3 text-center">
+    <div class="top-bar py-3 text-center">
       <router-link to="/super-holiday" class="text-white text-capitalize fs-4 fw-bold">***Super Holiday Savings! Shop Our Gift Guide***</router-link>
     </div> 
     <div class="bg-light">
