@@ -94,17 +94,18 @@
 
   <!-- Desktop Nav -->
 
-  <nav :class="'navbar navbar-expand-lg flex-column p-0 d-none d-lg-flex'">
+  <nav :class="'navbar navbar-expand-lg flex-column p-0 d-none d-lg-flex'" class="position-sticky top-0 z-5">
     <div class="container-fluid py-3">
       <RouterLink class="navbar-brand" to="/">
         <img src="/logo.png" alt="Comfort" />
       </RouterLink>
       <div class="d-flex align-items-center gap-4">
         <div class="d-flex align-items-center">
-          <form>
+          <form @submit.prevent="searchSend">
             <div class="search">
-              <input type="text" placeholder="What are you looking for?">
-              <button>
+              <input type="text" placeholder="What are you looking for?" v-model="search">
+              <button type="submit">
+                <!-- <i class="bi bi-x" v-if="search"></i> -->
                 <i class="bi bi-search"></i>
               </button>
             </div>
@@ -134,41 +135,22 @@
       <!-- Collapse -->
       <div class="collapse navbar-collapse" id="navbar-default">
         <ul class="navbar-nav gap-5">
-          <li class="nav-item dropdown">
+          <!-- <li class="nav-item dropdown">
             <RouterLink to="/" class="nav-link text-uppercase">
               Home
             </RouterLink>
-          </li>
-          <li class="nav-item dropdown">
-            <RouterLink to="/products" class="nav-link dropdown-toggle text-uppercase">
-              PRODUCTS
+          </li> -->
+          <li class="nav-item dropdown" v-for="(cats, i) in categories" :key="`single-item-${i}`">
+            <RouterLink :to="`/products/?category=${cats.id}`" class="nav-link dropdown-toggle text-uppercase">
+              {{ cats.name }}
             </RouterLink>
-            <ul class="dropdown-menu">
-              <li>
-                <RouterLink to="/sleep" class="dropdown-item fs-3 fw-normal py-2">Sleep</RouterLink>
-              </li>
-              <li>
-                <RouterLink to="/office" class="dropdown-item fs-3 fw-normal py-2">Office</RouterLink>
-              </li>
-              <li>
-                <RouterLink to="/massage" class="dropdown-item fs-3 fw-normal py-2">Massage</RouterLink>
+            <ul class="dropdown-menu" v-if="cats?.children_recursive?.length > 0">
+              <li v-for="(cat, i) in cats?.children_recursive" :key="`dropdown-item-${i}`">
+                <RouterLink :to="`/products/?category=${cat.id}`" class="dropdown-item fs-3 fw-normal py-2">
+                  {{ cat.name }}
+                </RouterLink>
               </li>
             </ul>
-          </li>
-          <li class="nav-item dropdown">
-            <RouterLink to="/new-arrivals" class="nav-link text-uppercase">
-              NEW ARRIVALS
-            </RouterLink>
-          </li>
-          <li class="nav-item dropdown">
-            <RouterLink to="/office" class="nav-link  text-uppercase">
-              OFFICE
-            </RouterLink>
-          </li>
-          <li class="nav-item dropdown">
-            <RouterLink to="/fitness-therapy" class="nav-link text-uppercase">
-              FITNESS & THERAPY
-            </RouterLink>
           </li>
         </ul>
       </div>
@@ -179,22 +161,40 @@
 <script setup>
 import { useAuthStore } from "@/stores/useAuthStore";
 import { useCartStore } from "@/stores/useCartStore"
-const cartStore = useCartStore();
-cartStore.initCart();
-
+import useAxios from '@/composables/useAxios';
+import { onMounted, ref } from 'vue';
+import { useRoute, useRouter } from 'vue-router';
 const authStore = useAuthStore();
+const cartStore = useCartStore();
+const router    = useRouter();
+const route     = useRoute();
+const {sendRequest, error, loading} = useAxios();
+cartStore.initCart();
+const categories = ref([])
 
+const search = ref(route?.query?.search ?? null)
+
+const searchSend = () => router.push({ name: 'products',  query: { 'search': search.value }})
+
+
+async function getTopCategories(){
+  const data = await sendRequest("/api/navbar-categories")
+  categories.value = data?.data
+}
+
+
+  onMounted(()=>{
+    getTopCategories()
+  })
 </script>
 
 <script>
   export default {
     data() {
       return {
-        isFixed: false
+        isFixed: false,
+        categories: []
       }
-    },
-    mounted() {
-      window.addEventListener('scroll', this.handleScroll)
     },
     methods: {
       handleScroll() {
@@ -204,7 +204,10 @@ const authStore = useAuthStore();
         else {
           this.isFixed = false
         }
-      }
+      },
     },
+    mounted() {
+      window.addEventListener('scroll', this.handleScroll)
+    }
   }
 </script>

@@ -39,7 +39,7 @@ watch([selectVarient, buyQty], ([item, qty]) => {
             return item;
         }
     })[0]
-    selectVarientProduct.value = { ...selectVarient, totalPrice: selectVarient.price * qty }
+    selectVarientProduct.value = { ...selectVarient, totalPrice: selectVarient?.price * qty }
 }, { deep: true })
 
 
@@ -62,8 +62,8 @@ onMounted(async () => {
         url: `/api/product/${params.id}`,
     });
 
-    selectVarient.value = res.data.attributes
-    data.value = res.data
+    selectVarient.value = res?.data?.attributes
+    data.value = res?.data
     getThambImage.value = {
         id: res.data?.images[0]?.id,
         img: res.data?.images[0]?.image

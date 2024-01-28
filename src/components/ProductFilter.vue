@@ -14,11 +14,11 @@
                     <div class="accordion-body">
                         <div class="product-filter__price">
                             <div class="d-flex gap-2 align-items-center">
-                                <label for="min">$</label>
+                                <label >$</label>
                                 <input type="number" name="min" v-model="min" placeholder="From">
                             </div>
                             <div class="d-flex gap-2 align-items-center">
-                                <label for="max">$</label>
+                                <label >$</label>
                                 <input type="number" name="max" v-model="max" placeholder="To">
                             </div>
                         </div>
@@ -35,25 +35,25 @@
                 <div class="accordion-body pe-0">
                     <ul class="product-filter__brand">
                         <li>
-                            <label for="andrew_leblanc">
+                            <label>
                                 <input type="checkbox" name="andrew_leblanc" id="andrew_leblanc" v-model="andrew_leblanc">
                                 <span>Andrew Leblanc</span>
                             </label>
                         </li>
                         <li>
-                            <label for="cozzia">
+                            <label>
                                 <input type="checkbox" name="cozzia" id="cozzia"  v-model="cozzia">
                                 <span>Cozzia</span>
                             </label>
                         </li>
                         <li>
-                            <label for="flexsteel">
+                            <label>
                                 <input type="checkbox" name="flexsteel" id="flexsteel"  v-model="flexsteel">
                                 <span>Flexsteel</span>
                             </label>
                         </li>
                         <li>
-                            <label for="golden_technologies">
+                            <label>
                                 <input type="checkbox" name="golden_technologies" id="golden_technologies"  v-model="golden_technologies">
                                 <span>Golden Technologies</span>
                             </label>
@@ -72,25 +72,25 @@
                 <div class="accordion-body pe-0">
                     <ul class="product-filter__brand">
                         <li>
-                            <label for="accessories">
+                            <label>
                                 <input type="checkbox" name="accessories" id="accessories" v-model="andrew_leblanc">
                                 <span>Accessories</span>
                             </label>
                         </li>
                         <li>
-                            <label for="back_cover">
+                            <label >
                                 <input type="checkbox" name="back_cover" id="back_cover"  v-model="back_cover">
                                 <span>Back Cover</span>
                             </label>
                         </li>
                         <li>
-                            <label for="lift_chair">
+                            <label>
                                 <input type="checkbox" name="lift_chair" id="lift_chair" v-model="lift_chair">
                                 <span>Lift Chair</span>
                             </label>
                         </li>
                         <li>
-                            <label for="zero_gravity_chairs">
+                            <label>
                                 <input type="checkbox" name="zero_gravity_chairs" id="zero_gravity_chairs"  v-model="zero_gravity_chairs">
                                 <span>Zero Gravity Chairs</span>
                             </label>

@@ -7,12 +7,10 @@ import "./assets/js/simplebar.min.js"
 import "./assets/js/theme.min.js"
 import "./assets/js/vendors/validation.js"
 
-
 import { createToaster } from "@meforma/vue-toaster";
 window.$toast = createToaster({
     position: 'bottom'
 });
-
 
 import { createApp } from 'vue'
 import { createPinia } from 'pinia'
@@ -21,11 +19,9 @@ import App from './App.vue'
 import router from './router'
 import axios from "axios"
 const app = createApp(App)
-app.config.globalProperties.$API_URL = "http://localhost:8000" // 'https://ctpbd.com'
+app.config.globalProperties.$API_URL = "https://admin.comfortwing.com" //"http://localhost:8000"
 
-
-
-axios.defaults.baseURL = "http://localhost:8000" // 'https://ctpbd.com'
+axios.defaults.baseURL = "https://admin.comfortwing.com" // 'https://ctpbd.com'"http://localhost:8000"
 axios.defaults.headers = {
     'Accept': 'application/json',
     'Content-Type': 'application/json',
