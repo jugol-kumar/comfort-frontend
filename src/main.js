@@ -19,9 +19,9 @@ import App from './App.vue'
 import router from './router'
 import axios from "axios"
 const app = createApp(App)
-app.config.globalProperties.$API_URL = "https://admin.comfortwing.com" //"http://localhost:8000"
+app.config.globalProperties.$API_URL = "https://admin.comfortwing.com"  //"http://localhost:8000"
 
-axios.defaults.baseURL = "https://admin.comfortwing.com" // 'https://ctpbd.com'"http://localhost:8000"
+axios.defaults.baseURL = "https://admin.comfortwing.com"  //"http://localhost:8000"
 axios.defaults.headers = {
     'Accept': 'application/json',
     'Content-Type': 'application/json',

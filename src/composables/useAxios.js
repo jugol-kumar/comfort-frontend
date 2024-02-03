@@ -3,7 +3,7 @@ import { ref, onMounted } from 'vue';
 import axios from 'axios';
 
 const axiosInstance = axios.create({
-  baseURL: "https://admin.comfortwing.com", // 'https://ctpbd.com'"http://localhost:8000"
+  baseURL: "https://admin.comfortwing.com", //"http://localhost:8000"
   withCredentials: true,
   xsrfHeaderName: "X-XSRF-TOKEN", 
 });

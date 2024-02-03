@@ -100,13 +100,13 @@ const addToCart = () => {
                     <div>
                         <img :src="`${$API_URL}/storage/uploads/${getThambImage?.img}`" alt="" class="w-100 h-auto">
                     </div>
-                    <div class="p-3">
+                    <!-- <div class="p-3">
                         <iframe width="100%" height="400px" src="https://www.youtube.com/embed/S-A0qLTxf-U?si=JulyLlKcLWHaOG2G" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-                    </div>
+                    </div> -->
                 </div>
                 <div class="col-md-6 col-12">
                     <div class="product-detail">
-                        <h1 class="product-title text-capitalize">{{ data?.title }} - {{ selectVarientProduct.varient?.replace(/\//g, '-').slice(0, -1) }}</h1>
+                        <h2 class="product-title text-capitalize">{{ data?.title }} - {{ selectVarientProduct.varient?.replace(/\//g, '-').slice(0, -1) }}</h2>
                         <p class="fs-3 text-secondary">by <RouterLink to="" class="fw-semibold text-dark text-capitalize">{{
                             data?.category?.name }}</RouterLink>
                         </p>
@@ -310,9 +310,9 @@ const addToCart = () => {
             <div class="img-text__container mt-5" v-html="data?.details"/>
 
             <!-- Product Review & Question -->
-            <ProductReviewQuestion />
+            <!-- <ProductReviewQuestion /> -->
             <!-- Featured Collection -->
-            <div class="featured-collection mt-6">
+            <!-- <div class="featured-collection mt-6">
                 <h2 class="text-center text-uppercase fs-3 fw-semibold my-5">YOU MAY ALSO LIKE</h2>
                 <div class="row">
                     <SingleProductCard />
@@ -324,7 +324,7 @@ const addToCart = () => {
                     <RouterLink to="/" class="py-2 px-4 bg-info text-uppercase text-white d-inline-block">View More
                     </RouterLink>
                 </div>
-            </div>
+            </div> -->
         </div>
     </section>
 </template>
