@@ -2,7 +2,7 @@
     <div class="col">
         <div class="card border position-relative">
             <RouterLink :to="`/product-detials/${info?.id}`">
-                <img :src="`${$API_URL}${info?.images?.[0]?.url}`" alt="" class="card-img-top" />
+                <img :src="`${$API_URL}/storage/uploads/${info?.images?.[0]?.image}`" alt="" class="card-img-top" />
             </RouterLink>
             <div class="card-body p-2">
                 <!-- <span class="border-0 py-1 px-3 text-white bg-danger fs-4 mb-2">Sale</span> -->

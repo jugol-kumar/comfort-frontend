@@ -3,7 +3,7 @@ import { ref, onMounted } from 'vue';
 import axios from 'axios';
 
 const axiosInstance = axios.create({
-  baseURL: "https://admin.comfortwing.com", //"http://localhost:8000"
+  baseURL: import.meta.env.VITE_APP_URL,
   withCredentials: true,
   xsrfHeaderName: "X-XSRF-TOKEN", 
 });

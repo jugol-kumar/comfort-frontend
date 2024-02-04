@@ -50,7 +50,7 @@
 
     <section>
         <div class="container-fluid py-8">
-            <h2 class="py-5">SHOP OUR HOLIDAY SPECIALS</h2>
+            <h2 class="py-5">OUR LATEST PRODUCTS</h2>
             <div class="row row-cols-5 match-height" v-if="data?.length > 0">
                 <SingleProductCardVue v-for="item in data" :key="`product-${item.id}`" :info="item" />
             </div>

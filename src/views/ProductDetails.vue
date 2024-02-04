@@ -128,7 +128,7 @@ const addToCart = () => {
                             class="pricing-new p-4 rounded border border-secondary d-flex align-items-center justify-content-between">
                             <div class="compare-at-pricing-new text-center">
                                 <p class="m-0 fs-3 fw-semibold text-dark">ONE TIME PAYMENT</p>
-                                <h2 class="m-0 fs-2 fw-semibold text-dark">{{ selectVarientProduct.totalPrice }} ৳</h2>
+                                <h2 class="m-0 fs-2 fw-semibold text-dark">{{ selectVarientProduct.totalPrice }} $</h2>
                                 <!-- <s class="text-danger fw-normal fs-3">$8,499.00</s> -->
                             </div>
                             <div class="or-new d-flex align-items-center justify-content-center h-100">
@@ -137,7 +137,7 @@ const addToCart = () => {
                             <div class="interest-new d-flex align-items-center gap-2">
                                 <div>
                                     <img
-                                        src="https://pdpone.syfpos.com/cs/groups/public/documents/et_imagetype/etimg063608.png">
+                                        src="https://pdpone.syfpos.com/cs/groups/public/documents/et_imagetype/etimg063608.png" style="width:100px;">
                                 </div>
                                 <div class="text-uppercase text-dark fw-semibold fs-5 text-center">
                                     Interest-free. $167/mo with 48-month financing.&nbsp;

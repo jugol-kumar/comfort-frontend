@@ -1,12 +1,58 @@
-<script>
-export default {
-    data() {
-        return {
-            newAddress: false,
-            actionToggle: false,
-        }
+<script setup>
+    import { onMounted, ref } from "vue"
+    import useAxios from "@/composables/useAxios"
+    const { loading, error, sendRequest } = useAxios();
+    import { useAuthStore } from "@/stores/useAuthStore";
+
+    const newAddress = ref(false)
+    const actionToggle = ref(false)
+    const authStore = useAuthStore();
+
+    const addressFrom = ref({
+        title:null,
+        email:null,
+        phone: null,
+        address: null,
+        area: null,
+        state: null,
+        zip_code: null,
+    })
+
+
+    const saveAddress = () =>{
+        const data = sendRequest({
+            method: 'post',
+            data: {user_id: authStore?.user?.id, ...addressFrom.value},
+            url: "/api/save-new-address",
+        })
+        newAddress.value = false;
     }
-}
+
+
+    const areas = ref(null)
+    const orderAreas = ref(null)
+
+
+    onMounted(async () => {
+        const token = await authStore.getToken();
+
+        const data = await sendRequest({
+            method: 'get',
+            url: "/api/address",
+            headers: {
+                "Authorization": `Bearer ${token}`
+            }
+        })
+        areas.value = data?.data?.addresses
+
+        const getAreas = await sendRequest({
+            method: 'get',
+            url: "/api/all-areas"
+        })
+        orderAreas.value = getAreas?.data
+
+
+    })
 </script>
 
 <template>
@@ -38,99 +84,87 @@ export default {
                 </div>
                 <div class="checkout__shipping-add bg-transparent p-0">
                     <div class="d-flex flex-wrap created-address">
-                        <div class="col-md-6 col-12 p-3">
+                        <div class="col-md-6 col-12 p-3" v-for="address in areas" :key="`area-${address.id}`">
                             <!-- Home Address -->
                             <label for="add-1" class="w-100 p-5">
-                                <div class="action">
-                                    <button class="action-toggler" @click="actionToggle = !actionToggle">
+                                <!-- <div class="action"> -->
+                                    <!-- <button class="action-toggler" @click="actionToggle = !actionToggle">
                                         <i class="bi bi-three-dots-vertical"></i>
-                                    </button>
-                                    <div class="action-toggle" v-show="actionToggle">
+                                    </button> -->
+                                    <!-- <div class="action-toggle" v-show="actionToggle">
                                         <button @click="newAddress = !newAddress, actionToggle = false">
                                             <i class="bi bi-pencil-square"></i> Edit
                                         </button>
                                         <button>
                                             <i class="bi bi-trash"></i>Delete
                                         </button>
-                                    </div>
-                                </div>
-                                <h3>Home Address</h3>
+                                    </div> -->
+                                <!-- </div> -->
+                                <h3>{{ address?.title }}</h3>
                                 <div>
-                                    <p class="mb-2">Dhaka, merul badda , dit road, tolarbag , #4 road, 2012</p>
-                                    <p>home@mail.com</p>
-                                    <p class="mb-2">01200000000</p>
-                                    <p>Area: Dhaka & Delivery Charge: 50$</p>
-                                </div>
-                            </label>
-                        </div>
-                        <div class="col-md-6 col-12 p-3">
-                            <!-- Office Address -->
-                            <label  for="add-2" class="w-100 p-5">
-                                <div class="action">
-                                    <button class="action-toggler" @click="actionToggle = !actionToggle">
-                                        <i class="bi bi-three-dots-vertical"></i>
-                                    </button>
-                                    <div class="action-toggle" v-show="actionToggle">
-                                        <button  @click="newAddress = !newAddress, actionToggle = false">
-                                            <i class="bi bi-pencil-square"></i> Edit
-                                        </button>
-                                        <button>
-                                            <i class="bi bi-trash"></i>Delete
-                                        </button>
-                                    </div>
-                                </div>
-                                <h3>Office Address</h3>
-                                <div>
-                                    <p class="mb-2">Dhaka, merul badda , dit road, tolarbag , #4 road, 2012</p>
-                                    <p>office@mail.com</p>
-                                    <p class="mb-2">01200000000</p>
-                                    <p>Area: Dhaka & Delivery Charge: 90$</p>
+                                    <p class="mb-2">{{ address?.address }}</p>
+                                    <p>{{ address?.email }}</p>
+                                    <p class="mb-2">{{ address?.phone }}</p>
+                                    <p>Area: {{ address?.order_area?.area_name }} & Delivery Charge: {{
+                                        address?.order_area?.delivery_charge }} $</p>
                                 </div>
                             </label>
                         </div>
                     </div>
                     <div v-if="newAddress"  class="checkout__shipping-add-wrapper">
-                        
                         <div class="checkout__shipping-add-wrapper-new">
                             <button class="close" @click="newAddress = !newAddress">
                                 <i class="bi bi-x-lg"></i>
                             </button>
                             <h3>New Address</h3>
-                            <form @submit.prevent="">
-                                <div class="form-floating">
-                                    <input type="text" class="form-control" id="floatingInput" placeholder="Full Name" v-model="full_name">
-                                    <label for="floatingInput">Full Name</label>
-                                </div>
-                                <div class="form-floating">
-                                    <input type="text" class="form-control" id="floatingInput" placeholder="Address" v-model="address">
-                                    <label for="floatingInput">Address</label>
-                                </div>
-                                <div class="d-flex align-items-center gap-3">
-                                    <select class="form-select" aria-label="Default select example">
-                                        <option selected disabled>Add New City</option>
-                                        <option value="1">Dhaka</option>
-                                        <option value="2">Rajshahi</option>
-                                        <option value="3">Pabna</option>
-                                    </select>
+
+                            
+                            <form @submit.prevent="saveAddress">
                                     <div class="form-floating">
-                                        <input type="text" class="form-control" id="floatingInput" placeholder="State" v-model="state">
-                                        <label for="floatingInput">State</label>
+                                        <input type="text" class="form-control" id="floatingInput" placeholder="Full Name"
+                                            v-model="addressFrom.title">
+                                        <label for="floatingInput">Full Name</label>
                                     </div>
                                     <div class="form-floating">
-                                        <input type="text" class="form-control" id="floatingInput" placeholder="ZIP Code" v-model="zip_code">
-                                        <label for="floatingInput">ZIP Code</label>
+                                        <input type="text" class="form-control" id="floatingInput" placeholder="Address"
+                                            v-model="addressFrom.address">
+                                        <label for="floatingInput">Address</label>
                                     </div>
-                                </div>
-                                <div>
+                                    
                                     <div class="form-floating">
-                                        <input type="text" class="form-control" id="floatingInput" placeholder="Phone Number" v-model="phone_number">
-                                        <label for="floatingInput">Phone Number</label>
+                                        <input type="email" class="form-control" id="floatingInput" placeholder="email"
+                                            v-model="addressFrom.email">
+                                        <label for="floatingInput">Email</label>
                                     </div>
-                                </div>
-                                <div class="d-flex align-items-center justify-content-end gap-3">
-                                    <button class="primary-button" type="submit">Save</button>
-                                </div>
-                            </form>
+                                    <div class="d-flex align-items-center gap-3">
+                                        <select v-model="addressFrom.area" class="form-select" 
+                                        aria-label="Default select example">
+                                            <option value="null" selected disabled>Add New City</option>
+                                            <option  v-for="area in orderAreas" :key="`single-i-${area.id}`" :value="area.id">{{ area?.area_name }}</option>
+                                        </select>
+                                        <div class="form-floating">
+                                            <input type="text" class="form-control" id="floatingInput" placeholder="State"
+                                                v-model="addressFrom.state">
+                                            <label for="floatingInput">State</label>
+                                        </div>
+                                        <div class="form-floating">
+                                            <input type="text" class="form-control" id="floatingInput"
+                                                placeholder="ZIP Code" v-model="addressFrom.zip_code">
+                                            <label for="floatingInput">ZIP Code</label>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <div class="form-floating">
+                                            <input type="text" class="form-control" id="floatingInput"
+                                                placeholder="Phone Number" v-model="addressFrom.phone">
+                                            <label for="floatingInput">Phone Number</label>
+                                        </div>
+                                    </div>
+                                    <div class="d-flex align-items-center justify-content-end gap-3">
+                                        <button class="primary-button" type="submit">Save</button>
+                                        <button class="secondary-button" @click="newAddress = !newAddress">Close</button>
+                                    </div>
+                                </form>
                         </div>
                     </div>
                 </div>
