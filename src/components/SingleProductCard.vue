@@ -1,5 +1,5 @@
 <template>
-    <div class="col">
+    <div class="col mb-3">
         <div class="card border position-relative">
             <RouterLink :to="`/product-detials/${info?.id}`">
                 <img :src="`${$API_URL}/storage/uploads/${info?.images?.[0]?.image}`" alt="" class="card-img-top" />
