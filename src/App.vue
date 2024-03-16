@@ -13,5 +13,5 @@ import Footer from "@/components/Footer.vue"
 import PreLoader from "@/components/PreLoader.vue";
 
     // Testing Dynamic color Change
-    document.documentElement.style.setProperty('--primary-color', '#ff0000'); //Here the primary color is set to #ff0000(RED).
+    // document.documentElement.style.setProperty('--primary-color', '#ff0000'); //Here the primary color is set to #ff0000(RED).
 </script>
