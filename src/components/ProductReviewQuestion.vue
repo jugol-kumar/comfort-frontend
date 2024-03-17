@@ -64,7 +64,7 @@
                                             </div>
                                         </div>
                                         <div class="text-end">
-                                            <button class="review-submit text-uppercase fw-normal bg-info border-0 text-white" type="submit">Post</button>
+                                            <button class="primary-button" type="submit">Post</button>
                                         </div>
                                     </form>
                                 </div>

@@ -1,12 +1,17 @@
 import './assets/css/main.css'
 
-
 import "./assets/js/vendors/darkMode.js"
 import "./assets/js/popper.min.js"
 import "./assets/js/bootstrap.min.js"
 import "./assets/js/simplebar.min.js"
 import "./assets/js/theme.min.js"
 import "./assets/js/vendors/validation.js"
+
+
+import { createToaster } from "@meforma/vue-toaster";
+window.$toast = createToaster({
+    position: 'bottom'
+});
 
 
 import { createApp } from 'vue'

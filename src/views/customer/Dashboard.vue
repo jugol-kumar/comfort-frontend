@@ -1,21 +1,20 @@
 <script setup>
+    import CustomerUser from "@/components/CustomerUser.vue";
+    import { useAuthStore } from "@/stores/useAuthStore";
+
+
+    const authStore = useAuthStore();
+
 </script>
 
 <template>
     <section class="dashboard customer-section">
         <div class="container">
-            <div class="dashboard-user">
-                <div class="dashboard-user__icon">
-                    <i class="bi bi-person"></i>
-                </div>
-                <div>
-                    <p>Hello,</p>
-                    <h3 class="text-capitalize">Tushar Imran</h3>
-                </div>
-            </div>
+            <CustomerUser/>
+
             <div class="row flex-wrap mt-5 dashboard-items">
                 <div class="col-lg-3 col-md-6 col-12">
-                    <RouterLink to="/customer/order" class="dashboard-items__box">
+                    <RouterLink to="/order" class="dashboard-items__box">
                         <div class="dashboard-items__box-icon">
                             <i class="bi bi-bag-check"></i>
                         </div>
@@ -55,12 +54,12 @@
                     </RouterLink>
                 </div>
                 <div class="col-lg-3 col-md-6 col-12">
-                    <RouterLink to="" class="dashboard-items__box">
+                    <a href="javascript:void(0)" @click="authStore.logout" class="dashboard-items__box">
                         <div class="dashboard-items__box-icon">
                             <i class="bi bi-box-arrow-right"></i>
                         </div>
                         <p class="dashboard-items__box-text text-capitalize">Logout</p>
-                    </RouterLink>
+                    </a>
                 </div>
             </div>
         </div>

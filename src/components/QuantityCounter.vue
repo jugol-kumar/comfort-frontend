@@ -2,45 +2,65 @@
 <template>
     <div class="quantity">
         <button @click="decrement()">&mdash;</button>
-            <input type="text" :value="quantity" readonly>
+        <input type="text" v-model="quantity" @input="updateQuantity" readonly>
         <button @click="increment()">&#xff0b;</button>
     </div>
 </template>
 
 <script setup>
-import { ref } from 'vue';
-const quantity = ref(1);
+import { ref, defineEmits } from 'vue';
+
+const props = defineProps({
+    modelValue: String,
+    maxQty: {
+        type:Number,
+        default:10
+    },
+})
+
+const quantity = ref(props.modelValue)
+
+const emit = defineEmits(['update:modelValue'])
 
 const increment = () => {
-    quantity.value++;
+    if(quantity.value < props.maxQty){
+        quantity.value++;
+        emit("update:modelValue", quantity.value)
+
+    }
 };
 const decrement = () => {
-    if (quantity.value === 1) {
-        alert('Negative quantity not allowed');
-    } else {
+    if (quantity.value > 1) {
         quantity.value--;
+        emit("update:modelValue", quantity.value)
+    }
+};
+
+const updateQuantity = () => {
+    if (Number.isInteger(quantity.value) && quantity.value > 0) {
+        emit("update:modelValue", quantity.value)
     }
 };
 </script>
 <style lang="scss" scoped>
-    .quantity {
-        border: 1px solid #C1CDDD;
-        display: flex;
-        align-items: center;
-        justify-content: center;
+.quantity {
+    border: 1px solid #C1CDDD;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
-        input {
-            border: 0;
-            max-width: 70px;
-            min-width: 70;
-            border-left: 1px solid #C1CDDD;
-            border-right: 1px solid #C1CDDD;
-            padding: 15px;
-            text-align: center;
-        }
-
-        button {
-            padding: 15px;
-        }
+    input {
+        border: 0;
+        max-width: 70px;
+        min-width: 70;
+        border-left: 1px solid #C1CDDD;
+        border-right: 1px solid #C1CDDD;
+        padding: 15px;
+        text-align: center;
     }
+
+    button {
+        padding: 15px;
+    }
+}
 </style>

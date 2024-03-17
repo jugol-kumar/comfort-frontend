@@ -3,7 +3,9 @@ import { ref, onMounted } from 'vue';
 import axios from 'axios';
 
 const axiosInstance = axios.create({
-  baseURL: "http://localhost:8000" // 'https://ctpbd.com'
+  baseURL: "http://localhost:8000", // 'https://ctpbd.com'
+  withCredentials: true,
+  xsrfHeaderName: "X-XSRF-TOKEN", 
 });
 
 export default function useAxios() {
@@ -24,9 +26,9 @@ export default function useAxios() {
   };
 
   // Example of using onMounted to perform an action when the component is mounted
-  onMounted(() => {
-    console.log('Component is mounted');
-  });
+  // onMounted(() => {
+  //   console.log('Component is mounted');
+  // });
 
   return {
     loading,

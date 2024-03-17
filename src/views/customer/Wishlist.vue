@@ -30,7 +30,7 @@
                             <p><strong>Price</strong> $2,799.00</p>
                         </div>
                     
-                        <div class="d-flex align-items-center  justify-content-around w-100">
+                        <div class="d-flex align-items-center  justify-content-lg-around w-100">
                             <div>
                                 <RouterLink to="/cart" class="primary-button">Add To Cart</RouterLink>
                             </div>
@@ -50,7 +50,7 @@
                             <p><strong>Price</strong> $2,799.00</p>
                         </div>
                 
-                        <div class="d-flex align-items-center justify-content-around w-100">
+                        <div class="d-flex align-items-center justify-content-lg-around w-100">
                             <div>
                                 <RouterLink to="/cart" class="primary-button">Add To Cart</RouterLink>
                             </div>

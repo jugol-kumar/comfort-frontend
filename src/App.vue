@@ -11,7 +11,14 @@
 import Header from "@/components/Header.vue"
 import Footer from "@/components/Footer.vue"
 import PreLoader from "@/components/PreLoader.vue";
+import { useAuthStore } from "./stores/useAuthStore";
+import { onMounted } from "vue";
 
-    // Testing Dynamic color Change
-    // document.documentElement.style.setProperty('--primary-color', '#ff0000'); //Here the primary color is set to #ff0000(RED).
+const authStore = useAuthStore();
+
+onMounted(async ()=>{
+  console.log("app mounted")
+  await authStore.fetchUser();
+})
+
 </script>

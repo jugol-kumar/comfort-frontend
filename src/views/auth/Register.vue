@@ -35,15 +35,15 @@ const register = async () => {
                     <h3>Registration</h3>
                     <div class="form__content">
                         <form @submit.prevent="register">
-                            <input type="text" placeholder="Full Name" v-model="form.full_name">
-                            <input type="text" placeholder="User Name" v-model="form.username">
-                            <input type="email" placeholder="Email" v-model="form.email">
-                            <input type="password" placeholder="Password" v-model="form.password">
+                            <input type="text" class="primary-border-1" placeholder="Full Name" v-model="form.full_name">
+                            <input type="email" class="primary-border-1"  placeholder="Email" v-model="form.email">
+                            <input type="password" class="primary-border-1"  placeholder="Password" v-model="form.password">
+                            <input type="password" class="primary-border-1"  placeholder="Confirm Password" v-model="form.password">
                             <button type="submit" class="primary-button mt-3">Sign up</button>
                         </form>
                         <div class="d-flex align-items-center gap-2 py-3">
                             <span>Already have Account?</span>
-                            <RouterLink to="/login" class="text-info">Login</RouterLink>
+                            <RouterLink to="/login" class="primary-color">Login</RouterLink>
                         </div>
                     </div>
                 </div>

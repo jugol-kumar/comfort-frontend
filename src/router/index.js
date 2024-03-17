@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import Index from "@/views/Index.vue"
+import authMiddleware from '@/middleware/auth';
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
@@ -11,41 +12,25 @@ const router = createRouter({
     {
       path: '/login',
       name: 'login',
-      component: () => import('@/views/Login.vue')
+      component: () => import('@/views/auth/Login.vue')
     },
     {
       path: '/register',
       name: 'register',
-      component: () => import('@/views/Register.vue')
+      component: () => import('@/views/auth/Register.vue')
     },
     {
       path: '/products',
       name: 'products',
-      meta: (route) => ({ 
+      meta: (route) => ({
         title: 'Team Member'
       }),
-      // route level code-splitting
-      // this generates a separate chunk (About.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
       component: () => import('@/views/Products.vue')
     },
     {
-      path: '/product-details',
+      path: '/product-details/:id',
       name: 'productDetails',
-      // route level code-splitting
-      // this generates a separate chunk (About.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
       component: () => import('@/views/ProductDetails.vue')
-    },
-    {
-      path: '/cart',
-      name: 'cart',
-      component: () => import('@/views/Cart.vue')
-    },
-    {
-      path: '/checkout',
-      name: 'checkout',
-      component: () => import('@/views/Checkout.vue')
     },
     {
       path: '/contact',
@@ -58,46 +43,73 @@ const router = createRouter({
       component: () => import('@/views/About.vue')
     },
     {
-      path: '/dashboard',
-      name: 'dashboard',
-      component: () => import('@/views/dashboard.vue')
+      path: '/customer',
+      name: 'customer',
+      children: [
+        {
+          path: '/customer/dashboard',
+          name: "dashboard",
+          component: () => import("@/views/customer/Dashboard.vue"),
+        },
+        {
+          path: '/customer/cart',
+          name: 'cart',
+          component: () => import('@/views/customer/Cart.vue')
+        },
+        {
+          path: '/customer/checkout',
+          name: 'wish',
+          component: () => import('@/views/customer/Checkout.vue')
+        },
+        {
+          path:'/customer/payment',
+          name: 'payment',
+          props:true,
+          component: ()=> import('@/views/customer/Payment.vue')
+        },
+        {
+          path: '/customer/order-complate',
+          name: 'ordercomplate',
+          component: () => import('@/views/customer/OrderComplate.vue')
+        },
+
+        {
+          path: '/customer/order',
+          name: 'customer.order',
+          component: () => import('@/views/customer/Order.vue')
+        },
+        { 
+          path: '/customer/address',
+          name: 'customer.address',
+          component: () => import('@/views/customer/Address.vue')
+        },
+        {
+          path: '/customer/profile',
+          name: 'customer.profile',
+          component: () => import('@/views/customer/Profile.vue')
+        },
+        {
+          path: '/customer/reset-password',
+          name: 'customer.reset.password',
+          component: () => import('@/views/auth/PasswordReset.vue')
+        },
+        {
+          path: '/customer/wishlist',
+          name: 'customer.wishlist',
+          component: () => import('@/views/customer/Wishlist.vue')
+        },
+
+      ]
     },
     {
-      path: '/customer/order',
-      name: 'customer.order',
-      component: () => import('@/views/CustomerOrder.vue')
+      path: '/:pathMatch(.*)*',
+      name: 'not-found',
+      component: () => import("@/views/Error.vue")
     },
-    {
-      path: '/customer/address',
-      name: 'customer.address',
-      component: () => import('@/views/CustomerAddress.vue')
-    },
-    {
-      path: '/customer/profile',
-      name: 'customer.profile',
-      component: () => import('@/views/CustomerProfile.vue')
-    },
-    {
-      path: '/customer/reset-password',
-      name: 'customer.reset.password',
-      component: () => import('@/views/CustomerPasswordReset.vue')
-    },
-    {
-      path: '/customer/wishlist',
-      name: 'customer.wishlist',
-      component: () => import('@/views/CustomerWishlist.vue')
-    },
-    {
-      path: '/payment',
-      name: 'payment',
-      component: () => import('@/views/Payment.vue')
-    },
-    {
-      path: '/invoice',
-      name: 'invoice',
-      component: () => import('@/views/Invoice.vue')
-    }
-  ]
+  ],
 })
 
+
+
+router.beforeEach(authMiddleware)
 export default router
