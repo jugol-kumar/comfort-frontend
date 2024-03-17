@@ -89,21 +89,26 @@ const addToCart = () => {
             <Breadcrumb :data="data"/>
 
             <div class="row">
-                <div class="col-md-1 image-slider-scroll">
-                    <templatel v-for="(img, i) in data?.images" :key="`image-${i}`">
-                        <img :src="`${$API_URL}/storage/uploads/${img.image}`" alt="" class="w-100"
-                            @click="setThambImage(img)" :class="getThambImage.id === img.id ? 'selected-image' : ''">
-                    </templatel>
-                </div>
-
-                <div class="col-md-5 col-12">
+              <div class="col-md-6">
+                <div class="row">
+                  <div class="col-md-2 image-slider-scroll">
+                      <templatel v-for="(img, i) in data?.images" :key="`image-${i}`">
+                          <img :src="`${$API_URL}/storage/uploads/${img.image}`" alt="" class="w-100"
+                              @click="setThambImage(img)" :class="getThambImage.id === img.id ? 'selected-image' : ''">
+                      </templatel>
+                  </div>
+                  <div class="col-md-10 col-12">
                     <div>
                         <img :src="`${$API_URL}/storage/uploads/${getThambImage?.img}`" alt="" class="w-100 h-auto">
                     </div>
-                    <!-- <div class="p-3">
-                        <iframe width="100%" height="400px" src="https://www.youtube.com/embed/S-A0qLTxf-U?si=JulyLlKcLWHaOG2G" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-                    </div> -->
                 </div>
+                </div>
+
+                <div class="p-3">
+                  <iframe width="100%" height="400px" src="https://www.youtube.com/embed/S-A0qLTxf-U?si=JulyLlKcLWHaOG2G" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                </div>
+              </div>
+
                 <div class="col-md-6 col-12">
                     <div class="product-detail">
                         <h2 class="product-title text-capitalize">{{ data?.title }} - {{ selectVarientProduct.varient?.replace(/\//g, '-').slice(0, -1) }}</h2>
@@ -310,7 +315,8 @@ const addToCart = () => {
             <div class="img-text__container mt-5" v-html="data?.details"/>
 
             <!-- Product Review & Question -->
-            <!-- <ProductReviewQuestion /> -->
+             <ProductReviewQuestion :product="data"/>
+
             <!-- Featured Collection -->
             <!-- <div class="featured-collection mt-6">
                 <h2 class="text-center text-uppercase fs-3 fw-semibold my-5">YOU MAY ALSO LIKE</h2>

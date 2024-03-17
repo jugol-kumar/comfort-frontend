@@ -22,7 +22,6 @@ const app = createApp(App)
 
 
 app.config.globalProperties.$API_URL = import.meta.env.VITE_APP_URL
-
 axios.defaults.baseURL = import.meta.env.VITE_APP_URL
 axios.defaults.headers = {
     'Accept': 'application/json',
