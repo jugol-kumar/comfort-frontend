@@ -39,7 +39,7 @@ watch([selectVarient, buyQty], ([item, qty]) => {
             return item;
         }
     })[0]
-    selectVarientProduct.value = { ...selectVarient, totalPrice: selectVarient.price * qty }
+    selectVarientProduct.value = { ...selectVarient, totalPrice: selectVarient?.price * qty }
 }, { deep: true })
 
 
@@ -62,8 +62,8 @@ onMounted(async () => {
         url: `/api/product/${params.id}`,
     });
 
-    selectVarient.value = res.data.attributes
-    data.value = res.data
+    selectVarient.value = res?.data?.attributes
+    data.value = res?.data
     getThambImage.value = {
         id: res.data?.images[0]?.id,
         img: res.data?.images[0]?.image
@@ -89,14 +89,15 @@ const addToCart = () => {
             <Breadcrumb :data="data" />
 
             <div class="row">
-                <div class="col-md-1 image-slider-scroll">
-                    <templatel v-for="(img, i) in data?.images" :key="`image-${i}`">
-                        <img :src="`${$API_URL}/storage/uploads/${img.image}`" alt="" class="w-100"
-                            @click="setThambImage(img)" :class="getThambImage.id === img.id ? 'selected-image' : ''">
-                    </templatel>
-                </div>
-
-                <div class="col-md-5 col-12">
+              <div class="col-md-6">
+                <div class="row">
+                  <div class="col-md-2 image-slider-scroll">
+                      <templatel v-for="(img, i) in data?.images" :key="`image-${i}`">
+                          <img :src="`${$API_URL}/storage/uploads/${img.image}`" alt="" class="w-100"
+                              @click="setThambImage(img)" :class="getThambImage.id === img.id ? 'selected-image' : ''">
+                      </templatel>
+                  </div>
+                  <div class="col-md-10 col-12">
                     <div>
                         <img :src="`${$API_URL}/storage/uploads/${getThambImage?.img}`" alt="" class="w-100 h-auto">
                        </div>
@@ -108,6 +109,7 @@ const addToCart = () => {
                                     allowfullscreen></iframe>
                             </div>
                     </div>
+<<<<<<< HEAD
                     <div class="col-md-6 col-12">
                         <div class="product-detail">
                             <h1 class="product-title text-capitalize">{{ data?.title }} - {{
@@ -115,6 +117,137 @@ const addToCart = () => {
                                 <p class="fs-3 text-secondary">by <RouterLink to=""
                                         class="fw-semibold text-dark text-capitalize">{{
                                             data?.category?.name }}</RouterLink>
+=======
+                </div>
+                </div>
+
+                <div class="p-3">
+                  <iframe width="100%" height="400px" src="https://www.youtube.com/embed/S-A0qLTxf-U?si=JulyLlKcLWHaOG2G" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                </div>
+              </div>
+
+                <div class="col-md-6 col-12">
+                    <div class="product-detail">
+                        <h2 class="product-title text-capitalize">{{ data?.title }} - {{ selectVarientProduct.varient?.replace(/\//g, '-').slice(0, -1) }}</h2>
+                        <p class="fs-3 text-secondary">by <RouterLink to="" class="fw-semibold text-dark text-capitalize">{{
+                            data?.category?.name }}</RouterLink>
+                        </p>
+                        <div class="product-review d-flex align-items-center gap-1">
+                            <div class="fs-3 text-dark">
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star"></i>
+                            </div>
+                            <span class="fs-4 text-secondary">1 Review</span>
+                        </div>
+                        <div class="text-center bg-danger p-3 rounded text-white fw-semibold fs-3 mb-4">
+                            {{ data?.showPrice }}
+                        </div>
+                        <div
+                            class="pricing-new p-4 rounded border border-secondary d-flex align-items-center justify-content-between">
+                            <div class="compare-at-pricing-new text-center">
+                                <p class="m-0 fs-3 fw-semibold text-dark">ONE TIME PAYMENT</p>
+                                <h2 class="m-0 fs-2 fw-semibold text-dark">{{ selectVarientProduct.totalPrice }} $</h2>
+                                <!-- <s class="text-danger fw-normal fs-3">$8,499.00</s> -->
+                            </div>
+                            <div class="or-new d-flex align-items-center justify-content-center h-100">
+                                <span>OR</span>
+                            </div>
+                            <div class="interest-new d-flex align-items-center gap-2">
+                                <div>
+                                    <img
+                                        src="https://pdpone.syfpos.com/cs/groups/public/documents/et_imagetype/etimg063608.png" style="width:100px;">
+                                </div>
+                                <div class="text-uppercase text-dark fw-semibold fs-5 text-center">
+                                    Interest-free. $167/mo with 48-month financing.&nbsp;
+                                    <RouterLink to="" class="text-danger fw-semibold">Learn How</RouterLink>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="d-flex align-items-center gap-3 bg-light p-3 rounded my-4">
+                            <i class="bi bi-box-seam text-dark fs-3"></i>
+                            <p class="fs-3 fw-semibold text-dark m-0">This product qualifies for free shipping.</p>
+                        </div>
+
+
+                        <template v-if="selectVarient.length > 0">
+                            <div v-for="(varient, i) in selectVarient" :key="`varient-${i}`">
+                                <div class="d-flex flex-column align-items-start gap-3 bg-light p-3 rounded my-4">
+                                    <p class="m-0 text-capitalize fw-bolder">{{ varient?.option?.name }}</p>
+
+                                    <select v-model="varient.selectVariant" class="form-control">
+                                        <option value="null" disabled>Select {{ varient?.option?.name }} Option</option>
+                                        <option v-for="(item, j) in varient?.tags" :key="`option-${j}`" :value="item">
+                                            {{ item }}
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
+                        </template>
+
+
+
+                        <div class="product-form">
+                            <!-- Product Form -->
+                        </div>
+                        <div class="product-form-action mt-4">
+                            <div class="quantity-selector">
+                                <label for="quantity-selector-input" class="fs-3 text-dark fw-semibold">Quantity</label>
+                                <div class="d-flex align-items-center gap-3 py-3">
+                                    <div>
+                                        <!-- QuantityCounter -->
+                                        <QuantityCounter v-model="buyQty"/>
+                                    </div>
+                                    <div class="w-100">
+                                        <button class="secondary-button text-dark fw-medium fs-3 w-100 d-inline-block text-center" @click="addToCart">ADD TO CART</button>
+                                    </div>
+                                    <div>
+                                        <button class="d-flex align-items-center justify-content-center p-0 border-0 rounded">
+                                            <i class="bi bi-heart fs-3"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="share-this py-4">
+                            <h4 class="fs-3 fw-semibold text-dark mb-4">Share this:</h4>
+                            <ul class="list-unstyled d-flex align-items-center gap-3 mb-4">
+                                <li>
+                                    <a href="#" target="_blank" class="facebook">
+                                        <i class="bi bi-facebook"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" target="_blank" class="twitter">
+                                        <i class="bi bi-twitter"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" target="_blank" class="linkedin">
+                                        <i class="bi bi-linkedin"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" target="_blank" class="pinterest">
+                                        <i class="bi bi-pinterest"></i>
+                                    </a>
+                                </li>
+                            </ul>
+                            <p class="fs-4 text-dark fw-normal pre-wrap">
+                                {{ data?.description }}
+                            </p>
+                        </div>
+                        <div class="bg-light rounded d-flex gap-3 p-4">
+                            <i class="bi bi-info-circle mt-1 fs-3"></i>
+                            <div>
+                                <h3 class="fs-3 fw-semibold text-dark">Ask An Expert</h3>
+                                <p class="m-0 fs-3">Schedule a free virtual appointment! <RouterLink to="">Learn More
+                                    </RouterLink>
+>>>>>>> jugol
                                 </p>
                             </div>
                         </div>
@@ -197,6 +330,7 @@ const addToCart = () => {
 
                 <div class="img-text__container mt-5" v-html="data?.details" />
 
+<<<<<<< HEAD
                 <!-- Product Review & Question -->
                 <ProductReviewQuestion />
                 <!-- Featured Collection -->
@@ -214,6 +348,26 @@ const addToCart = () => {
                     </div>
                 </div>
             </div>
+=======
+            <!-- Product Review & Question -->
+             <ProductReviewQuestion :product="data"/>
+
+            <!-- Featured Collection -->
+            <!-- <div class="featured-collection mt-6">
+                <h2 class="text-center text-uppercase fs-3 fw-semibold my-5">YOU MAY ALSO LIKE</h2>
+                <div class="row">
+                    <SingleProductCard />
+                    <SingleProductCard />
+                    <SingleProductCard />
+                    <SingleProductCard />
+                </div>
+                <div class="my-5 text-center">
+                    <RouterLink to="/" class="py-2 px-4 bg-info text-uppercase text-white d-inline-block">View More
+                    </RouterLink>
+                </div>
+            </div> -->
+        </div>
+>>>>>>> jugol
     </section>
 </template>
 <style lang="scss" scoped>

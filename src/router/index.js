@@ -106,6 +106,11 @@ const router = createRouter({
       ]
     },
     {
+      path: '/order-invoice/:id',
+      name: 'orderInvoice',
+      component: () => import('@/views/Invoice.vue')
+    },
+    {
       path: '/:pathMatch(.*)*',
       name: 'not-found',
       component: () => import("@/views/Error.vue")

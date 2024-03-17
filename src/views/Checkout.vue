@@ -18,7 +18,22 @@ const deliveryCharg = ref({
     addressId:null,
 })
 
+
+const addressFrom = ref({
+    title:null,
+    email:null,
+    phone: null,
+    address: null,
+    area: null,
+    state: null,
+    zip_code: null,
+})
+
+
+
+
 const addresses = ref(null);
+const areas = ref(null)
 
 const checkoutData = ref(null);
 const setDeliveryAddress = (event) => {
@@ -40,6 +55,17 @@ const payment = () =>{
     }
 }
 
+
+
+const saveAddress = async () =>{
+    const data = await sendRequest({
+        method: 'post',
+        data: {user_id: authStore?.user?.id, ...addressFrom.value},
+        url: "/api/save-new-address",
+    })
+    newAddress.value = false;
+}
+
 onMounted(async () => {
     const token = await authStore.getToken();
     const data = await sendRequest({
@@ -50,6 +76,15 @@ onMounted(async () => {
         }
     })
     addresses.value = data?.data?.addresses
+
+    const getAreas = await sendRequest({
+        method: 'get',
+        url: "/api/all-areas"
+    })
+
+    areas.value = getAreas?.data
+
+    
 
     if(route.query.invalidAddressId){
         $toast.error("Please Select Your Shipping Details Before Payment.")
@@ -97,39 +132,44 @@ onMounted(async () => {
                         <div v-if="newAddress" class="checkout__shipping-add-wrapper">
                             <div class="checkout__shipping-add-wrapper-new">
                                 <h3>New Address</h3>
-                                <form @submit.prevent="">
+                                <form @submit.prevent="saveAddress">
                                     <div class="form-floating">
                                         <input type="text" class="form-control" id="floatingInput" placeholder="Full Name"
-                                            v-model="full_name">
+                                            v-model="addressFrom.title">
                                         <label for="floatingInput">Full Name</label>
                                     </div>
                                     <div class="form-floating">
                                         <input type="text" class="form-control" id="floatingInput" placeholder="Address"
-                                            v-model="address">
+                                            v-model="addressFrom.address">
                                         <label for="floatingInput">Address</label>
                                     </div>
+                                    
+                                    <div class="form-floating">
+                                        <input type="email" class="form-control" id="floatingInput" placeholder="email"
+                                            v-model="addressFrom.email">
+                                        <label for="floatingInput">Email</label>
+                                    </div>
                                     <div class="d-flex align-items-center gap-3">
-                                        <select class="form-select" aria-label="Default select example">
-                                            <option selected disabled>Add New City</option>
-                                            <option value="1">Dhaka</option>
-                                            <option value="2">Rajshahi</option>
-                                            <option value="3">Pabna</option>
+                                        <select v-model="addressFrom.area" class="form-select" 
+                                        aria-label="Default select example">
+                                            <option value="null" selected disabled>Add New City</option>
+                                            <option  v-for="area in areas" :key="`single-i-${area.id}`" :value="area.id">{{ area?.area_name }}</option>
                                         </select>
                                         <div class="form-floating">
                                             <input type="text" class="form-control" id="floatingInput" placeholder="State"
-                                                v-model="state">
+                                                v-model="addressFrom.state">
                                             <label for="floatingInput">State</label>
                                         </div>
                                         <div class="form-floating">
                                             <input type="text" class="form-control" id="floatingInput"
-                                                placeholder="ZIP Code" v-model="zip_code">
+                                                placeholder="ZIP Code" v-model="addressFrom.zip_code">
                                             <label for="floatingInput">ZIP Code</label>
                                         </div>
                                     </div>
                                     <div>
                                         <div class="form-floating">
                                             <input type="text" class="form-control" id="floatingInput"
-                                                placeholder="Phone Number" v-model="phone_number">
+                                                placeholder="Phone Number" v-model="addressFrom.phone">
                                             <label for="floatingInput">Phone Number</label>
                                         </div>
                                     </div>

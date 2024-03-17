@@ -3,7 +3,7 @@ import { ref, onMounted } from 'vue';
 import axios from 'axios';
 
 const axiosInstance = axios.create({
-  baseURL: "http://localhost:8000", // 'https://ctpbd.com'
+  baseURL: import.meta.env.VITE_APP_URL,
   withCredentials: true,
   xsrfHeaderName: "X-XSRF-TOKEN", 
 });
@@ -14,7 +14,6 @@ export default function useAxios() {
 
   const sendRequest = async (config) => {
     loading.value = true;
-
     try {
       const response = await axiosInstance(config);
       return response;

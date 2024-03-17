@@ -61,11 +61,10 @@ onMounted(async () => {
                                             {{ item?.orderdetails[0]?.product?.title }}
                                         </h3>
                                         <p>+ {{ item?.orderdetails ? item?.orderdetails.length : ' ' }} item(s)</p>
-                                        {{ }}
                                     </div>
                                     <p class="fw-semibold fs-3">$ {{ item?.grand_total }}</p>
                                     <div>
-                                        <RouterLink to="" class="primary-button">View</RouterLink>
+                                        <RouterLink :to="{name: 'orderInvoice', params:{id:item?.id}}" class="primary-button">View</RouterLink>
                                     </div>
                                 </div>
                             </div>
