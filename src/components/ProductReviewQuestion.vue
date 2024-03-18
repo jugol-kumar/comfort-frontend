@@ -90,7 +90,7 @@
             <div class="d-flex align-items-center justify-content-center gap-1">
                 <span class="star-rating text-secondary fs-2 fw-semibold">{{ allReviews?.average }}.0</span>
                 <span class="stars text-dark fs-3">
-                  <i class="bi" :class=" allReviews.average < star ? 'bi-star' : 'bi-star-fill'" v-for="star in 5"></i>
+                  <i class="bi" :class=" allReviews.average < star ? 'bi-star' : 'bi-star-fill'" v-for="(star, i) in 5" :key="`star-item-${i}`"></i>
                 </span>
                 <span class="fs-4 text-dark">{{ allReviews?.reviews?.length }} Reviews</span>
             </div>
@@ -178,7 +178,7 @@
                                                 <div>
                                                     <h3 class="fs-4 fw-semibold text-dark m-0">{{ item.name }}</h3>
                                                     <span class="text-info">
-                                                        <i class="bi" :class=" item.rating < star ? 'bi-star' : 'bi-star-fill'" v-for="star in 5"></i>
+                                                        <i class="bi" :class=" item.rating < star ? 'bi-star' : 'bi-star-fill'" v-for="(star, i) in 5" :key="`bi-star-${i}`"></i>
                                                     </span>
                                                     <div class="review-items__item-content">
                                                         <h3 class="text-capitalize fs-4 fw-medium">{{ item?.title }}</h3>

@@ -1,8 +1,8 @@
 <script setup>
 import { onMounted, ref } from 'vue';
-import { useCartStore } from "@/stores/useCartStore";
-import useAxios from "@/composables/useAxios"
-import { useAuthStore } from "@/stores/useAuthStore";
+import { useCartStore } from "@/stores/useCartStore.js";
+import useAxios from "@/composables/useAxios.js"
+import { useAuthStore } from "@/stores/useAuthStore.js";
 import {useRouter, useRoute} from "vue-router"
 
 const cartStore = useCartStore();

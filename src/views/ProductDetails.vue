@@ -1,7 +1,6 @@
 <script setup>
 import SingleProductCard from '@/components/SingleProductCard.vue'
 import ProductReviewQuestion from '@/components/ProductReviewQuestion.vue'
-import QuantityCounter from '@/components/QuantityCounter.vue'
 import Breadcrumb from '@/components/Breadcrumb.vue'
 
 
@@ -61,7 +60,6 @@ onMounted(async () => {
         method: 'get',
         url: `/api/product/${params.id}`,
     });
-
     selectVarient.value = res?.data?.attributes
     data.value = res?.data
     getThambImage.value = {
@@ -84,9 +82,9 @@ const addToCart = () => {
 <template>
     <!-- Content -->
     <section class="pb-8">
-        <div class="container-fluid">
+        <div class="container">
             <!-- Breadcrumb -->
-            <Breadcrumb :data="data"/>
+            <Breadcrumb :data="data" />
 
             <div class="row">
               <div class="col-md-6">
@@ -100,6 +98,14 @@ const addToCart = () => {
                   <div class="col-md-10 col-12">
                     <div>
                         <img :src="`${$API_URL}/storage/uploads/${getThambImage?.img}`" alt="" class="w-100 h-auto">
+                       </div>
+                            <div class="p-3">
+                                <iframe width="100%" height="400px"
+                                    src="https://www.youtube.com/embed/S-A0qLTxf-U?si=JulyLlKcLWHaOG2G"
+                                    title="YouTube video player" frameborder="0"
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                    allowfullscreen></iframe>
+                            </div>
                     </div>
                 </div>
                 </div>
@@ -305,15 +311,14 @@ const addToCart = () => {
                                         <p>5 Year In-Home Warranty</p>
                                     </div>
                                 </div>
-                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
 
 
-            <div class="img-text__container mt-5" v-html="data?.details"/>
+                <div class="img-text__container mt-5" v-html="data?.details" />
 
+<<<<<<< HEAD
             <!-- Product Review & Question -->
              <ProductReviewQuestion :product="data"/>
 
@@ -332,6 +337,26 @@ const addToCart = () => {
                 </div>
             </div> -->
         </div>
+=======
+                <!-- Product Review & Question -->
+                <ProductReviewQuestion />
+                <!-- Featured Collection -->
+                <div class="featured-collection mt-6">
+                    <h2 class="text-center text-uppercase fs-3 fw-semibold my-5">YOU MAY ALSO LIKE</h2>
+                    <div class="row row-cols-2 row-cols-5">
+                        <SingleProductCard />
+                        <SingleProductCard />
+                        <SingleProductCard />
+                        <SingleProductCard />
+                        <SingleProductCard />
+                    </div>
+                    <div class="my-5 text-center">
+                        <RouterLink to="/" class="primary-button">View More
+                        </RouterLink>
+                    </div>
+                </div>
+            </div>
+>>>>>>> df683ba7097e5d8fdc0577b89e036c5e540bfb22
     </section>
 </template>
 <style lang="scss" scoped>
@@ -508,19 +533,19 @@ i {
     .accordion-button:focus {
         border-color: unset !important;
     }
-}
 
-.pre-wrap {
-    white-space: pre-wrap;
-}
+    .pre-wrap {
+        white-space: pre-wrap;
+    }
 
-.image-slider-scroll {
-    max-height: 500px;
-    overflow-y: scroll;
-}
+    .image-slider-scroll {
+        max-height: 500px;
+        overflow-y: scroll;
+    }
 
-.selected-image {
-    border: 2px solid var(--gk-info);
-    border-radius: 10px;
+    .selected-image {
+        border: 2px solid var(--gk-info);
+        border-radius: 10px;
+    }
 }
 </style>

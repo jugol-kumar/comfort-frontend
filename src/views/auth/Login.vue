@@ -1,6 +1,6 @@
 <script setup>
 import { ref, onMounted } from "vue"
-import { useAuthStore } from '@/stores/useAuthStore';
+import { useAuthStore } from '@/stores/useAuthStore.js';
 import { useRouter } from 'vue-router'
 const authStore = useAuthStore();
 
@@ -39,10 +39,10 @@ const handelLogin = async () => {
                     <div class="form__content">
                         <form @submit.prevent="handelLogin">
                             <div class="d-flex flex-column">
-                                <input type="email" :class="{'is-invalid' : authStore.error}" placeholder="Email" v-model="loginData.email" :disabled="authStore.loading">
+                                <input type="email" class="primary-border-1" :class="{'is-invalid' : authStore.error}" placeholder="Email" v-model="loginData.email" :disabled="authStore.loading">
                                 <small class="text-danger">{{ authStore.error?.response?.data?.message }}</small>
                             </div>
-                            <input type="password" placeholder="Password" v-model="loginData.password" :disabled="authStore.loading">
+                            <input type="password" class="primary-border-1" placeholder="Password" v-model="loginData.password" :disabled="authStore.loading">
 
                             
                             <div class="d-flex align-items-center justify-content-between">
@@ -50,7 +50,7 @@ const handelLogin = async () => {
                                     <input type="checkbox" id="remember_me" name="remember_me" v-model="loginData.remember_me">
                                     <span>Remember Me</span>
                                 </label>
-                                <RouterLink to="/" class="text-info">Forgot your password?</RouterLink>
+                                <RouterLink to="/" class="primary-color">Forgot your password?</RouterLink>
                             </div>
                             
                             <button v-if="authStore.loading" type="submit" class="primary-button mt-3" :disabled="authStore.loading">
@@ -63,7 +63,7 @@ const handelLogin = async () => {
                         </form>
                         <div class="d-flex align-items-center gap-2 py-3">
                             <span>New Customer?</span>
-                            <RouterLink  to="/register" class="text-dark">Create Account</RouterLink>
+                            <RouterLink  to="/register" class="primary-color">Create Account</RouterLink>
                         </div>
                     </div>
                 </div>

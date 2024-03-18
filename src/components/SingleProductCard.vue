@@ -61,4 +61,6 @@ import { computed } from "vue"
         opacity: 0;
         transition: all ease-in-out 0.4s;
     }
+
+    
 </style>
