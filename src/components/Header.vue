@@ -1,12 +1,12 @@
 <template>
   <div>
-    <div class="bg-info py-3 text-center">
-      <router-link to="/super-holiday" class="text-white text-capitalize fs-4 fw-bold">***Super Holiday Savings! Shop Our
-        Gift Guide***</router-link>
-    </div>
-    <div class="bg-light">
-      <div class="container-fluid">
-        <ul class="top_nav d-flex items-center gap-4 py-2 list-unstyled">
+<!--    <div class="bg-info py-3 text-center">-->
+<!--      <router-link to="/super-holiday" class="text-white text-capitalize fs-4 fw-bold">***Super Holiday Savings! Shop Our-->
+<!--        Gift Guide***</router-link>-->
+<!--    </div>-->
+    <div class="primary-bg">
+      <div class="container">
+        <ul class="top_nav d-flex align-items-center justify-content-center justify-content-lg-start gap-2 gap-lg-3 py-2 list-unstyled">
           <li>
             <RouterLink to="/franchise" class="text-capitalize fs-4 top_nav-link">Own a Franchise</RouterLink>
           </li>
@@ -24,19 +24,14 @@
 
   <!-- Mobile Nav -->
 
-  <nav class="navbar bg-body-tertiary d-lg-none">
+  <nav class="navbar mobile-navbar d-lg-none">
     <div class="container-fluid px-0">
       <RouterLink to="/" class="navbar-brand">
         <img src="/logo.png" alt="Comfort" />
       </RouterLink>
       <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar"
         aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 30">
-            <path stroke="#0FA5E9" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2"
-              d="M4 7h22M4 15h22M4 23h22" />
-          </svg>
-        </span>
+        <i class="bi bi-list primary-color fs-2"></i>
       </button>
       <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
         <div class="offcanvas-header">
@@ -50,39 +45,34 @@
         <div class="offcanvas-body">
           <form class="d-flex mt-3" role="search">
             <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-info" type="submit">Search</button>
+            <button class="primary-button" type="submit">Search</button>
           </form>
           <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
             <li class="nav-item">
-              <RouterLink to="/" class="nav-link active" aria-current="page">Home</RouterLink>
+              <RouterLink to="/" class="nav-link">Home</RouterLink>
             </li>
-            <li class="nav-item">
-              <RouterLink to="" class="nav-link">New Arrivals</RouterLink>
-            </li>
-            <li class="nav-item dropdown">
+            <li class="nav-item dropdown" v-for="link in links" :key="link.id">
               <RouterLink to="/products" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"
                 aria-expanded="false">
-                Products
+                <span v-html="link.icon"></span>
+                {{ link.label }}
               </RouterLink>
-              <ul class="dropdown-menu">
-                <li>
-                  <RouterLink to="" class="dropdown-item">Sleep</RouterLink>
-                </li>
-                <li>
-                  <RouterLink to="" class="dropdown-item">Office</RouterLink>
-                </li>
-                <li>
-                  <RouterLink to="" class="dropdown-item">Massage</RouterLink>
+              <ul class="dropdown-menu bg-transparent" v-if="link.sublinks">
+                <li v-for="item in link.sublinks">
+                  <RouterLink to="" class="dropdown-item d-flex align-items-start gap-1">
+                    <span v-html="item.icon"></span>
+                    {{ item.label }}
+                  </RouterLink>
                 </li>
               </ul>
             </li>
             <li class="nav-item">
-              <RouterLink to="" class="nav-link d-flex align-items-center gap-2">
+              <RouterLink to="/customer/wishlist" class="nav-link d-flex align-items-center gap-2">
                 Wishlist <i class="bi bi-heart"></i>
               </RouterLink>
             </li>
             <li class="nav-item">
-              <RouterLink to="/cart" class="nav-link d-flex align-items-center gap-2">
+              <RouterLink to="/customer/cart" class="nav-link d-flex align-items-center gap-2">
                 Cart <i class="bi bi-cart"></i>
               </RouterLink>
             </li>
@@ -91,21 +81,20 @@
       </div>
     </div>
   </nav>
-
   <!-- Desktop Nav -->
 
-  <nav :class="'navbar navbar-expand-lg flex-column p-0 d-none d-lg-flex'" class="position-sticky top-0 z-5">
-    <div class="container-fluid py-3">
+  <nav :class="'navbar navbar-desktop navbar-expand-lg flex-column p-0 d-none d-lg-flex'">
+    <div class="container-fluid py-4">
       <RouterLink class="navbar-brand" to="/">
         <img src="/logo.png" alt="Comfort" />
       </RouterLink>
-      <div class="d-flex align-items-center gap-4">
+      <div class="d-flex align-items-center gap-8">
         <div class="d-flex align-items-center">
           <form @submit.prevent="searchSend">
             <div class="search">
-              <input type="text" placeholder="What are you looking for?" v-model="search">
-              <button type="submit">
-                <!-- <i class="bi bi-x" v-if="search"></i> -->
+              <input type="text" placeholder="What are you looking for?">
+              <button>
+                search
                 <i class="bi bi-search"></i>
               </button>
             </div>
@@ -116,17 +105,16 @@
             class="login d-flex align-items-center gap-1">
             <i class="bi bi-person"></i>Profile
           </RouterLink>
-
           <RouterLink v-else to="/login" class="login d-flex align-items-center gap-1">
             <i class="bi bi-person"></i>Login
           </RouterLink>
           <RouterLink to="/customer/wishlist" class="wish">
             <span>0</span>
-            <i class="bi bi-heart"></i>
+            <i class="bi bi-heart fs-3"></i>
           </RouterLink>
-          <RouterLink to="/cart" class="cart">
+          <RouterLink to="/customer/cart" class="cart">
             <span>{{ cartStore.getCartLength }}</span>
-            <i class="bi bi-cart"></i>
+            <i class="bi bi-cart fs-3"></i>
           </RouterLink>
         </div>
       </div>

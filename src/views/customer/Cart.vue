@@ -1,7 +1,7 @@
 <script setup>
 import QuantityCounter from '@/components/QuantityCounter.vue'
-import { useCartStore } from "@/stores/useCartStore"
-import { useAuthStore } from '@/stores/useAuthStore';
+import { useCartStore } from "@/stores/useCartStore.js"
+import { useAuthStore } from '@/stores/useAuthStore.js';
 const cartStore = useCartStore();
 const authStore = useAuthStore();
 
@@ -11,8 +11,8 @@ const authStore = useAuthStore();
 </script>
 
 <template>
-    <section>
-        <div class="product-cart container-fluid py-5">
+    <section class="customer-section">
+        <div class="product-cart container py-5">
             <div class="d-flex align-items-center gap-2 py-8">
                 <img src="https://pdpone.syfpos.com/cs/groups/public/documents/et_imagetype/etimg063608.png" alt="..."
                     style="width:70px;">
