@@ -1,7 +1,6 @@
 <script setup>
 import SingleProductCard from '@/components/SingleProductCard.vue'
 import ProductReviewQuestion from '@/components/ProductReviewQuestion.vue'
-import QuantityCounter from '@/components/QuantityCounter.vue'
 import Breadcrumb from '@/components/Breadcrumb.vue'
 
 
@@ -61,7 +60,7 @@ onMounted(async () => {
         method: 'get',
         url: `/api/product/${params.id}`,
     });
-
+    console.log(res);
     selectVarient.value = res.data.attributes
     data.value = res.data
     getThambImage.value = {

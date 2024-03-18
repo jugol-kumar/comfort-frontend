@@ -13,15 +13,7 @@
             </button>
           </div>
             <div class="row row-cols-2 row-cols-lg-5">
-                <SingleProductCard />
-                <SingleProductCard />
-                <SingleProductCard />
-                <SingleProductCard />
-                <SingleProductCard />
-                <SingleProductCard />
-                <SingleProductCard />
-                <SingleProductCard />
-                <SingleProductCard />
+              <SingleProductCard v-for="item in data" :key="`product-${item.id}`" :info="item"/>
             </div>
         </div>
     </section>
@@ -125,7 +117,7 @@
         method: 'get',
         url: '/api/product-with-variations',
       });
-      data.value = responseData;
+      data.value = responseData.data;
       console.log(responseData)
     });
 </script>

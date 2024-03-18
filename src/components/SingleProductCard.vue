@@ -1,14 +1,14 @@
 <template>
     <div class="col mb-3">
-        <div class="product-card">
-            <RouterLink :to="`/product-details/${info?.id}`">
-                <img src="https://relaxtheback.com/cdn/shop/products/Cozzia_QiPro_FacingForward-Display_WEB_clip-j_456x456.jpg?v=1663823010" alt="" class="card-img-top" />
+        <div class="product-card card">
+            <RouterLink :to="`/product-details/${info?.id}`" class="product-card__thumbnail">
+                <img :src="info.photo" alt="" class="card-img-top" />
             </RouterLink>
-            <div class="product-card__body">
+            <div class="product-card__body card-body">
                 <div class="mb-2">
-                    <RouterLink :to="`/product-details/${info?.id}`" class="product-card__body-title">Mid Back Ultimate Executive Office Chair</RouterLink>
-                    <s>$8,499.00</s>
-                    <p>$7,999.00</p>
+                    <RouterLink :to="`/product-details/${info?.id}`" class="product-card__body-title">{{ info.title }}</RouterLink>
+                    <s>${{ info.selling_price}}</s>
+                    <p>${{ info.buying_price}}</p>
                 </div>
                 <div class="d-flex align-items-center justify-content-between">
                   <RouterLink to="/" class="primary-button cart-button">Add To Cart</RouterLink>

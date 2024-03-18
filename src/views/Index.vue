@@ -67,17 +67,11 @@
         <div class="container">
             <h2 class="py-5">SHOP OUR HOLIDAY SPECIALS</h2>
             <div class="row row-cols-2 row-cols-lg-5">
-              <SingleProductCard />
-              <SingleProductCard />
-              <SingleProductCard />
-              <SingleProductCard />
-              <SingleProductCard />
-
-<!--                <SingleProduct v-for="item in data" :key="`product-${item.id}`" :info="item"/>-->
+                <SingleProductCard v-for="item in data" :key="`product-${item.id}`" :info="item"/>
                 <!-- Buttom -->
                 <div v-if="loading" class="col-xl-12 col-lg-12 col-md-12 col-12 text-center mt-4">
-                    <a href="#" class="btn btn-primary">
-                        <div class="spinner-border spinner-border-sm me-2" role="status">
+                    <a href="#" class="btn primary-bg text-white">
+                        <div class="spinner-border text-white spinner-border-sm me-2" role="status">
                             <span class="visually-hidden">Loading...</span>
                         </div>
                         Load More
@@ -139,16 +133,9 @@
     <section>
         <div class="container py-5">
             <div class="row row-cols-2 row-cols-lg-4 row-cols-xl-5">
-                <SingleProductCard />
-                <SingleProductCard />
-                <SingleProductCard />
-                <SingleProductCard />
-                <SingleProductCard />
-                <SingleProductCard />
-                <SingleProductCard />
-                <SingleProductCard />
-                <SingleProductCard />
-                <SingleProductCard />
+
+              <SingleProductCard v-for="item in data" :key="`product-${item.id}`" :info="item"/>
+
             </div>
             <div class="text-center py-5">
                 <RouterLink to="" class="primary-button">Shop Office</RouterLink>
@@ -189,11 +176,9 @@
     <section>
         <div class="container py-5">
             <div class="row row-cols-2 row-cols-lg-5">
-                <SingleProductCard />
-                <SingleProductCard />
-                <SingleProductCard />
-                <SingleProductCard />
-                <SingleProductCard />
+
+              <SingleProductCard v-for="item in data" :key="`product-${item.id}`" :info="item"/>
+
             </div>
             <div class="text-center py-5">
                 <RouterLink to="" class="primary-button">Shop Massage</RouterLink>
@@ -247,11 +232,9 @@
     <section>
         <div class="container py-5">
             <div class="row row-cols-2 row-cols-lg-5">
-                <SingleProductCard />
-                <SingleProductCard />
-                <SingleProductCard />
-                <SingleProductCard />
-                <SingleProductCard />
+
+              <SingleProductCard v-for="item in data" :key="`product-${item.id}`" :info="item"/>
+
             </div>
             <div class="text-center py-5">
                 <RouterLink to="" class="primary-button">Shop Sleep</RouterLink>
@@ -332,20 +315,15 @@
     import useAxios from "@/composables/useAxios"
     import {demoLinks} from '@/navlinks'
 
-
-
     const links = demoLinks;
-
     const { loading, error, sendRequest } = useAxios();
     const data = ref(null);
-
     onMounted(async () => {
-    const res = await sendRequest({
-        method: 'get',
-        url: '/api/product-with-variations',
-    });
-    data.value = res.data
+      const res = await sendRequest({
+          method: 'get',
+          url: '/api/product-with-variations',
+      });
+      data.value = res.data
+      console.log(res.data);
     })
-
-
 </script>
