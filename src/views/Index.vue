@@ -112,7 +112,6 @@
 <script setup>
 import { onMounted, ref } from 'vue'
 import SingleProductCardVue from "@/components/SingleProductCard.vue";
-import BlogCard from "@/components/BlogCard.vue";
 import useAxios from "@/composables/useAxios"
 import PlaceholderProdctCard from '@/components/PlaceholderProdctCard.vue';
 const { loading, error, sendRequest } = useAxios();

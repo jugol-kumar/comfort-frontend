@@ -104,7 +104,7 @@ const router = createRouter({
     {
       path: '/order-invoice/:id',
       name: 'orderInvoice',
-      component: () => import('@/views/Invoice.vue')
+      component: () => import('@/views/Customer/Invoice.vue')
     },
     {
       path: '/:pathMatch(.*)*',

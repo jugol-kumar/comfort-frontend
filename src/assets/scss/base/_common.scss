@@ -164,7 +164,6 @@ input[type="checkbox"] {
     }
 }
 
-<<<<<<< HEAD
 .match-height {
     > [class*='col'] {
       display: flex;
@@ -174,9 +173,8 @@ input[type="checkbox"] {
         flex: 1 1 auto;
       }
     }
-  }
+}
   
-=======
 @media (min-width: 992px) {
     .w-lg-80 {
         width: 80% !important;
@@ -204,11 +202,6 @@ input[type="checkbox"] {
 }
 
 
-
-
-
-
-
 .carousel-indicators {
     button {
         height: 12px !important;
@@ -230,4 +223,3 @@ input[type="checkbox"] {
     width: 26px !important;
     height: 26px !important;
 }
->>>>>>> df683ba7097e5d8fdc0577b89e036c5e540bfb22
