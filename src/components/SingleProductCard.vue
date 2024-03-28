@@ -38,11 +38,8 @@ import { computed } from "vue"
 
 
     const showprice = computed(()=>{
-        if(info?.stocks?.length > 0){
-            const fristPrice = info?.stocks?.[0]?.price
-            const lastPrice = info?.stocks?.[info?.stocks?.length - 1]?.price
-            return fristPrice > lastPrice ? lastPrice+'$'+'   -    '+fristPrice+"$" : fristPrice+"$"+'-'+lastPrice+"$"
-        }
+      const prices = info.stocks?.map(product => product.price);
+      return Math.min(...prices)+' $'+' - '+Math.max(...prices)+'$';
     })
 
 

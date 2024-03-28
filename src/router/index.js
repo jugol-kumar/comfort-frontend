@@ -40,7 +40,12 @@ const router = createRouter({
     {
       path: '/checkout',
       name: 'checkout',
-      component: () => import('@/views/Checkout.vue')
+      component: () => import('@/views/customer/Checkout.vue')
+    },
+    {
+      path:'/page/:slug',
+      name: 'SinglePage',
+      component: () => import('@/views/SinglePage.vue')
     },
     {
       path: '/customer',
@@ -54,7 +59,7 @@ const router = createRouter({
         {
           path: '/checkout',
           name: 'wish',
-          component: () => import('@/views/Checkout.vue')
+          component: () => import('@/views/customer/Checkout.vue')
         },
         {
           path:'/payment',
@@ -63,7 +68,7 @@ const router = createRouter({
           component: ()=> import('@/views/customer/Payment.vue')
         },
         {
-          path: '/order-complate',
+          path: '/order-complete',
           name: 'ordercomplate',
           component: () => import('@/views/customer/OrderComplate.vue')
         },
@@ -85,22 +90,22 @@ const router = createRouter({
         { 
           path: '/customer/address',
           name: 'customer.address',
-          component: () => import('@/views/CustomerAddress.vue')
+          component: () => import('@/views/customer/Address.vue')
         },
         {
           path: '/customer/profile',
           name: 'customer.profile',
-          component: () => import('@/views/CustomerProfile.vue')
+          component: () => import('@/views/customer/Profile.vue')
         },
         {
           path: '/customer/reset-password',
           name: 'customer.reset.password',
-          component: () => import('@/views/CustomerPasswordReset.vue')
+          component: () => import('@/views/customer/PasswordReset.vue')
         },
         {
           path: '/customer/wishlist',
           name: 'customer.wishlist',
-          component: () => import('@/views/CustomerWishlist.vue')
+          component: () => import('@/views/customer/Wishlist.vue')
         },
 
       ]

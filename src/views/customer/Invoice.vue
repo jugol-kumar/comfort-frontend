@@ -1,49 +1,23 @@
 <script setup>
-import useAxios from "@/composables/useAxios";
-import { useAuthStore } from "@/stores/useAuthStore";
-import { computed, onMounted, ref } from "vue";
-import { useRoute, useRouter } from "vue-router";
 
+import { computed, onMounted } from "vue";
 
-const {user} = useAuthStore();
-
-
-const order = ref(null)
-const { sendRequest, loading, error } = useAxios();
-
-
-const printInvoice = (areaID) =>{
-    var printContent = document.getElementById(areaID).innerHTML;
-    var originalContent = document.body.innerHTML;
-    document.body.innerHTML = printContent;
-    window.print();
-    document.body.innerHTML = originalContent;
-}
-
-onMounted(async () => {
-    const route = useRoute();
-
-    const { user } = useAuthStore();
-    const data = await sendRequest({
-        method: 'get',
-        url: `/api/order-details/${route?.params?.id}`,
-        headers: {
-            "Authorization": `Bearer ${user?.token}`
-        }
-    })
-    order.value = data?.data;
-    console.log(data)
+const props = defineProps({
+    order: Object | null,
+    url: [] | null,
 })
 
+onMounted(() => {
+    window.print();
+})
 
 </script>
 
 <template>
     <section class="customer-section overflow-hidden py-5">
-            <button class="btn bg-info text-white" @click="printInvoice('areaOfPrient')">Print Invoice</button>
             <div class="row">
-                <div class="col-md-9 mx-auto p-3" id="areaOfPrient">
-                    <div class="card invoice-preview-card shadow-none py-5" >
+                <div class="col-md-9 mx-auto p-3">
+                    <div class="card invoice-preview-card shadow-none py-5">
                         <div class="card-body invoice-padding pb-0 mb-5">
                             <div class="d-flex align-items-center justify-content-between">
                                 <div style="text-align:left; max-width: 35%">
@@ -52,10 +26,11 @@ onMounted(async () => {
                                             <img src="/logo.png" alt="" height="40">
                                         </div>
                                         <h3 class="mt-1 fw-semibold fs-3 mb-3 text-capitalize">Invoice To: </h3>
-                                        <p class="card-text mb-0 pb-0" v-if="order?.customer?.full_name">Name: <strong>{{ order?.customer?.full_name }}</strong></p>
-                                        <p class="card-text mb-0 pb-0" v-if="order?.address?.phone || user?.phone">Phone: {{ order?.address?.phone ?? user?.phone }}</p>
-                                        <p class="card-text mb-0 pb-0" v-if="order?.address?.email || user?.email">Email: {{ order?.address?.email ?? user?.email }}</p>
-                                        <p class="card-text mb-0 pb-0" v-if="order?.address?.address">Address: {{ order?.address?.address }}</p>
+                                        <p class="card-text mb-0 pb-0">Name: <strong>Customer name</strong></p>
+                                        <p class="card-text mb-0 pb-0">Phone: 8999 000 88</p>
+                                        <p class="card-text mb-0 pb-0">Email: customer@gmail.com</p>
+                                        <p class="card-text mb-0 pb-0">Address: Dhaka,Bangladesh</p>
+
                                     </div>
                                 </div>
                                 <div style="text-align: right">
@@ -65,15 +40,15 @@ onMounted(async () => {
                                             <span class="invoice-number">#5433</span>
                                         </h4>
                                         <div class="invoice-date-wrapper">
-                                            <p class="invoice-date-title">Order Date: {{ order?.order_date }}</p>
+                                            <p class="invoice-date-title">Order Date: 2-1-2024</p>
                                         </div>
                                         <div class="invoice-date-wrapper">
                                             <p class="invoice-date-title text-capitalize">Order Status: <span
-                                                    class="badge bg-info ms-1">{{ order?.order_status }}</span></p>
+                                                    class="badge bg-info ms-1">Shipped</span></p>
                                         </div>
                                         <div class="invoice-date-wrapper">
                                             <p class="invoice-date-title text-capitalize">Payment Status: <span
-                                                    class="badge bg-info ms-1">{{ order?.payment_status }}</span></p>
+                                                    class="badge bg-info ms-1">Pending</span></p>
                                         </div>
                                     </div>
                                 </div>
@@ -94,25 +69,21 @@ onMounted(async () => {
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr v-for="(item, index) in  order?.orderdetails" :key="`single-details-item-${index}`">
+                                    <tr > <!-- v-for="(item, index) in  order.order_details -->
                                         <td class="py-1">
-                                            <a href="#" class="text-info text-capitalize">
-                                                {{ item?.product?.title }}-
-                                                {{ item?.stoke?.varient?.replace(/\//g, '-').slice(0, -1) }}
+                                            <a href="#" class="text-info">
+                                                <!-- {{ item.product.title }} -->
+                                                Mid Back Ultimate Executive Office Chair
                                             </a>
                                         </td>
                                         <td class="py-1">
-                                            <span class="fw-bold">{{ item?.stoke?.price }} $</span>
+                                            <span class="fw-bold"> 8000</span>
                                         </td>
                                         <td class="py-1">
-                                            <span class="fw-bold">
-                                                {{ item?.quantity }}
-                                            </span>
+                                            <span class="fw-bold">%ft</span> * <span>3</span>
                                         </td>
                                         <td class="py-1">
-                                            <span class="fw-bold">
-                                                {{ item?.stoke?.price * item?.quantity }} $
-                                            </span> <!-- {{ $showPrice(item.product.price * item.quantity) }} --> 
+                                            <span class="fw-bold">8000</span> <!-- {{ $showPrice(item.product.price * item.quantity) }} --> 
                                         </td>
                                     </tr>
                                 </tbody>
@@ -130,23 +101,23 @@ onMounted(async () => {
                                     <div class="invoice-total-wrapper w-100">
                                         <div class="invoice-total-item d-flex justify-content-between">
                                             <p class="invoice-total-title">Subtotal:</p>
-                                            <p class="invoice-total-amount">{{ order?.sub_total }} $</p>
+                                            <p class="invoice-total-amount">8000</p>
                                         </div>
-                                        <!-- <div class="invoice-total-item d-flex justify-content-between"
+                                        <div class="invoice-total-item d-flex justify-content-between"
                                             v-if="order?.coupon_discount">
                                             <p class="invoice-total-title">Coupon Discount:</p>
                                             <p class="invoice-total-amount"> - {{ $showPrice(order?.coupon_discount) }}</p>
-                                        </div> -->
+                                        </div>
                                         <div class="invoice-total-item d-flex justify-content-between">
                                             <p class="invoice-total-title">Delivery Charge:</p>
-                                            <p class="invoice-total-amount"> + {{ order?.address?.order_area?.delivery_charge }} $</p>
+                                            <p class="invoice-total-amount"> + 300</p>
                                         </div>
 
 
                                         <hr class="my-50" />
                                         <div class="invoice-total-item d-flex justify-content-between">
-                                            <p class="invoice-total-title text-black fw-bolder">Grand Total:</p>
-                                            <p class="invoice-total-amount text-black fw-bolder">{{ order?.grand_total }} $</p>
+                                            <p class="invoice-total-title text-black fw-bolder">Total:</p>
+                                            <p class="invoice-total-amount text-black fw-bolder">1000</p>
                                         </div>
                                     </div>
                                 </div>
@@ -161,9 +132,9 @@ onMounted(async () => {
                             <div class="d-flex align-items-center justify-content-between">
                                 <div class="d-flex align-items-center">
                                     <span class="fw-bold me-1">Have a great day ! </span>
-<!--                                    <span>Thank you for shopping-->
-<!--                                        <a href="/"> www.comfortwings.com</a>-->
-<!--                                    </span>-->
+                                    <span>Thank you for shopping
+                                        <a href="www.comfortwings.com"> www.comfortwings.com</a>
+                                    </span>
                                 </div>
                             </div>
                         </div>

@@ -14,11 +14,11 @@
                             </label>
                         </div>
                         <div class="col-6">
-                            <input type="radio" v-model="order.paymentMethod" name="payment" id="credit_card" value="card"
+                            <input type="radio" v-model="order.paymentMethod" name="payment" id="credit_card" value="stripe"
                                 class="method-radio">
                             <label for="credit_card" class="method-item" role="button">
                                 <i class="bi bi-credit-card"></i>
-                                <p>Credit/Debit Card</p>
+                                <p>Stripe</p>
                             </label>
                         </div>
                     </div>
@@ -89,8 +89,14 @@ const makePayment = async () => {
                 "Authorization": `Bearer ${token}`
             }
         })
-        cartStore.clearCart()
+
+      cartStore.clearCart()
+      if(savedOrder?.data && savedOrder.data?.type === "stripe_payment"){
+        window.open(savedOrder.data?.data);
+      }else{
         return router.push({name: "ordercomplate"});
+      }
+
     }
 }
 

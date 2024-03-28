@@ -13,7 +13,6 @@ export const useCartStore = defineStore('cart', {
                 return item?.selectSku.id === product?.selectSku.id
             });
 
-            console.log("index", index)
             if (index > -1) {
                 // this.cart[index].selectSku.selectQty++;
                 this.cart[index].selectSku.selectQty = product?.selectSku?.selectQty;

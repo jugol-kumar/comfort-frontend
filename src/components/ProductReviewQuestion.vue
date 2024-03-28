@@ -116,10 +116,10 @@
                                     <form @submit.prevent="handelSubmit">
                                         <h2 class="fw-normal text-uppercase fs-3">WRITE A REVIEW</h2>
                                         <p class="text-secondary fs-4">
-                                          <span class="text-danger me-1">*</span>Indicates a required field
+<!--                                          <span class="text-danger me-1">*</span>Indicates a required field-->
                                         </p>
 
-                                        <p class="text-danger"> * {{  error?.response?.data?.message }}</p>
+                                        <p class="text-danger" v-if="error?.response?.data?.message"> * {{  error?.response?.data?.message }}</p>
 
                                         <div class="d-flex flex-column align-items-start">
                                             <label class="text-secondary fs-4"><span class="text-danger">*</span>Score:</label>
@@ -135,28 +135,28 @@
                                               <input v-model="createForm.rating" type="radio" id="star1" class="rate" name="rating" value="1"/>
                                               <label for="star1" title="text">1 star</label>
                                             </div>
-                                          <span class="text-danger" v-if=" error?.response?.data?.errors.rating">{{ error?.response?.data?.errors.rating[0] }}</span>
+                                          <span class="text-danger" v-if=" error?.response?.data?.errors?.rating">{{ error?.response?.data?.errors.rating[0] }}</span>
                                         </div>
                                         <div class="d-flex flex-column my-4">
                                             <label for="review_title" class="mb-2"><span class="text-danger me-1">*</span>Title:</label>
                                             <input  type="text" :disabled="loading" name="review_title" v-model="createForm.title"  class="p-1">
-                                            <span class="text-danger" v-if=" error?.response?.data?.errors.title">{{ error?.response?.data?.errors.title[0] }}</span>
+                                            <span class="text-danger" v-if=" error?.response?.data?.errors?.title">{{ error?.response?.data?.errors.title[0] }}</span>
                                         </div>
                                         <div class="d-flex flex-column my-4">
                                             <label for="review_content" class="mb-2"><span class="text-danger me-1">*</span>Review:</label>
                                             <textarea type="text" :disabled="loading" name="review_title" v-model="createForm.review" class="p-1" spellcheck="false"></textarea>
-                                            <span class="text-danger" v-if=" error?.response?.data?.errors.review">{{ error?.response?.data?.errors.review[0] }}</span>
+                                            <span class="text-danger" v-if=" error?.response?.data?.errors?.review">{{ error?.response?.data?.errors.review[0] }}</span>
                                         </div>
                                         <div class="d-flex gap-5 my-4">
                                             <div class="d-flex flex-column w-100">
                                                 <label for="user_name" class="mb-2"><span class="text-danger me-1">*</span>Your Name:</label>
                                                 <input type="text" :disabled="loading" name="user_name" v-model="createForm.name" class="p-1">
-                                                <span class="text-danger" v-if=" error?.response?.data?.errors.name">{{ error?.response?.data?.errors.name[0] }}</span>
+                                                <span class="text-danger" v-if=" error?.response?.data?.errors?.name">{{ error?.response?.data?.errors.name[0] }}</span>
                                             </div>
                                             <div class="d-flex flex-column w-100">
                                                 <label for="user_email" class="mb-2"><span class="text-danger me-1">*</span>Email:</label>
                                                 <input type="email" :disabled="loading" name="user_email" v-model="createForm.email" class="p-1">
-                                                <span class="text-danger" v-if=" error?.response?.data?.errors.email">{{ error?.response?.data?.errors.email[0] }}</span>
+                                                <span class="text-danger" v-if=" error?.response?.data?.errors?.email">{{ error?.response?.data?.errors.email[0] }}</span>
                                             </div>
                                         </div>
                                         <div class="text-end">
@@ -206,7 +206,7 @@
                                 <div class="product-question__form">
                                     <form @submit.prevent="handelSubmitQuestion">
                                         <h2 class="fw-normal text-uppercase fs-3">ASK A QUESTION</h2>
-                                        <p class="text-secondary fs-4"><span class="text-danger me-1">*</span>Indicates a required field</p>
+<!--                                        <p class="text-secondary fs-4"><span class="text-danger me-1">*</span>Indicates a required field</p>-->
                                         <div class="d-flex flex-column my-4">
                                             <label for="question_content" class="mb-2">
                                               <span class="text-danger me-1">*</span>Question:</label>

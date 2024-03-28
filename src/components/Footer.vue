@@ -10,15 +10,16 @@
                         <h3 class="fw-semibold">SIGN UP FOR OUR NEWSLETTER</h3>
                         <p class="fs-4">Join our email list to get access to exclusive offers and notifications of new
                             product launches.</p>
-                        <div class="mb-5">
-                            <form>
-                                <div class="py-3">
-                                    <input type="email" name="newsletter_email" id="newsletter_email"
-                                        v-model="newsletter_email" placeholder="Email Address" class="w-100 p-2 border">
-                                </div>
-                                <button type="submit" class="newsletter_submit primary-button">SIGN UP</button>
-                            </form>
-                        </div>
+<!--                        <div class="mb-5">-->
+<!--                            <form>-->
+<!--                                <div class="py-3">-->
+<!--                                    <input type="email" name="newsletter_email" id="newsletter_email"-->
+<!--                                        v-model="newsletter_email" placeholder="Email Address" class="w-100 p-2 border">-->
+<!--                                </div>-->
+<!--                                <button type="submit" class="newsletter_submit primary-button">SIGN UP</button>-->
+<!--                            </form>-->
+<!--                        </div>-->
+
                         <div>
                             <ul class="list-unstyled d-flex align-items-center gap-3 mb-4 footer-socials">
                                 <li>
@@ -50,59 +51,13 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-xl-2 col-md-6">
+
+                <div class="col-xl-2 col-md-6" v-for="setting in settings">
                     <div>
-                        <h3 class="fw-semibold">WE'RE HERE TO HELP</h3>
+                        <h3 class="fw-semibold">{{ setting?.title }}</h3>
                         <ul>
-                            <li>
-                                <RouterLink to="/contact" class="footer-link">Contact Us</RouterLink>
-                            </li>
-                            <li>
-                                <RouterLink to="/" class="footer-link">Book a Virtual Appointment</RouterLink>
-                            </li>
-                            <li>
-                                <RouterLink to="/" class="footer-link">Track Your Order</RouterLink>
-                            </li>
-                            <li>
-                                <RouterLink to="/" class="footer-link">Shipping</RouterLink>
-                            </li>
-                            <li>
-                                <RouterLink to="/" class="footer-link">Returns & Exchanges</RouterLink>
-                            </li>
-                            <li>
-                                <RouterLink to="/" class="footer-link">FAQ</RouterLink>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-xl-2 col-md-6">
-                    <div>
-                        <h3 class="fw-semibold">OUR COMPANY</h3>
-                        <ul>
-                            <li>
-                                <RouterLink to="/about" class="footer-link">About Us</RouterLink>
-                            </li>
-                            <li>
-                                <RouterLink to="/" class="footer-link">Find a Store</RouterLink>
-                            </li>
-                            <li>
-                                <RouterLink to="/" class="footer-link">Own a Franchise</RouterLink>
-                            </li>
-                            <li>
-                                <RouterLink to="/" class="footer-link">Careers</RouterLink>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-xl-2 col-md-6">
-                    <div>
-                        <h3 class="fw-semibold">PRIVACY & USE</h3>
-                        <ul>
-                            <li>
-                                <RouterLink to="/" class="footer-link">Terms & Conditions</RouterLink>
-                            </li>
-                            <li>
-                                <RouterLink to="/" class="footer-link">Privacy Policy</RouterLink>
+                            <li v-for="page in setting?.pages">
+                                <RouterLink :to="`/page/${page?.slug}`" class="footer-link">{{ page?.title }}</RouterLink>
                             </li>
                         </ul>
                     </div>
@@ -118,4 +73,17 @@
 </template>
 
 <script setup>
+
+import {onMounted, ref} from "vue";
+import useAxios from "@/composables/useAxios.js";
+
+const {sendRequest, loading, error} = useAxios();
+
+const settings = ref([])
+
+onMounted(async () => {
+  const response = await sendRequest('/api/get-footer-settings');
+  settings.value = response?.data;
+})
+
 </script>

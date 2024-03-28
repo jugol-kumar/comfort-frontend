@@ -10,7 +10,7 @@
 <template>
     <section class="dashboard customer-section">
         <div class="container">
-            <CustomerUser/>
+          <CustomerUser/>
 
             <div class="row flex-wrap mt-5 dashboard-items">
                 <div class="col-lg-3 col-md-6 col-12">

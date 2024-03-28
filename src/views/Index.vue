@@ -3,47 +3,35 @@
     <section>
         <div class="container-fluid">
             <div class="row">
-                <div id="carouselExampleDark" class="carousel slide" data-bs-ride="carousel">
-                    <div class="carousel-indicators">
-                        <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active"
-                            aria-current="true" aria-label="Slide 1"></button>
-                        <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="1"
-                            aria-label="Slide 2"></button>
-                        <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="2"
-                            aria-label="Slide 3"></button>
-                    </div>
-                    <div class="carousel-inner">
-                        <div class="carousel-item active" data-bs-interval="5000">
-                            <RouterLink to="">
-                                <img src="https://relaxtheback.com/cdn/shop/files/GiftsOfComfortAndJoy-DesktopBanner_HOLIDAY_2023_1_2588x771.jpg?v=1703010563"
-                                    class="d-block w-100" alt="..." />
-                            </RouterLink>
-                        </div>
-                        <div class="carousel-item" data-bs-interval="5000">
-                            <RouterLink to="">
-                                <img src="https://relaxtheback.com/cdn/shop/files/Gravis_Save_500_Desktop_Homepage_Banner_2023_83c52d95-9199-4a2c-b2e6-fd76495c96e3_1348x400.png?v=1698875670"
-                                    class="d-block w-100" alt="..." />
-                            </RouterLink>
+              <p v-if="loading" class="placeholder-glow mt-3 rounded-lg">
+                <span class="placeholder col-12 rounded-lg" style="height: 40vh"></span>
+              </p>
 
-                        </div>
-                        <div class="carousel-item" data-bs-interval="5000">
-                            <RouterLink to="">
-                                <img src="https://relaxtheback.com/cdn/shop/files/Qi_XE_Pro_Save_500_Desktop_Banner_HOLIDAY_2023_1_1348x400.png?v=1699299403"
-                                    class="d-block w-100" alt="..." />
-                            </RouterLink>
-                        </div>
-                    </div>
-                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark"
-                        data-bs-slide="prev">
-                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Previous</span>
-                    </button>
-                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark"
-                        data-bs-slide="next">
-                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Next</span>
-                    </button>
+
+              <div v-else id="carouselExampleDark" class="carousel slide" data-bs-ride="carousel">
+                <div class="carousel-indicators">
+                  <button v-for="(item, index) in sliders?.data" :key="index" type="button" data-bs-target="#carouselExampleDark"
+                          :data-bs-slide-to="index" :class="{ 'active': index === 0 }" aria-label="Slide {{ index + 1 }}"></button>
                 </div>
+
+                <div class="carousel-inner">
+                  <div v-for="(item, index) in sliders?.data" :key="index" class="carousel-item" :class="{ 'active': index === 0 }"
+                       :data-bs-interval="5000">
+                    <a :href="item.link">
+                      <img :src="$API_URL+'/storage/'+item.image" class="d-block w-100" :alt="'Slide ' + (index + 1)" />
+                    </a>
+                  </div>
+                </div>
+
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
+                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                  <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="next">
+                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                  <span class="visually-hidden">Next</span>
+                </button>
+              </div>
             </div>
         </div>
     </section>
@@ -94,16 +82,16 @@
 </template>
 
 <script setup>
-import { onMounted, ref } from 'vue'
+import {onMounted, ref} from 'vue'
 import SingleProductCardVue from "@/components/SingleProductCard.vue";
-import BlogCard from "@/components/BlogCard.vue";
 import useAxios from "@/composables/useAxios"
 import PlaceholderProdctCard from '@/components/PlaceholderProdctCard.vue';
+
 const { loading, error, sendRequest } = useAxios();
 const data = ref(null);
 
 const categories = ref(null)
-
+const sliders = ref(null)
 
 const getProducts = async () => {
     const res = await sendRequest({
@@ -122,8 +110,17 @@ const getCategories = async () => {
     categories.value = res.data
 }
 
+
+const getAllSliders = async () => {
+  sliders.value = await sendRequest({
+      method: 'get',
+      url: '/api/sliders',
+    })
+}
+
 onMounted(async () => {
     await getProducts();
     await getCategories();
+    await getAllSliders();
 });
 </script>

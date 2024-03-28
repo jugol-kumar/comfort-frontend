@@ -1,5 +1,5 @@
 <template>
-    <div class="dashboard-user">
+    <div class="dashboard-user mb-5">
         <div class="dashboard-user__icon">
             <i class="bi bi-person"></i>
         </div>

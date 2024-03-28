@@ -11,6 +11,7 @@ import { useCartStore } from "@/stores/useCartStore"
 const cartStore = useCartStore();
 
 import { useRoute } from 'vue-router'
+import {useWishListStore} from "@/stores/useWishListStore.js";
 
 const { params } = useRoute();
 
@@ -77,7 +78,16 @@ const addToCart = () => {
     cartStore.addToCart({ data, selectSku: { ...selectVarientProduct.value, selectQty: buyQty.value } })
 }
 
+const wishListStore = useWishListStore();
 
+const addWishlist =() => {
+  wishListStore.initWishList();
+  wishListStore.addToWishList(data.value)
+}
+const removeFormWishlist =() => {
+  wishListStore.initWishList();
+  wishListStore.removeFromWishList(data.value)
+}
 
 </script>
 
@@ -90,7 +100,13 @@ const addToCart = () => {
 
             <div class="row">
               <div class="col-md-6">
-                <div class="row">
+                <p v-if="loading" class="placeholder-glow mt-3 rounded-lg">
+                  <span class="placeholder col-12 rounded-lg" style="height: 40vh"></span>
+                </p>
+                <p v-if="loading" class="placeholder-glow mt-3 rounded-lg">
+                  <span class="placeholder col-12 rounded-lg" style="height: 40vh"></span>
+                </p>
+                <div v-if="!loading" class="row">
                   <div class="col-md-2 image-slider-scroll">
                       <templatel v-for="(img, i) in data?.images" :key="`image-${i}`">
                           <img :src="`${$API_URL}/storage/uploads/${img.image}`" alt="" class="w-100"
@@ -103,52 +119,61 @@ const addToCart = () => {
                     </div>
                 </div>
                 </div>
-
-                <div class="p-3">
-                  <iframe width="100%" height="400px" src="https://www.youtube.com/embed/S-A0qLTxf-U?si=JulyLlKcLWHaOG2G" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                <div  class="py-3" v-if="data?.video_url && !loading">
+                  <iframe  width="100%" height="400px" :src="`${data?.video_url}?controls=0&autoplay=0&mute=1&loop=1&playsinline=1`"></iframe>
                 </div>
               </div>
 
                 <div class="col-md-6 col-12">
-                    <div class="product-detail">
+
+                  <p v-if="loading" class="placeholder-glow mt-3 rounded-lg">
+                    <span class="placeholder col-12 rounded-lg" style="height: 3rem"></span>
+                    <span class="placeholder col-12 rounded-lg mt-2" style="height: 5rem"></span>
+                    <span class="placeholder col-12 rounded-lg mt-2" style="height: 1rem"></span>
+                  </p>
+
+                  <p v-if="loading" class="placeholder-glow mt-3 rounded-lg">
+                    <span class="placeholder col-12 rounded-lg" style="height: 15rem"></span>
+                  </p>
+
+                  <p v-if="loading" class="placeholder-glow mt-3 rounded-lg">
+                    <span class="placeholder col-12 rounded-lg" style="height: 50vh"></span>
+                  </p>
+
+                  <div v-if="!loading" class="product-detail">
                         <h2 class="product-title text-capitalize">{{ data?.title }} - {{ selectVarientProduct.varient?.replace(/\//g, '-').slice(0, -1) }}</h2>
                         <p class="fs-3 text-secondary">by <RouterLink to="" class="fw-semibold text-dark text-capitalize">{{
                             data?.category?.name }}</RouterLink>
                         </p>
                         <div class="product-review d-flex align-items-center gap-1">
                             <div class="fs-3 text-dark">
-                                <i class="bi bi-star-fill"></i>
-                                <i class="bi bi-star-fill"></i>
-                                <i class="bi bi-star-fill"></i>
-                                <i class="bi bi-star-fill"></i>
-                                <i class="bi bi-star-fill"></i>
-                                <i class="bi bi-star"></i>
+                              <i class="bi" :class="data?.avarageRating < star ? 'bi-star' : 'bi-star-fill'" v-for="star in 5"></i>
                             </div>
-                            <span class="fs-4 text-secondary">1 Review</span>
+                            <span class="fs-4 text-secondary">{{ data?.totalRating }} Review</span>
                         </div>
+
+
                         <div class="text-center bg-danger p-3 rounded text-white fw-semibold fs-3 mb-4">
                             {{ data?.showPrice }}
                         </div>
-                        <div
-                            class="pricing-new p-4 rounded border border-secondary d-flex align-items-center justify-content-between">
+                        <div class="pricing-new p-4 rounded border border-secondary d-flex align-items-center justify-content-between">
                             <div class="compare-at-pricing-new text-center">
                                 <p class="m-0 fs-3 fw-semibold text-dark">ONE TIME PAYMENT</p>
                                 <h2 class="m-0 fs-2 fw-semibold text-dark">{{ selectVarientProduct.totalPrice }} $</h2>
-                                <!-- <s class="text-danger fw-normal fs-3">$8,499.00</s> -->
                             </div>
-                            <div class="or-new d-flex align-items-center justify-content-center h-100">
-                                <span>OR</span>
-                            </div>
-                            <div class="interest-new d-flex align-items-center gap-2">
-                                <div>
-                                    <img
-                                        src="https://pdpone.syfpos.com/cs/groups/public/documents/et_imagetype/etimg063608.png" style="width:100px;">
-                                </div>
-                                <div class="text-uppercase text-dark fw-semibold fs-5 text-center">
-                                    Interest-free. $167/mo with 48-month financing.&nbsp;
-                                    <RouterLink to="" class="text-danger fw-semibold">Learn How</RouterLink>
-                                </div>
-                            </div>
+<!--                            <div class="or-new d-flex align-items-center justify-content-center h-100">-->
+<!--                                <span>OR</span>-->
+<!--                            </div>-->
+<!--                            <div class="interest-new d-flex align-items-center gap-2">-->
+<!--                                <div>-->
+<!--                                    <img-->
+<!--                                        src="https://pdpone.syfpos.com/cs/groups/public/documents/et_imagetype/etimg063608.png" style="width:100px;">-->
+<!--                                </div>-->
+<!--                                <div class="text-uppercase text-dark fw-semibold fs-5 text-center">-->
+<!--                                    Interest-free. $167/mo with 48-month financing.&nbsp;-->
+<!--                                    <RouterLink to="" class="text-danger fw-semibold">Learn How</RouterLink>-->
+<!--                                </div>-->
+<!--                            </div>-->
                         </div>
 
                         <div class="d-flex align-items-center gap-3 bg-light p-3 rounded my-4">
@@ -189,14 +214,19 @@ const addToCart = () => {
                                         <button class="secondary-button text-dark fw-medium fs-3 w-100 d-inline-block text-center" @click="addToCart">ADD TO CART</button>
                                     </div>
                                     <div>
-                                        <button class="d-flex align-items-center justify-content-center p-0 border-0 rounded">
-                                            <i class="bi bi-heart fs-3"></i>
+
+                                        <button v-if="wishListStore.getWishListItems?.includes(data)" @click="removeFormWishlist" class="d-flex align-items-center justify-content-center p-0 border-0 rounded">
+                                          <i class="bi bi-heart-fill fs-3"></i>
+                                        </button>
+                                        <button v-else @click="addWishlist" class="d-flex align-items-center justify-content-center p-0 border-0 rounded">
+                                          <i class="bi bi-heart fs-3"></i>
                                         </button>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="share-this py-4">
+
+<!--                        <div class="share-this py-4">
                             <h4 class="fs-3 fw-semibold text-dark mb-4">Share this:</h4>
                             <ul class="list-unstyled d-flex align-items-center gap-3 mb-4">
                                 <li>
@@ -223,7 +253,8 @@ const addToCart = () => {
                             <p class="fs-4 text-dark fw-normal pre-wrap">
                                 {{ data?.description }}
                             </p>
-                        </div>
+                        </div>-->
+
                         <div class="bg-light rounded d-flex gap-3 p-4">
                             <i class="bi bi-info-circle mt-1 fs-3"></i>
                             <div>
@@ -243,28 +274,7 @@ const addToCart = () => {
                                 <div id="flush-collapseOne" class="accordion-collapse collapse"
                                     aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
                                     <div class="accordion-body">
-                                        <ul>
-                                            <li class="text-dark"><span class="fw-semibold">L-Track Massage-</span> The Qi
-                                                XE™ Pro massage ​chair uses a 54-inch-long massage roller track that follows
-                                                the natural shape of the spine. The L shaped track allows for massage
-                                                starting at the back of the head, neck, and shoulders, traveling down the
-                                                spine contouring underneath the glues to target and release these important
-                                                muscle groups.</li>
-                                            <li class="text-dark"><span class="fw-semibold">Chair Doctor-</span> One of the
-                                                most important massage advancements to date, the Chair Doctor program, uses
-                                                AI technology to create a massage based on your current tension and stress.
-                                                Using the hand-held biometric scanner, GSR control sensors are utilized to
-                                                send biofeedback information to sense your tension areas.</li>
-                                            <li class="text-dark"><span class="fw-semibold">Dual Lumbar Massage-</span> Dual
-                                                air compression chambers are strategically placed in the left and right
-                                                sides of the lower back to target and release stiffness.</li>
-                                            <li class="text-dark"><span class="fw-semibold">Immediate Pain Relief-</span>
-                                                The Cozzia Qi XE™ Pro holds you in place, bends you backward slowly but
-                                                firmly, which takes pressure off the discs in your spine proving a similar
-                                                effect to a spinal adjustment at a chiropractor’s office.</li>
-                                            <li class="text-dark"><span class="fw-semibold">Tri-Zone Heat Therapy-</span>
-                                                Heated care targets the lower back, buttock, knees, and calves.</li>
-                                        </ul>
+                                        <div v-html="data?.features"/>
                                     </div>
                                 </div>
                             </div>
@@ -302,7 +312,7 @@ const addToCart = () => {
                                 <div id="flush-collapseThree" class="accordion-collapse collapse"
                                     aria-labelledby="flush-headingThree" data-bs-parent="#accordionFlushExample">
                                     <div class="accordion-body">
-                                        <p>5 Year In-Home Warranty</p>
+                                      <div v-html="data?.warranty"/>
                                     </div>
                                 </div>
                             </div>
@@ -313,24 +323,8 @@ const addToCart = () => {
 
 
             <div class="img-text__container mt-5" v-html="data?.details"/>
-
-            <!-- Product Review & Question -->
              <ProductReviewQuestion :product="data"/>
 
-            <!-- Featured Collection -->
-            <!-- <div class="featured-collection mt-6">
-                <h2 class="text-center text-uppercase fs-3 fw-semibold my-5">YOU MAY ALSO LIKE</h2>
-                <div class="row">
-                    <SingleProductCard />
-                    <SingleProductCard />
-                    <SingleProductCard />
-                    <SingleProductCard />
-                </div>
-                <div class="my-5 text-center">
-                    <RouterLink to="/" class="py-2 px-4 bg-info text-uppercase text-white d-inline-block">View More
-                    </RouterLink>
-                </div>
-            </div> -->
         </div>
     </section>
 </template>
@@ -344,7 +338,7 @@ i {
 }
 
 .compare-at-pricing-new {
-    width: 45%;
+    width: 100%;
 }
 
 .or-new {

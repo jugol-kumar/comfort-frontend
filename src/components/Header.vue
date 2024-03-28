@@ -121,7 +121,7 @@
             <i class="bi bi-person"></i>Login
           </RouterLink>
           <RouterLink to="/customer/wishlist" class="wish">
-            <span>0</span>
+            <span>{{ wishListStore.getWishListLength }}</span>
             <i class="bi bi-heart"></i>
           </RouterLink>
           <RouterLink to="/cart" class="cart">
@@ -164,12 +164,16 @@ import { useCartStore } from "@/stores/useCartStore"
 import useAxios from '@/composables/useAxios';
 import { onMounted, ref } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
+import {useWishListStore} from "@/stores/useWishListStore.js";
 const authStore = useAuthStore();
 const cartStore = useCartStore();
+const wishListStore = useWishListStore();
+cartStore.initCart();
+wishListStore.initWishList();
+
 const router    = useRouter();
 const route     = useRoute();
 const {sendRequest, error, loading} = useAxios();
-cartStore.initCart();
 const categories = ref([])
 
 const search = ref(route?.query?.search ?? null)
