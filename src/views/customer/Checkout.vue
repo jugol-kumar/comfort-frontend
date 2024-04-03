@@ -176,7 +176,7 @@ onMounted(async () => {
                                   <label for="floatingInput">Email</label>
                                   <small class="text-danger" v-if="error?.response?.data?.errors?.email">{{ error?.response?.data?.errors?.email[0] }}</small>
                                 </div>
-                                <div class="d-flex align-items-center gap-3">
+                                <div class="d-flex align-items-center gap-3 flex-wrap flex-md-nowrap">
                                   <select v-model="addressFrom.area" class="form-select"
                                           aria-label="Default select example">
                                     <option value="null" selected disabled>Add New City</option>

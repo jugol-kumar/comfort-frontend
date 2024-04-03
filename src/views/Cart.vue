@@ -22,7 +22,7 @@ const authStore = useAuthStore();
 <!--            </div>-->
             <div class="product-cart__head d-flex align-items-center justify-content-between">
                 <h2>Your Cart</h2>
-                <div class="d-flex align-items-center gap-3">
+                <div class="d-flex align-items-center gap-3 mt-5 for__small">
                     <div>
                         <p>Subtotal</p>
                         <h3>$ {{ cartStore.getCartTotalPrice }}</h3>
@@ -55,7 +55,7 @@ const authStore = useAuthStore();
                             <p><strong>Price</strong> $ {{ item.selectSku?.price }}</p>
                         </div>
 
-                        <div class="d-flex align-items-center gap-5">
+                        <div class="d-flex align-items-center gap-5 flex-wrap flex-md-nowrap">
                             <div>
                                 <h3 class="card-title fw-semibold">
                                     Quantity

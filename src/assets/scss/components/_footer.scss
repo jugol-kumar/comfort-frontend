@@ -7,6 +7,15 @@ ul {
 .footer {
     background-color: #fff;
     padding-top: 50px;
+
+    @media #{$small_mobile} {
+        p{
+            font-size: 12px !important;
+            line-height: 17px;
+            text-align: center;
+        }
+    }
+
     .logo {
         img {
             width: 270px;
@@ -17,6 +26,13 @@ ul {
         margin-bottom: 10px;
     }
 
+    @media #{$small_mobile} {
+        ul{
+            align-items: center;
+            justify-content: center;
+            margin-top: 1rem;
+        }
+    }
     &-socials li a {
         color: $text-dark; 
         i  {

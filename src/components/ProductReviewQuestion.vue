@@ -147,7 +147,7 @@
                                             <textarea type="text" :disabled="loading" name="review_title" v-model="createForm.review" class="p-1" spellcheck="false"></textarea>
                                             <span class="text-danger" v-if=" error?.response?.data?.errors?.review">{{ error?.response?.data?.errors.review[0] }}</span>
                                         </div>
-                                        <div class="d-flex gap-5 my-4">
+                                        <div class="d-flex gap-5 my-4 flex-column flex-md-row">
                                             <div class="d-flex flex-column w-100">
                                                 <label for="user_name" class="mb-2"><span class="text-danger me-1">*</span>Your Name:</label>
                                                 <input type="text" :disabled="loading" name="user_name" v-model="createForm.name" class="p-1">
@@ -212,7 +212,7 @@
                                               <span class="text-danger me-1">*</span>Question:</label>
                                             <textarea type="text" :disabled="loading" v-model="createQuestion.question"  class="p-1" spellcheck="false"></textarea>
                                         </div>
-                                        <div class="d-flex gap-5 my-4">
+                                        <div class="d-flex gap-5 my-4 flex-column flex-md-row">
                                             <div class="d-flex flex-column w-100">
                                                   <label for="user_name" class="mb-2">
                                                   <span class="text-danger me-1">*</span>Your Name:</label>

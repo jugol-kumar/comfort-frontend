@@ -152,6 +152,10 @@
                     top: 20px;
                     right: 20px;
                 }
+                @media #{$small_mobile} {
+                    max-height: 100vh;
+                    overflow-x: scroll;
+                }
             }
         }
         

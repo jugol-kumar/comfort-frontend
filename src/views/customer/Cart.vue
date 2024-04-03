@@ -21,6 +21,7 @@ const authStore = useAuthStore();
 <!--            </div>-->
             <div class="product-cart__head d-flex align-items-center justify-content-between">
                 <h2>Your Cart</h2>
+
                 <div class="d-flex align-items-center gap-3">
                     <div>
                         <p>Subtotal</p>
@@ -30,7 +31,6 @@ const authStore = useAuthStore();
                     <RouterLink v-if="authStore.isLoggedIn" to="/customer/checkout" class="primary-button">
                         <i class="bi bi-cart"></i> Check Out
                     </RouterLink>
-
                     <RouterLink v-else to="/login" class="primary-button">
                         <i class="bi bi-cart"></i> Check Out
                     </RouterLink>

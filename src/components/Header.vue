@@ -7,15 +7,8 @@
     <div class="bg-light">
       <div class="container-fluid">
         <ul class="top_nav d-flex items-center gap-4 py-2 list-unstyled">
-          <li>
-            <RouterLink to="/franchise" class="text-capitalize fs-4 top_nav-link">Own a Franchise</RouterLink>
-          </li>
-          <li>
-            <RouterLink to="/virtual-appointment" class="text-capitalize fs-4 top_nav-link">Book A Virtual Appointment
-            </RouterLink>
-          </li>
-          <li>
-            <RouterLink to="/finance-option" class="text-capitalize fs-4 top_nav-link">Finance Options</RouterLink>
+          <li v-for="page in pages" :key="page.title">
+            <a :href="`/page/${page?.slug}`" class="text-capitalize fs-4 top_nav-link">{{ page.title }}</a>
           </li>
         </ul>
       </div>
@@ -26,7 +19,7 @@
 
   <nav class="navbar bg-body-tertiary d-lg-none">
     <div class="container-fluid px-0">
-      <RouterLink to="/" class="navbar-brand">
+      <RouterLink to="/" class="navbar-brand" style="width: 120px">
         <img src="/logo.png" alt="Comfort" />
       </RouterLink>
       <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar"
@@ -96,7 +89,7 @@
 
   <nav :class="'navbar navbar-expand-lg flex-column p-0 d-none d-lg-flex'" class="position-sticky top-0 z-5">
     <div class="container-fluid py-3">
-      <RouterLink class="navbar-brand" to="/">
+      <RouterLink class="navbar-brand w-25" to="/">
         <img src="/logo.png" alt="Comfort" />
       </RouterLink>
       <div class="d-flex align-items-center gap-4">
@@ -175,6 +168,7 @@ const router    = useRouter();
 const route     = useRoute();
 const {sendRequest, error, loading} = useAxios();
 const categories = ref([])
+const pages = ref([])
 
 const search = ref(route?.query?.search ?? null)
 
@@ -185,10 +179,15 @@ async function getTopCategories(){
   const data = await sendRequest("/api/navbar-categories")
   categories.value = data?.data
 }
+async function getTopBarPages(){
+  const data = await sendRequest("/api/navbar-pages")
+  pages.value = data?.data
+}
 
 
   onMounted(()=>{
     getTopCategories()
+    getTopBarPages()
   })
 </script>
 

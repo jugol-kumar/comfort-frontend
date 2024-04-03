@@ -12,11 +12,11 @@
                 </RouterLink>
 
                 <!-- <s class="card-text fs-4">$8,499.00</s> -->
-                <p class="card-text fs-3 text-danger" v-if=" info?.stocks?.length > 0">
+                <p class="card-text text-danger" v-if=" info?.stocks?.length > 0">
                     {{ showprice ?? '------'}}
                 </p>
                 <!-- <p class="card-text fs-3">MSRP at 10.499.00</p> -->
-                <div class="card-btns d-flex align-item-center gap-3">
+                <div class="card-btns d-none d-md-flex align-item-center gap-3">
                     <!-- <button class="border-0  py-2 px-3 fs-5">QUICK VIEW</button> -->
                     <button class="border-0 bg-info text-white py-2 px-3 fs-5 w-100 h-100">CHOOSE OPTION</button>
                 </div>

@@ -1,16 +1,29 @@
 .product-cart {
     &__head {
-            p {
-                color: $text-gray;
-                font-size: 16px;
-                font-weight: 400;
-            }
-            h3 {
-                color: $text-dark;
-                font-size: 24px;
-                font-weight: 500;
+        p {
+            color: $text-gray;
+            font-size: 16px;
+            font-weight: 400;
+        }
+        h3 {
+            color: $text-dark;
+            font-size: 24px;
+            font-weight: 500;
+        }
+        @media #{$small_mobile} {
+            flex-direction: column;
+            align-items: start !important;
+            h2{
+                font-size: 15px;
             }
         }
+        @media #{$small_mobile} {
+            .for__small{
+                width: 100%;
+                justify-content: space-between;
+            }
+        }
+    }
     &__items {
         padding: 20px 0;
         &-item {
@@ -20,11 +33,16 @@
             padding: 20px 30px 20px 20px;
             box-shadow: 0 1px 4px #8080801c;
             border: 1px solid rgba(128, 128, 128, .16);
-            
+            @media #{$small_mobile} {
+                flex-direction: column;
+            }
             .left {
                 img {
                     width: 200px;
                     height: auto;
+                    @media #{$small_mobile} {
+                        width: 100px;
+                    }
                 }
             }
 
@@ -33,6 +51,9 @@
                 display: flex;
                 align-content: center;
                 justify-content: space-between;
+                @media #{$small_mobile} {
+                    flex-direction: column;
+                }
                 .product-title {
                     color: $text-dark;
                     font-size: 18px;
@@ -41,6 +62,12 @@
                     transition: all ease-in-out 0.3s;
                     &:hover {
                         color: $primary-color;
+                    }
+                    @media #{$small_mobile} {
+                        h2{
+                            font-size: 18px !important;
+                            font-weight: 500 !important;
+                        }
                     }
                 }
                 strong {
@@ -72,4 +99,11 @@
             }
         }
     }
+    .primary-button{
+        @media #{$small_mobile} {
+            padding: 13px 12px;
+            font-size: 10px;
+        }
+    }
+
 }

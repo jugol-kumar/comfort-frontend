@@ -7,7 +7,6 @@
                 <span class="placeholder col-12 rounded-lg" style="height: 40vh"></span>
               </p>
 
-
               <div v-else id="carouselExampleDark" class="carousel slide" data-bs-ride="carousel">
                 <div class="carousel-indicators">
                   <button v-for="(item, index) in sliders?.data" :key="index" type="button" data-bs-target="#carouselExampleDark"
@@ -37,13 +36,13 @@
     </section>
 
     <section>
-        <div class="container-fluid py-8">
+        <div class="container-fluid py-3 py-md-8">
             <h2 class="py-5">OUR LATEST PRODUCTS</h2>
-            <div class="row row-cols-5 match-height" v-if="data?.length > 0">
+            <div class="row row-cols-md-5 match-height" v-if="data?.length > 0">
                 <SingleProductCardVue v-for="item in data" :key="`product-${item.id}`" :info="item" />
             </div>
             <div v-else-if="loading">
-                <div class="row  row-cols-5 match-height">
+                <div class="row row-cols-2 row-cols-md-5 match-height">
                     <PlaceholderProdctCard v-for="i in 25" :key="`place-image-${i}`" />
                 </div>
             </div>
@@ -69,7 +68,7 @@
         </div>
         <div class="container-fluid py-8">
             <!-- <h2 class="py-5">SHOP OUR HOLIDAY SPECIALS</h2> -->
-            <div class="row row-cols-5 match-height" v-if="category?.products?.length > 0">
+            <div class="row row-cols-2 row-cols-md-5 match-height" v-if="category?.products?.length > 0">
                 <SingleProductCardVue v-for="item in category?.products" :key="`product-${item.id}`" :info="item" />
             </div>
             <div v-else>

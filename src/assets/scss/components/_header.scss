@@ -18,6 +18,9 @@ nav {
             @media #{$lg_device} {
                 width: 250px;
             }
+            @media #{$small_mobile} {
+                width: 150px;
+            }
         }
     }
     .search {

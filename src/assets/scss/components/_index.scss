@@ -153,6 +153,10 @@ fffff
         overflow: hidden;
         width: 100%;
 
+        @media #{$small_mobile} {
+            height: 25vh;
+        }
+
         &::before {
             content: "";
             position: absolute;
@@ -176,18 +180,30 @@ fffff
             left: 30px;
             bottom: 30px;
             max-width: 60%;
-
+            @media #{$small_mobile} {
+                left: 10px;
+                max-width: 90%;
+            }
             h2 {
                 color: #fff;
                 text-align: left;
                 font-size: 38px;
                 font-weight: 500;
+                @media #{$small_mobile} {
+                    font-size: 20px;
+                    font-weight: 400;
+                }
             }
 
             p {
                 color: #fff;
                 font-size: 20px;
                 font-weight: 400;
+                @media #{$small_mobile} {
+                    font-size: 11px;
+                    line-height: 12px;
+                    font-weight: normal;
+                }
             }
         }
     }
@@ -329,5 +345,15 @@ fffff
     p,
     a {
         color: #243766;
+    }
+}
+
+@media #{$small_mobile} {
+    .carousel {
+        min-height: 150px;
+        .carousel-item img {
+            min-height: 150px;
+            object-fit: cover;
+        }
     }
 }

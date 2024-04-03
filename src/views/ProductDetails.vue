@@ -107,20 +107,20 @@ const removeFormWishlist =() => {
                   <span class="placeholder col-12 rounded-lg" style="height: 40vh"></span>
                 </p>
                 <div v-if="!loading" class="row">
-                  <div class="col-md-2 image-slider-scroll">
+                  <div class="col-3 col-md-2 image-slider-scroll d-flex flex-column gap-2">
                       <templatel v-for="(img, i) in data?.images" :key="`image-${i}`">
                           <img :src="`${$API_URL}/storage/uploads/${img.image}`" alt="" class="w-100"
-                              @click="setThambImage(img)" :class="getThambImage.id === img.id ? 'selected-image' : ''">
+                              @click="setThambImage(img)" :class="getThambImage.id === img.id ? 'selected-image' : 'not-selected-image'">
                       </templatel>
                   </div>
-                  <div class="col-md-10 col-12">
-                    <div>
-                        <img :src="`${$API_URL}/storage/uploads/${getThambImage?.img}`" alt="" class="w-100 h-auto">
-                    </div>
-                </div>
+                  <div class="col-7 col-md-10">
+                      <div>
+                          <img :src="`${$API_URL}/storage/uploads/${getThambImage?.img}`" alt="" class="w-100 h-auto">
+                      </div>
+                  </div>
                 </div>
                 <div  class="py-3" v-if="data?.video_url && !loading">
-                  <iframe  width="100%" height="400px" :src="`${data?.video_url}?controls=0&autoplay=0&mute=1&loop=1&playsinline=1`"></iframe>
+                  <iframe class="video-ifream" :src="`${data?.video_url}?controls=0&autoplay=0&mute=1&loop=1&playsinline=1`"></iframe>
                 </div>
               </div>
 
@@ -178,7 +178,7 @@ const removeFormWishlist =() => {
 
                         <div class="d-flex align-items-center gap-3 bg-light p-3 rounded my-4">
                             <i class="bi bi-box-seam text-dark fs-3"></i>
-                            <p class="fs-3 fw-semibold text-dark m-0">This product qualifies for free shipping.</p>
+                            <p class="fs-5 fw-semibold text-dark m-0">Choose Your variation For Buy</p>
                         </div>
 
 
@@ -205,7 +205,7 @@ const removeFormWishlist =() => {
                         <div class="product-form-action mt-4">
                             <div class="quantity-selector">
                                 <label for="quantity-selector-input" class="fs-3 text-dark fw-semibold">Quantity</label>
-                                <div class="d-flex align-items-center gap-3 py-3">
+                                <div class="d-flex align-items-center flex-wrap flex-md-nowrap gap-3 py-3">
                                     <div>
                                         <!-- QuantityCounter -->
                                         <QuantityCounter v-model="buyQty"/>
@@ -258,8 +258,8 @@ const removeFormWishlist =() => {
                         <div class="bg-light rounded d-flex gap-3 p-4">
                             <i class="bi bi-info-circle mt-1 fs-3"></i>
                             <div>
-                                <h3 class="fs-3 fw-semibold text-dark">Ask An Expert</h3>
-                                <p class="m-0 fs-3">Schedule a free virtual appointment! <RouterLink to="">Learn More
+                                <h3 class="fw-semibold text-dark">Ask An Expert</h3>
+                                <p class="m-0">Schedule a free virtual appointment! <RouterLink to="">Learn More
                                     </RouterLink>
                                 </p>
                             </div>
@@ -516,5 +516,9 @@ i {
 .selected-image {
     border: 2px solid var(--gk-info);
     border-radius: 10px;
+}
+.not-selected-image{
+  border: 2px solid var(--gk-dark);
+  border-radius: 10px;
 }
 </style>

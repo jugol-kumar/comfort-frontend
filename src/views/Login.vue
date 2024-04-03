@@ -9,8 +9,8 @@ const router = useRouter()
 
 
 const loginData = ref({
-    email: "customer@mail.com",
-    password: "12345678",
+    email: null,
+    password: null,
     remember_me:false,
 })
 
