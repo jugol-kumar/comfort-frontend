@@ -38,7 +38,7 @@
     <section>
         <div class="container-fluid py-3 py-md-8">
             <h2 class="py-5">OUR LATEST PRODUCTS</h2>
-            <div class="row row-cols-md-5 match-height" v-if="data?.length > 0">
+            <div class="row row-cols-md-5 row-cols-2 match-height" v-if="data?.length > 0">
                 <SingleProductCardVue v-for="item in data" :key="`product-${item.id}`" :info="item" />
             </div>
             <div v-else-if="loading">
@@ -60,8 +60,7 @@
                     <img :src="`${$API_URL}/storage/${category?.photo}`" alt="">
                     <div class="new-arrivals__content__text">
                         <h2>{{ category?.name }}</h2>
-                        <p>This season give the gift of wellness. A gift that offers relief, recovery, or relaxation for
-                            you or someone you care about.</p>
+                        <p class="text-capitalize">{{ category?.description }}</p>
                     </div>
                 </RouterLink>
             </div>

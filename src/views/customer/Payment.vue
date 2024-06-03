@@ -32,18 +32,25 @@
                                 <p>$ {{ cartStore.getCartTotalPrice }}</p>
                             </li>
                             <li class="d-flex align-items-center justify-content-between mb-3">
-                                <p class="fs-5">Incluted Delivery Charge </p>
+                                <p class="fs-5">Included Delivery Charge </p>
                                 <p v-if="loading">...</p>
-                                <p v-else>{{ deliveryDeails?.order_area?.delivery_charge }} $</p>
+                                <p v-else>$ {{ deliveryDeails?.order_area?.delivery_charge }} </p>
                             </li>
                             <li class="d-flex align-items-center justify-content-between">
                                 <p class="fs-3">Total Amount</p>
                                 <p v-if="loading">...</p>
-                                <p class="fs-3 text-info" v-else>$ {{ (cartStore.getCartTotalPrice +
-                                    deliveryDeails?.order_area?.delivery_charge) ?? '...' }}</p>
+                                <p class="fs-3 text-info" v-else>$ {{ (parseInt(cartStore.getCartTotalPrice) + parseInt(deliveryDeails?.order_area?.delivery_charge)) ?? '...' }}</p>
                             </li>
                         </ul>
-                        <button @click="makePayment" class="primary-button">Confirm Order</button>
+
+
+                        <button v-if="loading" class="primary-button w-50" :disabled="authStore.loading">
+                          <div class="spinner-border fs-3" role="status">
+                            <span class="visually-hidden ">Loading...</span>
+                          </div>
+                        </button>
+
+                        <button v-else @click="makePayment" class="primary-button">Confirm Order</button>
                     </div>
                 </div>
             </div>

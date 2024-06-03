@@ -67,12 +67,11 @@ const saveAddress = async () => {
   })
 
   if(data !== undefined){
-    await getMyAddresses();
     newAddress.value = false;
     $toast.success('Address Added')
+    await getAddresses()
   }
 }
-
 
 const areas = ref(null)
 const orderAreas = ref(null)
@@ -86,7 +85,6 @@ const getMyAddresses = async () => {
       "Authorization": `Bearer ${token}`
     }
   })
-
   areas.value = data?.data?.addresses
 }
 
@@ -98,19 +96,21 @@ onMounted(async () => {
   })
   orderAreas.value = getAreas?.data
 })
-
+const getAddresses = async () => {
+  const token = await authStore.getToken();
+  const data = await sendRequest({
+    method: 'get',
+    url: "/api/address",
+    headers: {
+      "Authorization": `Bearer ${token}`
+    }
+  })
+  addresses.value = data?.data?.addresses
+}
 
 onMounted(async () => {
-    const token = await authStore.getToken();
-    const data = await sendRequest({
-        method: 'get',
-        url: "/api/address",
-        headers: {
-            "Authorization": `Bearer ${token}`
-        }
-    })
-    addresses.value = data?.data?.addresses
 
+    await getAddresses()
     if(route.query.invalidAddressId){
         $toast.error("Please Select Your Shipping Details Before Payment.")
     }
@@ -203,8 +203,17 @@ onMounted(async () => {
                                   </div>
                                 </div>
                                 <div class="d-flex align-items-center justify-content-end gap-3">
-                                  <button class="primary-button" type="submit">Save</button>
-                                  <button class="secondary-button" @click="newAddress = !newAddress">Close</button>
+
+                                  <button v-if="loading" class="primary-button" :disabled="authStore.loading">
+                                    <div class="spinner-border fs-3" role="status">
+                                      <span class="visually-hidden ">Loading...</span>
+                                    </div>
+                                  </button>
+
+                                  <div v-else class="d-flex align-items-center justify-content-end gap-3">
+                                    <button  class="primary-button" type="submit">Save</button>
+                                    <button class="secondary-button" @click="newAddress = !newAddress">Close</button>
+                                  </div>
                                 </div>
                               </form>
                             </div>
@@ -242,6 +251,15 @@ onMounted(async () => {
                             </div>
                         </div>
 
+
+                      <div class="col-12">
+                        <div class="checkout__payment d-flex gap-4 flex-row align-items-center">
+                          <i class="bi bi-info-circle-fill text-info fs-2"></i>
+                          <span class="fs-3">"This product will take 5 to 10 days to be delivered"</span>
+                          </div>
+                      </div>
+
+
                         <div class="col-12">
                             <div class="checkout__payment">
                                 <p class="text-dark fw-semibold fs-3">Order Summary</p>
@@ -256,7 +274,7 @@ onMounted(async () => {
                                     </li>
                                     <li class="border-top border-2">
                                         <strong>Total Payment</strong>
-                                        <strong>{{ cartStore.getCartTotalPrice + deliveryCharg?.setDesiveryCharge }} $</strong>
+                                        <strong>{{ parseInt(cartStore.getCartTotalPrice) + parseInt(deliveryCharg?.setDesiveryCharge) }} $</strong>
                                     </li>
                                 </ul>
                                 <button @click="payment" class="primary-button text-center">Place Order</button>

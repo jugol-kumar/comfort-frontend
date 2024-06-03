@@ -11,9 +11,8 @@
 </template>
 
 <script setup>
-import { useAuthStore } from "@/stores/useAuthStore";
-
-    const {user} = useAuthStore();
+  import { useAuthStore } from "@/stores/useAuthStore";
+  const {user} = useAuthStore();
 </script>
 
 <style></style>

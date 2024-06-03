@@ -41,6 +41,7 @@ const updateQuantity = () => {
         emit("update:modelValue", quantity.value)
     }
 };
+
 </script>
 <style lang="scss" scoped>
 .quantity {

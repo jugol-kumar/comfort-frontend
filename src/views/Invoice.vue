@@ -3,6 +3,7 @@ import useAxios from "@/composables/useAxios";
 import { useAuthStore } from "@/stores/useAuthStore";
 import { computed, onMounted, ref } from "vue";
 import { useRoute, useRouter } from "vue-router";
+import PreLoader from "@/App.vue";
 
 
 const {user} = useAuthStore();
@@ -40,9 +41,10 @@ onMounted(async () => {
 
 <template>
     <section class="customer-section overflow-hidden py-5">
-            <button class="btn bg-info text-white" @click="printInvoice('areaOfPrient')">Print Invoice</button>
+            <button v-if="!loading" class="btn bg-info text-white" @click="printInvoice('areaOfPrient')">Print Invoice</button>
             <div class="row">
-                <div class="col-md-9 mx-auto p-3" id="areaOfPrient">
+              <h1 v-if="loading">Loading......</h1>
+                <div v-else class="col-md-9 mx-auto p-3" id="areaOfPrient">
                     <div class="card invoice-preview-card shadow-none py-5" >
                         <div class="card-body invoice-padding pb-0 mb-5">
                             <div class="d-flex align-items-center justify-content-between">
@@ -111,7 +113,7 @@ onMounted(async () => {
                                         </td>
                                         <td class="py-1">
                                             <span class="fw-bold">
-                                                {{ item?.stoke?.price * item?.quantity }} $
+                                                {{ parseInt(item?.stoke?.price) * parseInt(item?.quantity) }} $
                                             </span> <!-- {{ $showPrice(item.product.price * item.quantity) }} --> 
                                         </td>
                                     </tr>

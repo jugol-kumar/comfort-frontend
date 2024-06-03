@@ -7,9 +7,8 @@
                         <div class="logo pb-3">
                             <img src="/logo.png" alt="Logo" />
                         </div>
-                        <h3 class="fw-semibold">SIGN UP FOR OUR NEWSLETTER</h3>
-                        <p class="fs-4">Join our email list to get access to exclusive offers and notifications of new
-                            product launches.</p>
+                        <h3 class="fw-semibold">About Us</h3>
+                        <p class="fs-4" style="text-align: justify">Comfort Wing’s is our registered Brand. Our main activities are building & developing new innovative products in specific category semi Healthcare products.</p>
 <!--                        <div class="mb-5">-->
 <!--                            <form>-->
 <!--                                <div class="py-3">-->
@@ -20,7 +19,7 @@
 <!--                            </form>-->
 <!--                        </div>-->
 
-                        <div>
+                        <div class="mt-5">
                             <ul class="list-unstyled d-flex align-items-center gap-3 mb-4 footer-socials">
                                 <li>
                                     <a href="#" target="_blank">

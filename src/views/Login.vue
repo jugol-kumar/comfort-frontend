@@ -50,7 +50,7 @@ const handelLogin = async () => {
                                     <input type="checkbox" id="remember_me" name="remember_me" v-model="loginData.remember_me">
                                     <span>Remember Me</span>
                                 </label>
-                                <RouterLink to="/" class="text-info">Forgot your password?</RouterLink>
+                                <RouterLink :to="{name:'ForgotPassword'}" class="text-info">Forgot your password?</RouterLink>
                             </div>
                             
                             <button v-if="authStore.loading" type="submit" class="primary-button mt-3" :disabled="authStore.loading">
@@ -63,7 +63,7 @@ const handelLogin = async () => {
                         </form>
                         <div class="d-flex align-items-center gap-2 py-3">
                             <span>New Customer?</span>
-                            <RouterLink  to="/register" class="text-dark">Create Account</RouterLink>
+                            <RouterLink  to="/register" class="text-primary">Create Account</RouterLink>
                         </div>
                     </div>
                 </div>

@@ -30,9 +30,9 @@ onMounted(()=>{
           <div class="left">
             <img :src="`${$API_URL}/storage/uploads/${item?.images[0]?.image}`" alt="Chair">
           </div>
-          <div class="right">
+          <div class="right ms-5">
             <div class="d-flex flex-column justify-content-center" style="max-width: 300px;">
-              <RouterLink to="/product-details" class="d-inline-block product-title">{{ item?.title }}</RouterLink>
+              <RouterLink :to="{name:'productDetails', params:{id:item.id}}" class="d-inline-block product-title">{{ item?.title }}</RouterLink>
               <p><strong>Price</strong> $ {{ item?.showPrice }}</p>
             </div>
 

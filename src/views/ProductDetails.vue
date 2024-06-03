@@ -88,7 +88,7 @@ const removeFormWishlist =() => {
   wishListStore.initWishList();
   wishListStore.removeFromWishList(data.value)
 }
-
+const location = ref(window?.location?.href)
 </script>
 
 <template>
@@ -157,9 +157,14 @@ const removeFormWishlist =() => {
                             {{ data?.showPrice }}
                         </div>
                         <div class="pricing-new p-4 rounded border border-secondary d-flex align-items-center justify-content-between">
+
                             <div class="compare-at-pricing-new text-center">
                                 <p class="m-0 fs-3 fw-semibold text-dark">ONE TIME PAYMENT</p>
                                 <h2 class="m-0 fs-2 fw-semibold text-dark">{{ selectVarientProduct.totalPrice }} $</h2>
+                            </div>
+                            <div class="qr-divider"></div>
+                            <div class="compare-at-pricing-new text-center">
+                              <img :src="`https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${location}`" style="width:100px;">
                             </div>
 <!--                            <div class="or-new d-flex align-items-center justify-content-center h-100">-->
 <!--                                <span>OR</span>-->
@@ -226,8 +231,8 @@ const removeFormWishlist =() => {
                             </div>
                         </div>
 
-<!--                        <div class="share-this py-4">
-                            <h4 class="fs-3 fw-semibold text-dark mb-4">Share this:</h4>
+                        <div class="share-this py-4">
+                            <!--<h4 class="fs-3 fw-semibold text-dark mb-4">Share this:</h4>
                             <ul class="list-unstyled d-flex align-items-center gap-3 mb-4">
                                 <li>
                                     <a href="#" target="_blank" class="facebook">
@@ -249,21 +254,20 @@ const removeFormWishlist =() => {
                                         <i class="bi bi-pinterest"></i>
                                     </a>
                                 </li>
-                            </ul>
+                            </ul>-->
                             <p class="fs-4 text-dark fw-normal pre-wrap">
                                 {{ data?.description }}
                             </p>
-                        </div>-->
+                        </div>
 
-                        <div class="bg-light rounded d-flex gap-3 p-4">
+                        <a href="#questionSection" class="bg-light rounded d-flex gap-3 p-4">
                             <i class="bi bi-info-circle mt-1 fs-3"></i>
                             <div>
                                 <h3 class="fw-semibold text-dark">Ask An Expert</h3>
-                                <p class="m-0">Schedule a free virtual appointment! <RouterLink to="">Learn More
-                                    </RouterLink>
+                                <p class="m-0">Schedule a free virtual appointment!
                                 </p>
                             </div>
-                        </div>
+                        </a>
                         <div class="accordion accordion-flush my-5" id="accordionFlushExample">
                             <div class="accordion-item">
                                 <h2 class="accordion-header" id="flush-headingOne">
@@ -323,7 +327,7 @@ const removeFormWishlist =() => {
 
 
             <div class="img-text__container mt-5" v-html="data?.details"/>
-             <ProductReviewQuestion :product="data"/>
+             <ProductReviewQuestion :product="data" id="questionSection"/>
 
         </div>
     </section>
@@ -520,5 +524,13 @@ i {
 .not-selected-image{
   border: 2px solid var(--gk-dark);
   border-radius: 10px;
+}
+
+
+.qr-divider{
+  width: 6px;
+  height: 100%;
+  background: linear-gradient(276deg, black, transparent, black, transparent, black);
+  min-height: 100px;
 }
 </style>

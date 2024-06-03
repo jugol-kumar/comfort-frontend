@@ -36,6 +36,7 @@
       method:"POST"
     })
     if(response?.data){
+      createForm.value = {}
       $toast.success('Thanks for your review.')
       await getAllReviews()
     }else{
@@ -62,6 +63,7 @@
     })
 
     if(response?.data){
+      createQuestion.value = {}
       $toast.success('Thanks for Submit Question.')
       await getAllQuestions()
     }else{

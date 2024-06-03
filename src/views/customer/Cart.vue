@@ -38,13 +38,13 @@ const authStore = useAuthStore();
             </div>
             <div class="product-cart__items">
                 <div class="product-cart__items-item bg-white" v-for="(item, i) in cartStore.getCartItems" :key="`cart-item-${i}`">
-                    <div class="left">
+                    <div class="left me-5">
                         <img :src="`${$API_URL}/storage/uploads/${item?.selectSku?.image ?? item?.data?.images[0]?.image}`"
                             alt="Chair">
                     </div>
                     <div class="right ms-3">
                         <div class="d-flex flex-column justify-content-center" style="width: 50%">
-                            <RouterLink :to="`/product-details/${item?.data?.id}`"
+                            <RouterLink  :to="{name:'productDetails', params:{id:item.id}}"
                                 class="d-inline-block product-title text-capitalize">
                                 <h2 class="fw-bold text-start">
                                     {{ item?.data?.title+'-'+item?.selectSku?.varient?.replace(/\//g, '-').slice(0, -1).slice(0, 15) }}...

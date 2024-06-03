@@ -1,8 +1,7 @@
 <template>
   <div>
-    <div class="bg-info py-3 text-center">
-      <router-link to="/super-holiday" class="text-white text-capitalize fs-4 fw-bold">***Super Holiday Savings! Shop Our
-        Gift Guide***</router-link>
+    <div class="bg-info py-3 text-center" v-if="barText">
+      <marquee class="text-white text-capitalize fs-4 fw-bold">{{ barText }}</marquee>
     </div>
     <div class="bg-light">
       <div class="container-fluid">
@@ -16,12 +15,11 @@
   </div>
 
   <!-- Mobile Nav -->
-
   <nav class="navbar bg-body-tertiary d-lg-none">
     <div class="container-fluid px-0">
-      <RouterLink to="/" class="navbar-brand" style="width: 120px">
+      <a href="/" class="navbar-brand" style="width: 120px">
         <img src="/logo.png" alt="Comfort" />
-      </RouterLink>
+      </a>
       <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar"
         aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon">
@@ -32,24 +30,34 @@
         </span>
       </button>
       <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
-        <div class="offcanvas-header">
-          <h5 class="offcanvas-title" id="offcanvasNavbarLabel">
-            <RouterLink to="/login" class="login d-flex align-items-center gap-1">
+        <div class="offcanvas-header align-items-start">
+          <a href="/dashboard" v-if="authStore.isLoggedIn" >
+
+            <CustomerUser/>
+          </a>
+          <h5 v-else class="offcanvas-title" id="offcanvasNavbarLabel">
+            <a href="/login" class="login d-flex align-items-center gap-1">
               <i class="bi bi-person"></i>Login
-            </RouterLink>
+            </a>
           </h5>
-          <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+
+          <button type="button" class="btn-close mt-2" data-bs-dismiss="offcanvas" aria-label="Close"></button>
         </div>
         <div class="offcanvas-body">
-          <form class="d-flex mt-3" role="search">
-            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-info" type="submit">Search</button>
+          <form @submit.prevent="searchSend">
+            <div class="search d-flex align-items-center">
+              <input type="text" placeholder="What are you looking for?" v-model="search">
+              <button type="submit">
+                <!-- <i class="bi bi-x" v-if="search"></i> -->
+                <i class="bi bi-search"></i>
+              </button>
+            </div>
           </form>
           <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
             <li class="nav-item">
-              <RouterLink to="/" class="nav-link active" aria-current="page">Home</RouterLink>
+              <a href="/" class="nav-link" aria-current="page">Home</a>
             </li>
-            <li class="nav-item">
+<!--            <li class="nav-item">
               <RouterLink to="" class="nav-link">New Arrivals</RouterLink>
             </li>
             <li class="nav-item dropdown">
@@ -68,16 +76,23 @@
                   <RouterLink to="" class="dropdown-item">Massage</RouterLink>
                 </li>
               </ul>
+            </li>-->
+            <li class="nav-item">
+              <a href="/customer/wishlist" class="nav-link d-flex align-items-center gap-2 counter-badge">Wishlist
+                <div class="icon-section">
+                  <i class="bi bi-heart"></i>
+                  <span class="wish">{{ wishListStore.getWishListLength }}</span>
+                </div>
+              </a>
             </li>
             <li class="nav-item">
-              <RouterLink to="" class="nav-link d-flex align-items-center gap-2">
-                Wishlist <i class="bi bi-heart"></i>
-              </RouterLink>
-            </li>
-            <li class="nav-item">
-              <RouterLink to="/cart" class="nav-link d-flex align-items-center gap-2">
-                Cart <i class="bi bi-cart"></i>
-              </RouterLink>
+              <a href="/cart" class="nav-link d-flex align-items-center gap-2 counter-badge">
+                Cart
+                <div class="icon-section">
+                  <i class="bi bi-cart"></i>
+                  <span class="wish">{{ cartStore.getCartLength }}</span>
+                </div>
+              </a>
             </li>
           </ul>
         </div>
@@ -134,14 +149,14 @@
             </RouterLink>
           </li> -->
           <li class="nav-item dropdown" v-for="(cats, i) in categories" :key="`single-item-${i}`">
-            <RouterLink :to="`/products/?category=${cats.id}`" class="nav-link dropdown-toggle text-uppercase">
+            <a :href="`/products/?category=${cats.id}`" class="nav-link dropdown-toggle text-uppercase">
               {{ cats.name }}
-            </RouterLink>
+            </a>
             <ul class="dropdown-menu" v-if="cats?.children_recursive?.length > 0">
               <li v-for="(cat, i) in cats?.children_recursive" :key="`dropdown-item-${i}`">
-                <RouterLink :to="`/products/?category=${cat.id}`" class="dropdown-item fs-3 fw-normal py-2">
+                <a :href="`/products/?category=${cat.id}`" class="dropdown-item fs-3 fw-normal py-2">
                   {{ cat.name }}
-                </RouterLink>
+                </a>
               </li>
             </ul>
           </li>
@@ -158,6 +173,7 @@ import useAxios from '@/composables/useAxios';
 import { onMounted, ref } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 import {useWishListStore} from "@/stores/useWishListStore.js";
+import CustomerUser from "@/components/CustomerUser.vue";
 const authStore = useAuthStore();
 const cartStore = useCartStore();
 const wishListStore = useWishListStore();
@@ -169,7 +185,7 @@ const route     = useRoute();
 const {sendRequest, error, loading} = useAxios();
 const categories = ref([])
 const pages = ref([])
-
+const barText = ref(null)
 const search = ref(route?.query?.search ?? null)
 
 const searchSend = () => router.push({ name: 'products',  query: { 'search': search.value }})
@@ -184,11 +200,16 @@ async function getTopBarPages(){
   pages.value = data?.data
 }
 
+async function topBarText(){
+  const data = await sendRequest("/api/get-setting/topBarText")
+  barText.value = data?.data
+}
 
-  onMounted(()=>{
-    getTopCategories()
-    getTopBarPages()
-  })
+onMounted(()=>{
+  getTopCategories()
+  getTopBarPages()
+  topBarText()
+})
 </script>
 
 <script>

@@ -129,6 +129,26 @@ nav {
                 }
             }
         }
+        .counter-badge{
+            .icon-section{
+                position: relative;
+                .wish{
+                    position: absolute;
+                    background: #0FA5E9;
+                    padding: 5px;
+                    font-size: 10px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    width: 15px;
+                    height: 15px;
+                    border-radius: 50%;
+                    color: white;
+                    top: -5px;
+                    right: -11px;
+                }
+            }
+        }
         .dropdown-item:hover {
             color: $primary-color !important;
         }

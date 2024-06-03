@@ -1,10 +1,12 @@
 .dashboard {
     background-color: $gray-color;
-    
     &-user {
         display: flex;
         align-items: center;
         gap: 16px;
+        @media #{$small_mobile} {
+            gap: 10px;
+        }
         &__icon {
             background: #fff;
             width: 80px;
@@ -13,17 +15,31 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            @media #{$small_mobile} {
+                width: 50px;
+                height: 50px;
+            }
             i {
                 color: $text-dark;
                 font-size: 36px;
+                @media #{$small_mobile} {
+                    font-size: 25px;
+                }
             }
         }
         p {
             font-size: 16px;
+            @media #{$small_mobile} {
+                font-size: 12px;
+                margin-bottom: -5px;
+            }
         }
         h3 {
             font-weight: 600;
             font-size: 22px;
+            @media #{$small_mobile} {
+                font-size: 14px;
+            }
         }
     }
     &-items {

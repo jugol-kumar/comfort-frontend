@@ -7,7 +7,6 @@ const authStore = useAuthStore();
 
 
 
-
 </script>
 
 <template>
@@ -37,21 +36,22 @@ const authStore = useAuthStore();
                     </RouterLink>
                 </div>
             </div>
-            <div class="product-cart__items">
+
+            <div class="product-cart__items d-none d-md-block">
                 <div class="product-cart__items-item" v-for="(item, i) in cartStore.getCartItems" :key="`cart-item-${i}`">
                     <div class="left">
                         <img :src="`${$API_URL}/storage/uploads/${item?.selectSku?.image ?? item?.data?.images[0]?.image}`"
                             alt="Chair">
                     </div>
                     <div class="right">
-                        <div class="d-flex flex-column justify-content-center">
-                            <RouterLink :to="`/product-detials/${item?.data?.id}`"
+                        <div class="d-flex flex-column justify-content-center ms-5">
+                            <RouterLink :to="{name:'productDetails', params:{id:item?.data?.id}}"
                                 class="d-inline-block product-title text-capitalize">
                                 <h2 class="fw-bold">
                                     {{ item?.data?.title }} - {{ item?.selectSku?.varient?.replace(/\//g, '-').slice(0, -1)}}
                                 </h2>
                             </RouterLink>
-                            <small>Varient: {{ item?.selectSku?.varient?.replace(/\//g, '-').slice(0, -1) }}</small>
+                            <small>Variant: {{ item?.selectSku?.varient?.replace(/\//g, '-').slice(0, -1) }}</small>
                             <p><strong>Price</strong> $ {{ item.selectSku?.price }}</p>
                         </div>
 
@@ -62,11 +62,11 @@ const authStore = useAuthStore();
                                     <small class="fs-6 fw-normal text-capitalize">({{ item.selectSku?.qty }}
                                         Available)</small>
                                 </h3>
-                                <div class="d-flex align-items-center">
-                                    <button class="btn btn-info"
+                                <div class="quantity">
+                                    <button
                                         @click="cartStore.decrementQty(item?.selectSku?.id)">-</button>
-                                    <input class="form-control founded-0" min="1" :value="item.selectSku?.selectQty">
-                                    <button class="btn btn-info"
+                                    <input class="form-control rounded-0" min="1" :value="item.selectSku?.selectQty">
+                                    <button
                                         @click="cartStore.incrementQty(item?.selectSku?.id)">+</button>
                                 </div>
                             </div>
@@ -79,6 +79,53 @@ const authStore = useAuthStore();
                     </div>
                 </div>
             </div>
+
+
+          <div class="mobile-product-cart__items d-block d-md-none">
+            <div class="mobile-product-cart__items-item" v-for="(item, i) in cartStore.getCartItems" :key="`cart-item-${i}`">
+              <div class="d-flex align-items-start gap-2">
+                <div class="left">
+                  <img :src="`${$API_URL}/storage/uploads/${item?.selectSku?.image ?? item?.data?.images[0]?.image}`"
+                       alt="Chair">
+                </div>
+                <div class="right">
+                  <div class="d-flex flex-column">
+                    <RouterLink :to="{name:'productDetails', params:{id:item?.data?.id}}"
+                                class="d-inline-block product-title text-capitalize">
+                      <h2 class="fw-bold text-start">
+                        {{ item?.data?.title }} - {{ item?.selectSku?.varient?.replace(/\//g, '-').slice(0, -1)}}
+                      </h2>
+                    </RouterLink>
+                    <small>Variant: {{ item?.selectSku?.varient?.replace(/\//g, '-').slice(0, -1) }}</small>
+                    <p><strong>Price</strong> $ {{ item.selectSku?.price }}</p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="d-flex align-items-center justify-content-between mobile-product-cart__prising mb-3">
+                <div class="qty-area">
+                  <h3 class="card-title fw-semibold">
+                    Quantity
+                    <small class="fs-6 fw-normal text-capitalize">({{ item.selectSku?.qty }}
+                      Available)</small>
+                  </h3>
+                  <div class="quantity">
+                    <button
+                        @click="cartStore.decrementQty(item?.selectSku?.id)">-</button>
+                    <input class="form-control rounded-0" min="1" :value="item.selectSku?.selectQty">
+                    <button
+                        @click="cartStore.incrementQty(item?.selectSku?.id)">+</button>
+                  </div>
+                </div>
+
+                <p>$ {{ item.selectSku?.price * item.selectSku?.selectQty }}</p>
+                <button @click="cartStore.removeFromCart(item)" class="cancel-button">
+                  <i class="bi bi-x-lg"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+
             <div class="product-cart__footer border-top pt-5">
                 <div class="d-flex align-items-center justify-content-between py-3">
                     <p class="fs-3 fw-medium text-capitalize">Subtotal</p>
