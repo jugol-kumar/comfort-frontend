@@ -46,8 +46,6 @@ const payment = () =>{
 const newAddress = ref(false)
 const actionToggle = ref(false)
 const authStore = useAuthStore();
-
-
 const addressFrom = ref({
   title:null,
   email:null,
@@ -75,7 +73,6 @@ const saveAddress = async () => {
 
 const areas = ref(null)
 const orderAreas = ref(null)
-
 const getMyAddresses = async () => {
   const token = await authStore.getToken();
   const data = await sendRequest({
@@ -87,7 +84,6 @@ const getMyAddresses = async () => {
   })
   areas.value = data?.data?.addresses
 }
-
 onMounted(async () => {
   await getMyAddresses();
   const getAreas = await sendRequest({
@@ -107,9 +103,7 @@ const getAddresses = async () => {
   })
   addresses.value = data?.data?.addresses
 }
-
 onMounted(async () => {
-
     await getAddresses()
     if(route.query.invalidAddressId){
         $toast.error("Please Select Your Shipping Details Before Payment.")

@@ -1,5 +1,6 @@
 <template>
   <!-- Page content -->
+  <GetInTach/>
   <Header/>
     <main class="min-vh-100">
       <RouterView></RouterView>
@@ -11,6 +12,7 @@
 import Header from "@/components/Header.vue"
 import Footer from "@/components/Footer.vue"
 import PreLoader from "@/components/PreLoader.vue";
+import GetInTach from "@/components/GetInTachPopup.vue"
 import { useAuthStore } from "./stores/useAuthStore";
 import { onMounted } from "vue";
 

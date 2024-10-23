@@ -7,6 +7,7 @@ import "./assets/js/simplebar.min.js"
 import "./assets/js/theme.min.js"
 import "./assets/js/vendors/validation.js"
 
+
 import { createToaster } from "@meforma/vue-toaster";
 window.$toast = createToaster({
     position: 'bottom'
@@ -18,6 +19,7 @@ import { createPinia } from 'pinia'
 import App from './App.vue'
 import router from './router'
 import axios from "axios"
+import VueCookies from "vue-cookies";
 const app = createApp(App)
 
 
@@ -30,6 +32,6 @@ axios.defaults.headers = {
 
 app.use(createPinia())
 app.use(router, axios)
-
+app.use(VueCookies)
 
 app.mount('#app')
